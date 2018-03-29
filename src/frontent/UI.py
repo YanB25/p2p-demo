@@ -1,7 +1,23 @@
 import sys
 from PyQt5 import QtGui, QtWidgets
 from config import *
+from PyQt5.QtCore import *
+import time
 #TODO: self.logTextBox should offer API to append information
+class WorkingDemo(QThread):
+    #TODO: what this syntax it is!? I can't put sinOut into __init__
+    sinOut = pyqtSignal(str)
+    def __init__(self):
+        super().__init__()
+        self.m = 0
+
+    def run(self):
+        while True:
+            self.m+=1
+            print(self.m)
+            self.sinOut.emit(str(self.m))
+            time.sleep(0.1)
+
 class Window(object):
     def __init__(self):
         self.app = QtWidgets.QApplication(sys.argv)
@@ -21,10 +37,11 @@ class Window(object):
         self.window.show()
         return self.app.exec_()
     def submitOnClick(self):
-        print('success', self.ip, self.port)
-        self.IPValidator(self.ip)
-        self.PortValidator(self.port)
-        # TODO: server begin here
+        if self.IPValidator(self.ip) and self.PortValidator(self.port):
+            print('success', self.ip, self.port)
+            self.task = WorkingDemo()
+            self.task.sinOut.connect(self.append)
+            self.task.start()
 
     def initIP(self, window):
         self.initIPAddressTextbox(window)
@@ -35,6 +52,7 @@ class Window(object):
     def initLog(self, window):
         self.initLogTexbox(window)
         self.initLogLabel(window)
+        self.logIndex = 0
     def initSubmit(self, window):
         self.submitButton = QtWidgets.QPushButton(window)
         self.submitButton.setText("submit")
@@ -97,7 +115,10 @@ class Window(object):
             print("Port {} not int".format(port))
             return False
         return True
-
+    def append(self, txt):
+        self.logIndex += 1
+        self.LogTextbox.setPlainText(self.LogTextbox.toPlainText()  + txt + "\n")
+        self.LogTextbox.verticalScrollBar().setValue(self.logIndex)
 if __name__ == '__main__':
     window = Window()
     # Should return the exit code of QApplication
