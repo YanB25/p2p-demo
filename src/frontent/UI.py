@@ -19,7 +19,7 @@ class Window(object):
         w.show()
     def run(self):
         self.window.show()
-        self.app.exec_()
+        return self.app.exec_()
     def submitOnClick(self):
         print('success', self.ip, self.port)
         self.IPValidator(self.ip)
@@ -100,5 +100,5 @@ class Window(object):
 
 if __name__ == '__main__':
     window = Window()
-    window.run()
-    
+    # Should return the exit code of QApplication
+    sys.exit(window.run())
