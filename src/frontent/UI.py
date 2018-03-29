@@ -1,11 +1,11 @@
 import sys
-from PyQt4 import QtGui
+from PyQt5 import QtGui, QtWidgets
 from config import *
 #TODO: self.logTextBox should offer API to append information
 class Window(object):
     def __init__(self):
-        self.app = QtGui.QApplication(sys.argv)
-        w = QtGui.QWidget()
+        self.app = QtWidgets.QApplication(sys.argv)
+        w = QtWidgets.QWidget()
         w.setGeometry(100,100,200,50)
         w.setWindowTitle("P2P Demo")
         self.window = w
@@ -36,35 +36,35 @@ class Window(object):
         self.initLogTexbox(window)
         self.initLogLabel(window)
     def initSubmit(self, window):
-        self.submitButton = QtGui.QPushButton(window)
+        self.submitButton = QtWidgets.QPushButton(window)
         self.submitButton.setText("submit")
         self.submitButton.move(SUBMIT_LEFT_MARGIN, SUBMIT_BUTTON_TOP_MARGIN)
         self.submitButton.clicked.connect(self.submitOnClick)
 
     def initLogTexbox(self, window):
-        self.LogTextbox = QtGui.QPlainTextEdit(window)
+        self.LogTextbox = QtWidgets.QPlainTextEdit(window)
         self.LogTextbox.move(LOG_LEFT_MARGIN, MARGIN)
         self.LogTextbox.resize(LOG_WIDTH, LOG_HEIGH)
         self.LogTextbox.setReadOnly(True)
     def initLogLabel(self, window):
-        self.LogLabel = QtGui.QLabel(window)
+        self.LogLabel = QtWidgets.QLabel(window)
         self.LogLabel.setText("Log")
         self.LogLabel.move(LOG_LABEL_LEFT_MARGIN, 10)
 
     def initIPAddressTextbox(self, window):
-        self.IPTextbox = QtGui.QLineEdit(window) 
+        self.IPTextbox = QtWidgets.QLineEdit(window) 
         self.IPTextbox.move(LEFT_MARGIN + LABEL_WIDTH, MARGIN)
         self.IPTextbox.textChanged.connect(self.editIP)
     def initPortTexbox(self, window):
-        self.portTexbox = QtGui.QLineEdit(window)
+        self.portTexbox = QtWidgets.QLineEdit(window)
         self.portTexbox.move(LEFT_MARGIN + LABEL_WIDTH, MARGIN + LABEL_HEIGHT)
         self.portTexbox.textChanged.connect(self.editPort)
     def initIPLabel(self,window):
-        self.IPLabel = QtGui.QLabel(window)
+        self.IPLabel = QtWidgets.QLabel(window)
         self.IPLabel.setText('IP')
         self.IPLabel.move(LEFT_MARGIN, MARGIN + WORD_OFFSET)
     def initPortLabel(self,window):
-        self.IPLabel = QtGui.QLabel(window)
+        self.IPLabel = QtWidgets.QLabel(window)
         self.IPLabel.move(LEFT_MARGIN, MARGIN + WORD_OFFSET + LABEL_HEIGHT)
         self.IPLabel.setText('Port')
 
