@@ -20,5 +20,6 @@ comps = [
     "e"
 ]
 compls = "".join(comps)
+b = compls.encode("utf-8")
 # print(compls)
-print(parce(compls))
+print(parce(b))

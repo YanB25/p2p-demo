@@ -1,30 +1,30 @@
 example = "d8:announce39:http://torrent.ubuntu.com:6969/announce13:announce-listll39:http://torrent.ubuntu.com:6969/announceel44:http://ipv6.torrent.ubuntu.com:6969/announceee7:comment29:Ubuntu CD releases.ubuntu.com13:creation datei1461232732e4:infod6:lengthi1485881344e4:name30:ubuntu-16.04-desktop-amd64.iso12:piece lengthi524288e6:pieces"
 def itemType(s):
-    if s[0] == 'd':
+    if s[0] == b'd'[0]:
         return "dict"
-    elif s[0] == 'i':
+    elif s[0] == b'i'[0]:
         return "int"
-    elif s[0] == 'l':
+    elif s[0] == b'l'[0]:
         return "list"
-    elif s[0] >= '0' or s[0] <= '9':
+    elif s[0] >= b'0'[0] or s[0] <= b'9'[0]:
         return "str"
     else:
         raise Exception("unknow item type {}".format(s[0]))
 
 def parceItem(s):
-    print(s)
+    print(s, "in parce Item")
     itemtype = itemType(s)
     if itemtype == "int":
-        end = s.find("e")        
+        end = s.find(b"e")        
         num = int(s[1:end])
         print("i {}, index {}, {}".format(str(num), str(end+1), s[end-1:end+2]))
         return num, itemtype, end+1
     elif itemtype == "str":
-        end = s.find(":")
+        end = s.find(b":")
         num = int(s[0:end])
-        val = s[end+1:end+1 + num]
+        val = s[end+1:end+1 + num].decode("utf-8")
         print("str {}, index {}, {}".format(val, str(end+1), s[end-1:end+2]))
-        return val, itemtype, end+1 + num
+        return val, itemtype, end+1 + num 
     elif itemtype == "dict":
         dic, ni = parceDic(s[1:])
         print(dic, "index {}, {}".format(str(ni), s[ni-1:ni+2]))
@@ -37,24 +37,26 @@ def parceItem(s):
         raise Exception("not premitive type {}".format(s[0]))
 
 def parceList(s):
-    print(s)
+    print(s, " in parce List")
     ret = []
     index = 0
-    while s[index] != 'e':
+    while s[index] != b'e'[0]:
         val, _, ni = parceItem(s[index:])
         ret.append(val)
         index += ni
         print(ret, "index {}, {}".format(index, s[index-1:index+2]))
+    print('leave parce List')
     return ret, index+1
 
 def parceDic(s):
-    print(s)
+    print(s, "in parce dict")
     ret = {}
     index = 0
-    while s[index] != 'e':
+    while s[index] != b'e'[0]:
         # key
         key, _, ni = parceItem(s[index:])
         index += ni 
+        print('key {},{}'.format(str(index), s[index-1:index+2] ))
 
         # value
         val, valtype, ni = parceItem(s[index:])
@@ -67,9 +69,18 @@ def parceDic(s):
 
 def parce(s):
     tp = itemType(s)
+    print(tp)
     if tp == 'dict':
         dic, _ = parceDic(s[1:])
         return dic
     elif tp == 'list':
         ls, _ = parceList(s[1:])
         return ls
+
+if __name__ == "__main__":
+    with open("../../example.torrent", 'rb') as f:
+        b = f.read()
+        print(b[0])
+        print(type(b[0]))
+        print(type(b))
+        print(parce(b))
