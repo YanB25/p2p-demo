@@ -42,6 +42,9 @@ class Window(object):
             self.task = WorkingDemo()
             self.task.sinOut.connect(self.append)
             self.task.start()
+        else:
+            if self.task:
+                self.task.terminate()
 
     def initIP(self, window):
         self.initIPAddressTextbox(window)
