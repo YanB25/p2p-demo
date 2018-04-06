@@ -1,3 +1,6 @@
+'''
+utilities functions here
+'''
 import json
 def objEncode(obj):
     return json.dumps(obj).encode('utf-8')

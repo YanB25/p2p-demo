@@ -1,3 +1,12 @@
+'''
+server side for p2p protocal.
+usage:
+python3 server.py
+
+dependencies:
+config.py
+it set ip and port for server
+'''
 import utilities
 import socket
 import json
