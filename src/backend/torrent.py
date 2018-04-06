@@ -8,7 +8,9 @@ import os
 DEFAULT_PIECE_SIZE = 512
 DEFAULT_CLIENT_PORT = 6666
 
+
 def get_host_ip():
+    """得到本机IP"""
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 80))
