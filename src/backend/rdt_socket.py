@@ -1,3 +1,15 @@
+'''
+Reliably send a file (bytes)
+Usage : suppose you have a byte array f to send / recv
+        On sender side :
+            s = connect(ip, port)
+            rdt_s = rdt_socket(s)
+            rdt_s.sendBytes(f)
+        On receiver side :
+            s, addr = accept()
+            rdt_s = rdt_socket(s)
+            rdt_s.recvBytes()
+'''
 import socket
 import struct
 from client_config import *
@@ -8,10 +20,14 @@ class rdt_socket(object):
         self.databuf = bytes()
 
     def sendBytes(self, f : bytearray):
-        l = len(f)
-        header = struct.pack('!1Q', l)
-        send_data = header + f
-        self.s.sendall(send_data)
+        try:
+            l = len(f)
+            header = struct.pack('!1Q', l)
+            send_data = header + f
+            self.s.sendall(send_data)
+        except socket.error as e:
+            print(e)
+            print(e.filename)
 
     def recvBytes(self):
         while True:

@@ -21,22 +21,24 @@ class Client(object):
     def requestServer(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         ip = socket.gethostbyname(self.torrent['announce'])
-        print(ip)
-        s.connect((ip, self.torrent['port']))
-        rdt_s = rdt_socket(s)
-        self.ip = s.getsockname()[0]
-        self.listen_port = 6666
-        self.id = "hhl"
-        rdt_s.sendBytes(utilities.objEncode(
-            {
-                'ip': self.ip,
-                'port': self.listen_port,
-                'peer_id': self.id,
-                'event': 'started'
-            }
-        ))
-        server_resp = utilities.objDecode(rdt_s.recvBytes())
-        print(server_resp)
+        try:
+            s.connect((ip, self.torrent['port']))
+            rdt_s = rdt_socket(s)
+            self.ip = s.getsockname()[0]
+            self.listen_port = 6666
+            self.id = "hhl"
+            rdt_s.sendBytes(utilities.objEncode(
+                {
+                    'ip': self.ip,
+                    'port': self.listen_port,
+                    'peer_id': self.id,
+                    'event': 'started'
+                }
+            ))
+            server_resp = utilities.objDecode(rdt_s.recvBytes())
+            print(server_resp)
+        except socket.error as e:
+            print(e)
 
     def connectPeer(self, peer : Peer):
         peer.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -47,5 +49,4 @@ class Client(object):
             print(e)
 client = Client()
 client.openTorrent("1.json")
-while True:
-    client.requestServer()
+client.requestServer()
