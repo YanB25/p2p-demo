@@ -10,6 +10,7 @@ it set ip and port for server
 import utilities
 import socket
 import json
+from rdt_socket import *
 from server_config import *
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((SERVER_IP, SERVER_PORT))
@@ -32,8 +33,10 @@ while True:
     (client_socket, address) = server_socket.accept()
     try:
         while True:
-            data = client_socket.recv(BUFFER_SIZE)
-            if not data: 
+            rdt_s = rdt_socket(client_socket)
+            # data = client_socket.recv(BUFFER_SIZE)
+            data = rdt_s.recvBytes()
+            if not data:
                 continue
             json_data = utilities.objDecode(data)
             print(json_data)
@@ -48,7 +51,7 @@ while True:
                     'peer-port': obj.port,
                     'peer-ip': obj.ip
                 } for obj in available_peers]
-                client_socket.send(utilities.objEncode({
+                rdt_s.sendBytes(utilities.objEncode({
                     'error_code': 0,
                     'message': 'started ACK',
                     'num-of-peer': len(available_peers),
