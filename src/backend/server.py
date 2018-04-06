@@ -37,18 +37,25 @@ while True:
                 continue
             json_data = utilities.objDecode(data)
             print(json_data)
-            ip = json_data['ip']
+            ip, _ = address
             port = json_data['port']
-            id = json_data['id']
+            id = json_data['peer_id']
             event = json_data['event']
             if event == 'started':
-                available_peers.append(Peer(ip, port, id))
                 print(available_peers)
+                retList = [{
+                    'peer-id': obj.id,
+                    'peer-port': obj.port,
+                    'peer-ip': obj.ip
+                } for obj in available_peers]
                 client_socket.send(utilities.objEncode({
                     'error_code': 0,
-                    'message': 'started ACK'
+                    'message': 'started ACK',
+                    'num-of-peer': len(available_peers),
+                    'peers': retList
                 }))
                 client_socket.close()
+                available_peers.append(Peer(ip, port, id))
                 break
             elif event == 'completed':
                 available_peers.remove(Peer(ip, port, id))
