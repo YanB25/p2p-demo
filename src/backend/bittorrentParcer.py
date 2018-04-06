@@ -91,9 +91,10 @@ if __name__ == "__main__":
         print()
         print()
         for key in p:
-            print(key, end=" : ")
-            if len(str(p[key])) < 100:
-            # if True:
-                print(p[key])
-            else:
-                print('a big')
+            if key != b'info':
+                print('{} : {}'.format(key, p[key]))
+        dic = p[b'info']
+        print()
+        for key in dic:
+            if key != b'pieces':
+                print('{} : {}'.format(key, dic[key]))
