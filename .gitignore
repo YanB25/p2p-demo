@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-lab/**/*
+src/lab/**/*
 __pycache__/
 *.py[cod]
 *$py.class
