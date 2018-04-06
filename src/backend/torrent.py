@@ -58,6 +58,10 @@ def same_as_torrent(torrent_file_name, download_file):
 
     torrent = read_torrent_file(torrent_file_name)
     piece_length = torrent['info']['piece_length']
+    download_length = os.path.getsize(download_file)
+    if torrent['info']['file_length'] != download_length:
+        print('The file size not match!')
+        return 0
     piece_numbers = len(torrent['info']['piece_hash'])
     diff_show_status = bitarray.bitarray([0 for _ in range(1, piece_numbers+1)])
     diff_status = 1
