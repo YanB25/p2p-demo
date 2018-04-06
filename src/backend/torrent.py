@@ -1,3 +1,11 @@
+"""
+本文件函数列表：
+make_torrent_file(upload_file_name) 会在当前目录下生成upload_file_name.torrent文件
+read_torrent_file(torrent_file_name) 读取torrent文件，返回一个dict
+same_as_torrent(torrent_file_name, download_file) 检测种子文件元数据与下载的文件是否相符合，符合返回1，不符合返回0
+"""
+
+
 import json
 import socket
 import bitarray
