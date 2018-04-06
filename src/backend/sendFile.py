@@ -31,7 +31,7 @@ class Client(object):
             {
                 'ip': self.ip,
                 'port': self.listen_port,
-                'id': self.id,
+                'peer_id': self.id,
                 'event': 'started'
             }
         ))
