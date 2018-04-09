@@ -72,9 +72,9 @@ class Client(threading.Thread):
         print('finish get peer list')
 
     def establishLink(self):
-        主动向peer建立链接
-        for peerInfo, idx in enumerate(self.peersListResponse['peers'])
-            if dex >= 4: return # TODO: add constant here
+        #主动向peer建立链接
+        for idx, peerInfo in enumerate(self.peersListResponse['peers']):
+            if idx >= 4: return # TODO: add constant here
             peerIP = peerInfo['peer-ip']
             peerPORT = peerInfo['peer-port']
             print('trying to connect to peer {}:{}'.format(peerIP, peerPORT))
