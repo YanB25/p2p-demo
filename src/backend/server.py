@@ -29,6 +29,8 @@ class Peer(object):
         
 available_peers = []
 
+# start callback
+print('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
 while True:
     (client_socket, address) = server_socket.accept()
     try:
@@ -36,10 +38,7 @@ while True:
             rdt_s = rdt_socket(client_socket)
             # data = client_socket.recv(BUFFER_SIZE)
             data = rdt_s.recvBytes()
-            if not data:
-                continue
             json_data = utilities.objDecode(data)
-            print(json_data)
             ip, _ = address
             port = json_data['port']
             id = json_data['peer_id']
