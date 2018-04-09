@@ -1,5 +1,23 @@
 # p2p-demo 
 
+## todo - (delete me when release)
+现阶段我们要做的事情
+- class PeerConnection增加run的逻辑。
+  - 发送bitfield给对面
+  - 接受对面的bitfield
+  - 发送interested 和 choked 给对面
+  - 死循环接受对面的来信。**完成状态的转换**
+- 退出逻辑
+  - 链接何时应该断开？
+  - 断开该如何发包？
+  - 收到断开链接的指示应怎么做？
+  - 若单方退出，产生半开链接，怎么办？
+- 监控线程逻辑
+  - 当目前的运行tcp数过少，如何建立新TCP？
+  - 如果检测哪些tcp是idle的？
+
+
+
 主要进行了bit-torrent客户端的实现，顺便实现了tracker服务器。
 具有的功能有：
 1. 上传文件
