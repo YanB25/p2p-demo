@@ -6,10 +6,13 @@
 1. 下载文件
 1. 通过‘块差机制’维护p2p网络正常生态。
 
+注意的是，目前的实现仅仅能够做到单文件分享（tracker仅维护一个文件的可用peer列表）
+
 [toc]
 
 ## 请求通用格式
 
+对每一个客户端之间的请求，都会加上这样的首部。
 ### header
 ```
 <body-length> : 32bits
@@ -23,16 +26,16 @@ body can be any format. In this project, it is always a `json`.
 
 在bittorrent官方协议中，种子文件以及很多的消息都使用了特殊的bencode进行编码，本项目出于以主要实现协议核心的目的，将bencode简化成json。
 
-种子文件含有一下参数：
+种子文件含有以下参数：
 |参数名|作用|
 |-|-|
-|announce||
-|port||
-|comment: (optional)||
-|piece length||
-|piece SHA1||
-|file name||
-|file length||
+|announce|tracker服务器的ip或者url|
+|port|tracker服务器监听的端口|
+|comment: (optional)|一些对该种子文件的描述|
+|piece length|块长|
+|piece SHA1|<list> 每一个块的sha1值|
+|file name|文件名|
+|file length|文件的字节大小|
 
 用json文件描述如下：
 ```json
@@ -51,7 +54,7 @@ body can be any format. In this project, it is always a `json`.
 
 ## tracker 服务器端
 官方bittorrent协议中，tracker服务器使用http协议，客户端通过向服务器发送`GET`请求获取可用peer列表。
-我们实现的协议做了一些改动。
+我们实现的协议做了一些改动，首先，这一个tracker不再是一个http服务器，而是能够响应我们发送的request包的专用服务器。
 
 ### 接受request请求
 
