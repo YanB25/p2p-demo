@@ -51,6 +51,7 @@ class Client(threading.Thread):
             peer_connection.start()
     def getPeersList(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print((server_config.SERVER_IP, server_config.SERVER_PORT))
         sock.connect((server_config.SERVER_IP, server_config.SERVER_PORT))
         rdt_s = rdt_socket.rdt_socket(sock)
         rdt_s.sendBytes(utilities.objEncode(PEER_LIST_REQUEST_OBJ))
