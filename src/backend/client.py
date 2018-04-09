@@ -1,7 +1,6 @@
 '''
 client side
 '''
-#TODO: 不是很能理解rdt_socket接口。希望 @新锐帮我检查一下
 import threading
 import socket
 from client_config import *
