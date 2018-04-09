@@ -58,6 +58,7 @@ while True:
                 }))
                 client_socket.close()
                 available_peers.append(Peer(ip, port, id))
+                print('connected by ', (ip, port, id))
                 break
             elif event == 'completed':
                 available_peers.remove(Peer(ip, port, id))
