@@ -42,13 +42,11 @@ class PeerConnection(threading.Thread):
         self.socket = rdt_socket.rdt_socket(sock)
         self.peer_bitfield = 0
         self.pieces_num = pieces_num
-        self.my_bitfield = bitarray.bitarray([0 for _ in range(1,self.pieces_num+1)]).to01()
-        # TODO:如何访问全局的bitfield
 
     def run(self):
         """ 连接 线程主函数 """
-        # TODO:这里是需要访问全局的bitfield的，发送一个全局的bitfield
-        bitfield_ret = self.send_message(msg.bitfield(bitarray.bitarray([0 for _ in range(1,self.pieces_num+1)]).to01()))
+        # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
+        bitfield_ret = self.send_message(msg.bitfield(pieces_manager.get_bitfield().to01()))
         print(utilities.obj_to_beautiful_json(bitfield_ret))
         print('exchange the bitfield completed!')
         self.peer_bitfield = bitfield_ret['bitfield']
