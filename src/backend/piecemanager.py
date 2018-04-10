@@ -18,6 +18,7 @@ class pieceManager():
     对接收文件方而言
         能够将正确的数据块放到pieceManager维护的数据里，并更新bitfield【必须保证正确】，如果数据块已存在就不管
         update_data_bitfield(piece_index, piece_data)
+        merge_data_to_file()
     
     对所有连接，都需要
         bitfield get_bitfield()
@@ -67,20 +68,35 @@ class pieceManager():
             for i in range(0, self.piece_num):
                 self.pieces_data[i] = f.read(self.piece_length)
                 self.bitfield[i] = 1
+    
+    def merge_full_data_to_file(self, save_file_name):
+        if 0 in self.bitfield:
+            # TODO: 如果文件不完整，不能够运行这个函数，异常处理
+            pass
+        else:
+            with open(save_file_name, 'wb') as f:
+                for i in range(0, self.piece_num):
+                    f.write(self.pieces_data[i])
 
 
 if __name__ == '__main__':
-    p = pieceManager('./../../test/vid.mp4.torrent')
+    torrent_file_name = './../../test/vid.mp4.torrent'
+    full_file_name = './../../test/vid.mp4'
+    p = pieceManager(torrent_file_name)
     print(p.get_bitfield())
-    q = pieceManager('./../../test/vid.mp4.torrent')
-    q.load_download_file_data('./../../test/vid.mp4')
+    q = pieceManager(torrent_file_name)
+    q.load_download_file_data(full_file_name)
     print(q.get_bitfield())
 
-    test_index = 1
-    test_data = q.get_piece(test_index)
-    p.updata_data_field(test_index, test_data)
-    print(p.get_bitfield())
-    print(q.get_piece(test_index))
-    print(p.get_piece(test_index))
+
+    for i in range(0,p.piece_num):
+        test_data = q.get_piece(i)
+        p.updata_data_field(i, test_data)
+        print(p.get_bitfield())
+    
+    save_file_name = './../../test/save_void.mp4'
+    p.merge_full_data_to_file(save_file_name)
+
+    print('same?', torrent.same_as_torrent(torrent_file_name, save_file_name))
     print('same?', p.get_piece(1) == q.get_piece(1))
 

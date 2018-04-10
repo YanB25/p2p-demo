@@ -13,6 +13,7 @@ import queue
 import rdt_socket
 import torrent
 from message import Message
+from piecemanager import pieceManager
 
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
@@ -29,6 +30,7 @@ COMPLETED_EVENT = 'completed'
 # 全局变量
 left_piece = queue.Queue(300)
 msg = Message()
+pieces_manager = pieceManager()
 
 class PeerConnection(threading.Thread):
     '''
