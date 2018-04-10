@@ -2,7 +2,7 @@ import json
 import collections
 import torrent
 import bitarray
-
+import os
 
 class pieceManager():
     """
@@ -37,7 +37,8 @@ class pieceManager():
         self.pieces_data = [None]*self.piece_num # 给列表预初始化大小
         self.bitfield = bitarray.bitarray([0 for _ in range(1, self.piece_num+1)])
 
-        self.load_previous_data()
+        self.load_exist_full_file_data()
+        # self.load_previous_data()
 
     def load_previous_data(self, temp_file_name='temp_piece_data'):
         """ TODO:打算是加载下载到一半的数据进来，放到piece_data成员变量中 """
@@ -59,6 +60,12 @@ class pieceManager():
         self.bitfield[piece_index] = 1
         return
     
+    def load_exist_full_file_data(self):
+        """ 如果一个文件已经存在，则加载进来，作为已经下载完整的文件 """
+        if os.path.isfile(self.file_name):
+            print('file {} exist!'.format(self.file_name) )
+            self.load_download_file_data(self.file_name)
+
     def load_download_file_data(self, download_file_name=''):
         """ 将一个已有的文件作为该种子文件对应的文件 """
         # 默认参数为种子文件的文件名
@@ -82,6 +89,7 @@ class pieceManager():
 if __name__ == '__main__':
     torrent_file_name = './../../test/vid.mp4.torrent'
     full_file_name = './../../test/vid.mp4'
+    save_file_name = './../../test/save_void.mp4'
     p = pieceManager(torrent_file_name)
     print(p.get_bitfield())
     q = pieceManager(torrent_file_name)
@@ -94,7 +102,6 @@ if __name__ == '__main__':
         p.updata_data_field(i, test_data)
         print(p.get_bitfield())
     
-    save_file_name = './../../test/save_void.mp4'
     p.merge_full_data_to_file(save_file_name)
 
     print('same?', torrent.same_as_torrent(torrent_file_name, save_file_name))
