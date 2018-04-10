@@ -35,14 +35,22 @@ class PeerConnection(threading.Thread):
     not finished
     client
     '''
-    def __init__(self, sock):
+    def __init__(self, sock, pieces_num):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
+        self.peer_bitfield = 0
+        self.pieces_num = pieces_num
+        self.my_bitfield = bitarray.bitarray([0 for _ in range(1,self.pieces_num+1)]).to01()
+        # TODO:如何访问全局的bitfield
     def run(self):
-        ret = self.send_message(msg.bitfield(bitarray.bitarray([0 for _ in range(1,10)]).tostring()))
-        print(utilities.obj_to_beautiful_json(ret))
+        """ 连接 线程主函数 """
+        # TODO:这里是需要访问全局的bitfield的，发送一个全局的bitfield
+        bitfield_ret = self.send_message(msg.bitfield(bitarray.bitarray([0 for _ in range(1,self.pieces_num+1)]).to01()))
+        print(utilities.obj_to_beautiful_json(bitfield_ret))
         print('exchange the bitfield completed!')
+        self.peer_bitfield = bitfield_ret['bitfield']
         while True:
+            
             pass
 
     def send_message(self, message):
@@ -104,7 +112,7 @@ class Client(threading.Thread):
             (new_socket, addr) = listen_socket.accept()
             print('get new socket from listener port, addr is {}'.format(addr))
             # 开启新线程建立链接
-            peer_connection = PeerConnection(new_socket)
+            peer_connection = PeerConnection(new_socket, self.pieces_num)
             peer_connection.start()
 
     def get_peers_list(self):
@@ -130,7 +138,7 @@ class Client(threading.Thread):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((peer_ip, peer_port))
             # 拉起新的线程管理该tcp
-            peer_connection = PeerConnection(sock)
+            peer_connection = PeerConnection(sock, self.pieces_num)
             print('connect to {}:{} finish. tcp start'.format(peer_ip, peer_port))
             peer_connection.start()
     
