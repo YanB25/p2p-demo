@@ -12,7 +12,7 @@ Usage : suppose you have a byte array f to send / recv
 '''
 import socket
 import struct
-from client_config import *
+# from client_config import *
 
 class rdt_socket(object):
     def __init__(self, s : socket):
