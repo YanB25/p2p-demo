@@ -4,7 +4,7 @@ client side
 import threading
 import socket
 import bitarray
-from client_config import *
+from client2_config import *
 import server_config
 import rdt_socket as rdts
 import utilities
@@ -31,7 +31,7 @@ class PeerConnection(threading.Thread):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
     def run(self):
-        ret = self.send_message(msg.bitfield(bitarray.bitarray([0 for _ in range(1,10)]).tostring())
+        ret = self.send_message(msg.bitfield(bitarray.bitarray([0 for _ in range(1,10)]).tostring()))
         print(ret)
         pass
 
