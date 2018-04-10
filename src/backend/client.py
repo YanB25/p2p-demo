@@ -30,7 +30,7 @@ COMPLETED_EVENT = 'completed'
 # 全局变量
 left_piece = queue.Queue(300)
 msg = Message()
-pieces_manager = pieceManager()
+pieces_manager = 0
 
 class PeerConnection(threading.Thread):
     '''
@@ -44,6 +44,7 @@ class PeerConnection(threading.Thread):
         self.pieces_num = pieces_num
         self.my_bitfield = bitarray.bitarray([0 for _ in range(1,self.pieces_num+1)]).to01()
         # TODO:如何访问全局的bitfield
+
     def run(self):
         """ 连接 线程主函数 """
         # TODO:这里是需要访问全局的bitfield的，发送一个全局的bitfield
@@ -80,6 +81,9 @@ class Client(threading.Thread):
         self.load_config_file(config_file_name)
         # 初始化可用peer列表
         self.peers_list_response = []
+        # TODO:没有什么特别好的解决方法
+        global pieces_manager
+        pieces_manager = pieceManager(torrent_file_name)
 
 
     def load_config_file(self, config_file_name):
