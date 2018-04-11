@@ -58,6 +58,7 @@ class pieceManager():
         # 默认认为数据块一定是正确的，并且原来没有这个数据块
         self.pieces_data[piece_index] = piece_data
         self.bitfield[piece_index] = 1
+        print(self.bitfield)
         return
     
     def load_exist_full_file_data(self):

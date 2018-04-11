@@ -68,9 +68,6 @@ class PeerConnection(threading.Thread):
         self.send_message(Bitfield(pieces_manager.get_bitfield().tolist()))
         self.send_piece_wait_response = 1
         self.request_piece_wait_response = 1
-        # print(utilities.obj_to_beautiful_json(bitfield_ret))
-        # print('exchange the bitfield completed!')
-        # self.peer_bitfield = bitfield_ret['bitfield']
 
         while True:
             # 请求数据块部分的状态转移
@@ -79,10 +76,13 @@ class PeerConnection(threading.Thread):
                 self.request_piece_time_keeper = time.clock()
                 if self.my_interested == 0 and self.peer_choking == 0:
                     self.send_message(UnInterested())
+                    pieces_manager.merge_full_data_to_file(str(self.socket.s.getsockname())+pieces_manager.file_name)
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 0 and self.peer_choking == 1:
                     # TODO:等待态,不需等待回应
-                    self.request_piece_wait_response = 0
+                    print('waiting!')
+                    # 然后就会在self.recv_message()阻塞住
+                    self.request_piece_wait_response = 1
                 elif self.my_interested == 1 and self.peer_choking == 0:
                     print('I am accepted by remote host!')
                     self.send_message(Request(self.request_piece_index))
@@ -96,14 +96,17 @@ class PeerConnection(threading.Thread):
             if self.send_piece_wait_response == 0:
                 self.send_piece_time_keeper = time.clock()
                 if self.my_choking == 0 and self.peer_interested == 0:
-                    # 应该是没有机会到达这样的状态的
-                    pass
+                    # self.send_message(Choke())
+                    # TODO:似乎永远不会到达该状态
+                    self.send_piece_wait_response = 0
                 elif self.my_choking == 0 and self.peer_interested == 1:
                     self.send_message(UnChoke())
                     self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 0:
                     # TODO:等待态,需要想想怎么处理
-                    pass
+                    print('waiting!')
+                    # 然后就会在self.recv_message()阻塞住
+                    self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 1:
                     self.send_message(Choke())
                     self.send_piece_wait_response = 1
@@ -114,9 +117,11 @@ class PeerConnection(threading.Thread):
                 # 如果超时还没有收到消息，就将wait_response置为0，重新发送消息
                 print('[ warning ] no message')
                 if self.send_piece_wait_response == 1 and (time.clock()-self.send_piece_time_keeper > 1):
+                    print('send_piece time out!')
                     self.send_piece_wait_response = 0
                 
                 if self.request_piece_wait_response == 1 and (time.clock()-self.request_piece_time_keeper > 1):
+                    print('request_piece time out!')
                     self.request_piece_wait_response = 0
                 continue
 
@@ -138,26 +143,48 @@ class PeerConnection(threading.Thread):
                 if type(recv_msg) == UnInterested:
                     self.peer_interested = 0
                     self.my_choking = 1
+                    self.send_message(Choke())
                     self.send_piece_wait_response = 0
-
             # 请求数据块部分的状态转移
             if self.request_piece_wait_response == 1:
                 if type(recv_msg) == Piece:
-                    # 得到字符串,原数据块的二进制代码的01串
+                    # 得到字符串,原数据块的二进制数据
                     recv_raw_data = recv_msg.raw_data
                     recv_piece_index = recv_msg.piece_index
                     print(recv_raw_data)
-                    recv_data_available = 1
-                    # TODO:得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
+                    recv_data_available = 0
+                    # 得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
+                    if str(hashlib.sha1(recv_raw_data).digest()) == pieces_manager.hash_table[recv_piece_index]:
+                        print('{} data received without error'.format(recv_piece_index))
+                        recv_data_available = 1
 
+                    # 如果数据可用
                     if recv_data_available == 1:
-                        # pieces_manager.update_data_field(self.request_piece_index, recv_data)
-                        # 如果下载完成，队列中没有元素了
-                        if left_pieces.empty():
-                            self.my_interested = 0
-                        else:
+                        pieces_manager.update_data_field(recv_piece_index, recv_raw_data)
+                        # self.send_message(Have(recv_piece_index))
+                        # 如果下载完成，队列中没有元素，就不感兴趣，否则从队列中继续取
+                        queue_top_available = 0
+                        # 如果队列元素可用，则退出循环
+                        # 退出循环的时候，一定有一个可用元素，或者队列为空
+                        while(not queue_top_available):
+                            # 在不断从队列中寻找可下载数据块的时候队列可能会变成空的
+                            if left_pieces.empty():
+                                self.my_interested = 0
+                                self.request_piece_wait_response = 0
+                                break
+                            # 如果队列不空，则在队列中取一个元素
                             self.request_piece_index, self.request_piece_hash = left_pieces.get()
-                    self.request_piece_wait_response = 0
+                            # 如果对面有这个数据块，就interest，否则就放回队列中
+                            if self.peer_bitfield[self.request_piece_index] == 1:
+                                self.my_interested = 1
+                                queue_top_available = 1
+                                print("I am interested!")
+                            else:
+                                left_pieces.put(self.request_piece_index, self.request_piece_hash)
+                        self.request_piece_wait_response = 0
+                    else:
+                        # 如果数据不可用，传输出现损坏,重发
+                        self.request_piece_wait_response = 0
                 if type(recv_msg) == Choke:
                     self.peer_choking = 1
                     self.request_piece_wait_response = 0
@@ -178,12 +205,13 @@ class PeerConnection(threading.Thread):
 
             if type(recv_msg) == KeepAlive:
                 pass
-            if type(recv_msg) == Have:
-                piece_index = recv_msg.piece_index
-                pieces_manager.bitfield[piece_index] = 1
- 
+            # if type(recv_msg) == Have:
+            #     # TODO:应该是向已连接的所有peer发送have消息
+            #     piece_index = recv_msg.piece_index
+            #     self.peer_bitfield[piece_index] = 1
+
     def send_message(self, msg):
-        """ 传入message字典，并转成二进制发送，并将wait_response置为1 """
+        """ 传入message对象，并转成二进制发送 """
         self.socket.sendBytes(msg.to_bytes())
         print('--------------------------------------------------')
         print('[ send ] : ', msg.to_json_string())
@@ -191,7 +219,9 @@ class PeerConnection(threading.Thread):
 
     def recv_message(self):
         """ 接受消息，并转成对应消息的对象 """
+        print('begin recvive message')
         msg = bytes_to_message(self.socket.recvBytes())
+        print('end receive message')
         print('--------------------------------------------------')
         print('[ recv ] : ', msg.to_json_string())
         print('--------------------------------------------------')
