@@ -38,7 +38,7 @@ class Message():
         return msg
     
     @staticmethod
-    def resquest(piece_index):
+    def request(piece_index):
         msg = create_message('resquest')
         msg['piece_index'] = piece_index
         return msg

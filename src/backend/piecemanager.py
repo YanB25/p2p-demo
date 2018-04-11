@@ -49,11 +49,11 @@ class pieceManager():
         return self.bitfield
 
     def get_piece(self, piece_index):
-        """ 从已有的数据块中找到对应的已下载数据返回 """
+        """ 从已有的数据块中找到对应的已下载数据返回, 返回格式是binary """
         # 如果没有数据块，会返回None （在初始化的时候就已经实现了使用None初始化列表）
         return self.pieces_data[piece_index]
     
-    def updata_data_field(self, piece_index, piece_data):
+    def update_data_field(self, piece_index, piece_data):
         """ 将数据块放入到对应的index的列表中 """
         # 默认认为数据块一定是正确的，并且原来没有这个数据块
         self.pieces_data[piece_index] = piece_data
