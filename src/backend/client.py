@@ -6,6 +6,7 @@ import json
 import socket
 import bitarray
 import server_config
+import hashlib
 import rdt_socket as rdts
 import utilities
 import random
@@ -29,7 +30,7 @@ START_EVENT = 'started'
 COMPLETED_EVENT = 'completed'
 
 # 全局变量
-left_piece = queue.Queue(300)
+left_pieces = queue.Queue(300)
 msg = Message()
 pieces_manager = 0
 
@@ -44,8 +45,14 @@ class PeerConnection(threading.Thread):
         self.peer_bitfield = 0
         self.pieces_num = pieces_num
         
-        self.wait_respone = 0
-        
+        # 发送数据块的自动机对应的计时器
+        self.send_piece_wait_response = 0
+        self.send_piece_time_keeper = 0
+
+        # 接受数据块的自动机对应的计时器
+        self.request_piece_wait_response = 0
+        self.request_piece_time_keeper = 0
+
         self.my_choking = 1
         self.my_interested = 0
         self.peer_choking = 1
@@ -60,96 +67,137 @@ class PeerConnection(threading.Thread):
         # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
 
         self.send_message(msg.bitfield(pieces_manager.get_bitfield().to01()))
+        self.send_piece_wait_response = 1
+        self.request_piece_wait_response = 1
         # print(utilities.obj_to_beautiful_json(bitfield_ret))
         # print('exchange the bitfield completed!')
         # self.peer_bitfield = bitfield_ret['bitfield']
 
-        self.time_keeper = 0
         while True:
-            # 一旦发送消息，wait_respoine = 1,就不再发送消息，等待回应
-            # 防止同一个状态下重复发送多条消息
-            if self.wait_respone == 0:
+            # 请求数据块部分的状态转移
+            if self.request_piece_wait_response == 0:
                 # 开始一个定时器
-                self.time_keeper = time.clock()
-                # 封装一个发送消息函数，里面能够修改self.wait_respone为1
-
-                # 请求数据块部分的状态转移
+                self.request_piece_time_keeper = time.clock()
                 if self.my_interested == 0 and self.peer_choking == 0:
                     self.send_message(msg.no_interested())
+                    self.request_piece_wait_response = 1
                 elif self.my_interested == 0 and self.peer_choking == 1:
-                    # TODO:等待态
-                    pass
+                    # TODO:等待态,不需等待回应
+                    self.request_piece_wait_response = 0
                 elif self.my_interested == 1 and self.peer_choking == 0:
-                    # 从队列中取出一个数据块索引并发送
-                    self.socket.sendbytes(msg.request(piece_index))
+                    print('I am accepted by remote host!')
+                    self.send_message(msg.request(self.request_piece_index))
+                    self.request_piece_wait_response = 1
                 elif self.my_interested == 1 and self.peer_choking == 1:
-                    self.socket.sendbytes(msg.interested())
+                    self.send_message(msg.interested())
+                    print('I want you know I am interested with you!')
+                    self.request_piece_wait_response = 1
                 
-                # 接受数据块部分的状态转移
+            # 发送数据块部分的状态转移
+            if self.send_piece_wait_response == 0:
+                self.send_piece_time_keeper = time.clock()
                 if self.my_choking == 0 and self.peer_interested == 0:
                     # 应该是没有机会到达这样的状态的
                     pass
                 elif self.my_choking == 0 and self.peer_interested == 1:
                     self.send_message(msg.no_choke())
+                    self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 0:
                     # TODO:等待态,需要想想怎么处理
                     pass
                 elif self.my_choking == 1 and self.peer_interested == 1:
                     self.send_message(msg.choke())
+                    self.send_piece_wait_response = 1
 
             recv_msg = self.recv_message()
             # 如果没有收到消息，就继续循环,否则就处理消息
             if not recv_msg:
-                # 如果超时还没有收到消息，就将wait_respone置为0，重新发送消息
-                if self.wait_respone == 1 and (time.clock()-self.time_keeper > 1):
-                    self.wait_respone = 0
+                # 如果超时还没有收到消息，就将wait_response置为0，重新发送消息
+                print('[ warning ] no message')
+                if self.send_piece_wait_response == 1 and (time.clock()-self.send_piece_time_keeper > 1):
+                    self.send_piece_wait_response = 0
+                
+                if self.request_piece_wait_response == 1 and (time.clock()-self.request_piece_time_keeper > 1):
+                    self.request_piece_wait_response = 0
                 continue
-            else:
-                # 收到了消息，就处理消息，并且修改状态位
-                self.wait_respone = 0
-            
+
+            # 发送数据块部分的状态转移
+            if self.send_piece_wait_response == 1:
+                if recv_msg['type'] == 'interested':
+                    self.peer_interested = 1
+                    # TODO:这里可以决定我到底是choking 还是 no_choke
+                    self.my_choking = 0
+                    print('I know you are interested with me. ')
+                    self.send_piece_wait_response = 0
+                if recv_msg['type'] == 'resquest':
+                    # TODO: 需要发送东西， 而且一般发完之后紧接着的是request请求
+                    cur_piece_index = recv_msg['piece_index']
+                    cur_piece_binary_data = pieces_manager.get_piece(cur_piece_index)
+                    print(cur_piece_binary_data)
+                    cur_piece_binary_data_01 = bitarray.bitarray(cur_piece_binary_data).to01()
+                    self.send_message(msg.piece(cur_piece_index, cur_piece_binary_data_01))
+                    self.send_piece_wait_response = 1
+                if recv_msg['type'] == 'no_interested':
+                    self.peer_interested = 0
+                    self.my_choking = 1
+                    self.send_piece_wait_response = 0
+
+            # 请求数据块部分的状态转移
+            if self.request_piece_wait_response == 1:
+                if recv_msg['type'] == 'piece':
+                    # TODO:得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
+                    # 得到字符串,原数据块的二进制代码的01串
+                    recv_data_01_string = recv_msg['raw_data']
+                    recv_data = bitarray.bitarray(recv_data_01_string).tobytes()
+                    print(recv_data)
+                    recv_data_available = 1
+
+                    if recv_data_available == 1:
+                        # pieces_manager.update_data_field(self.request_piece_index, recv_data)
+                        # 如果下载完成，队列中没有元素了
+                        if left_pieces.empty():
+                            self.my_interested = 0
+                        else:
+                            self.request_piece_index, self.request_piece_hash = left_pieces.get()
+                    self.request_piece_wait_response = 0
+                if recv_msg['type'] == 'choke':
+                    self.peer_choking = 1
+                    self.request_piece_wait_response = 0
+                if recv_msg['type'] == 'no_choke':
+                    self.peer_choking = 0
+                    self.request_piece_wait_response = 0
+                if recv_msg['type'] == 'bitfield':
+                    self.peer_bitfield = bitarray.bitarray(recv_msg['bitfield'])
+                    print(self.peer_bitfield)
+                    # TODO:从队列中拿出一个，试一试，如果在bitfield中就interested，如果不在队列中就不管
+                    self.request_piece_index, self.request_piece_hash = left_pieces.get()
+                    if self.peer_bitfield[self.request_piece_index] == 1:
+                        self.my_interested = 1
+                        print("I am interested!")
+                    else:
+                        left_pieces.put(self.request_piece_index, self.request_piece_hash)
+                    self.request_piece_wait_response = 0
+
             if recv_msg['type'] == 'keep_alive':
                 pass
-            if recv_msg['type'] == 'choking':
-                self.peer_choking = 1
-            if recv_msg['type'] == 'no_choking':
-                self.peer_choking = 0
-            if recv_msg['type'] == 'interested':
-                self.peer_interested = 1
-            if recv_msg['type'] == 'no_interested':
-                self.peer_choking = 0
             if recv_msg['type'] == 'have':
                 piece_index = recv_msg['piece_index']
-                self.peer_bitfield[piece_index] = 1
-            if recv_msg['type'] == 'bitfield':
-                self.peer_bitfield = bitarray.bitarray(recv_msg['bitfield'])
-                print(self.peer_bitfield)
-            if recv_msg['type'] == 'request':
-                # TODO: 似乎需要发送东西
-            if recv_msg['type'] == 'piece':
-                # TODO:
-                pass
-
-            """
-            遇到了一个问题
-            交换完bitfield之后，如何确定我是否interested？
-            我是需要在这时候就从队列里拿出一个数据块，然后看看bitfield里面有没有？
-            如果bitfield有，那就interested，否则没有的话就no_interested
-            那么就需要做一下异常处理，对面掉线的话就要把这个放回队列中
-
-            我要加一个状态位：表明我是否在请求文件？当我从队列里拿了一个块，表明我负责请求这一个块的时候，我就要将这个状态位置为1
-            当我拿完了，发出了have消息，我就把这个状态位置为0，下一次循环我就会从队列中拿新的块索引去请求。
-            """
-                
+                pieces_manager.bitfield[piece_index] = 1
+ 
     def send_message(self, msg):
-        """ 传入message字典，并转成二进制发送，并将wait_respone置为1 """
+        """ 传入message字典，并转成二进制发送，并将wait_response置为1 """
         self.socket.sendBytes(utilities.objEncode(msg))
-        self.wait_respone = 1
-    
+        print('--------------------------------------------------')
+        print('[ send ] : ', utilities.obj_to_beautiful_json(msg))
+        print('--------------------------------------------------')
+
     def recv_message(self):
         """ 接受消息，并转成字典 """
-        data = self.socket.recvBytes()
-        return utilities.objDecode(data)
+        data = utilities.objDecode(self.socket.recvBytes())
+        print('--------------------------------------------------')
+        print('[ recv ] : ', utilities.obj_to_beautiful_json(data))
+        print('--------------------------------------------------')
+        return data
 
 class Client(threading.Thread):
     '''
@@ -242,7 +290,7 @@ class Client(threading.Thread):
         for i in range(0, self.pieces_num):
             if self.bitfield[i] == 0:
                 # print('put the {}:{} into queue !'.format(i,self.metadata['info']['piece_hash'][i]))
-                left_piece.put((i,self.metadata['info']['piece_hash'][i]))
+                left_pieces.put((i,self.metadata['info']['piece_hash'][i]))
     
     def get_id(self):
         """ 使用客户端自己的信息生成自己的id """
