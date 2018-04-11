@@ -41,7 +41,7 @@ class PeerConnection(threading.Thread):
     def __init__(self, sock, pieces_num):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
-        self.peer_bitfield = 0
+        # self.peer_bitfield = 0
         self.pieces_num = pieces_num
         
         # 发送数据块的自动机对应的计时器
@@ -180,7 +180,7 @@ class PeerConnection(threading.Thread):
                                 queue_top_available = 1
                                 print("I am interested!")
                             else:
-                                left_pieces.put(self.request_piece_index, self.request_piece_hash)
+                                left_pieces.put((self.request_piece_index, self.request_piece_hash))
                         self.request_piece_wait_response = 0
                     else:
                         # 如果数据不可用，传输出现损坏,重发
@@ -194,13 +194,27 @@ class PeerConnection(threading.Thread):
                 if type(recv_msg) == Bitfield:
                     self.peer_bitfield = bitarray.bitarray(recv_msg.bitfield)
                     print(self.peer_bitfield)
-                    # TODO:从队列中拿出一个，试一试，如果在bitfield中就interested，如果不在队列中就不管
-                    self.request_piece_index, self.request_piece_hash = left_pieces.get()
-                    if self.peer_bitfield[self.request_piece_index] == 1:
-                        self.my_interested = 1
-                        print("I am interested!")
-                    else:
-                        left_pieces.put(self.request_piece_index, self.request_piece_hash)
+                    queue_top_available = 0
+                    # 如果队列元素可用，则退出循环
+                    # 退出循环的时候，一定有一个可用元素，或者队列为空
+                    while(not queue_top_available):
+                        # 在不断从队列中寻找可下载数据块的时候队列可能会变成空的
+                        # print('try to get an item in queue.')
+                        # print('queue is empty?{}'.format(str(left_pieces.empty())))
+                        if left_pieces.empty():
+                            self.my_interested = 0
+                            self.request_piece_wait_response = 0
+                            print('The queue is empty.')
+                            break
+                        # 如果队列不空，则在队列中取一个元素
+                        (self.request_piece_index, self.request_piece_hash) = left_pieces.get()
+                        # 如果对面有这个数据块，就interest，否则就放回队列中
+                        if self.peer_bitfield[self.request_piece_index] == 1:
+                            self.my_interested = 1
+                            queue_top_available = 1
+                            print("I am interested!")
+                        else:
+                            left_pieces.put((self.request_piece_index, self.request_piece_hash))
                     self.request_piece_wait_response = 0
 
             if type(recv_msg) == KeepAlive:
@@ -214,7 +228,7 @@ class PeerConnection(threading.Thread):
         """ 传入message对象，并转成二进制发送 """
         self.socket.sendBytes(msg.to_bytes())
         print('--------------------------------------------------')
-        print('[ send ] : ', msg.to_json_string())
+        print('[ send from {} to {}] : '.format(self.socket.s.getsockname(), self.socket.s.getpeername()), msg.to_json_string())
         print('--------------------------------------------------')
 
     def recv_message(self):
@@ -223,7 +237,7 @@ class PeerConnection(threading.Thread):
         msg = bytes_to_message(self.socket.recvBytes())
         print('end receive message')
         print('--------------------------------------------------')
-        print('[ recv ] : ', msg.to_json_string())
+        print('[ recv ] from {} to {} : '.format(self.socket.s.getpeername(), self.socket.s.getsockname()), msg.to_json_string())
         print('--------------------------------------------------')
         return msg
 
@@ -316,8 +330,8 @@ class Client(threading.Thread):
     def from_bitfield_setup_queue(self):
         """ 根据现有的bitfield，将没有的块的（索引，哈希值）二元组push进全局队列中 """
         for i in range(0, self.pieces_num):
-            if self.bitfield[i] == 0:
-                # print('put the {}:{} into queue !'.format(i,self.metadata['info']['piece_hash'][i]))
+            if pieces_manager.bitfield[i] == 0:
+                print('put the {}:{} into queue !'.format(i,self.metadata['info']['piece_hash'][i]))
                 left_pieces.put((i,self.metadata['info']['piece_hash'][i]))
     
     def get_id(self):
