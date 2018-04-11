@@ -16,6 +16,14 @@ import rdt_socket
 import torrent
 from piecemanager import pieceManager
 from message import *
+import logging
+logging.basicConfig(
+    # filename='../../log/client.{}.log'.format(__name__),
+    format='[%(asctime)s - %(name)s - %(levelname)s] : \n%(message)s\n',
+    datefmt='%M:%S',
+)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
@@ -60,6 +68,8 @@ class PeerConnection(threading.Thread):
         self.request_piece_index = 0
         self.request_piece_hash = 0
 
+        logger.info('peer init connection %s', self.socket.s.getsockname())
+
 
     def run(self):
         """ 连接 线程主函数 """
@@ -69,6 +79,7 @@ class PeerConnection(threading.Thread):
         self.send_piece_wait_response = 1
         self.request_piece_wait_response = 1
 
+        logger.info('peer connection %s begin to listen', self.socket.s.getsockname())
         while True:
             # 请求数据块部分的状态转移
             if self.request_piece_wait_response == 0:
@@ -80,16 +91,16 @@ class PeerConnection(threading.Thread):
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 0 and self.peer_choking == 1:
                     # TODO:等待态,不需等待回应
-                    print('waiting!')
+                    logger.debug('waiting!')
                     # 然后就会在self.recv_message()阻塞住
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 1 and self.peer_choking == 0:
-                    print('I am accepted by remote host!')
+                    logger.debug('I am accepted by remote host!')
                     self.send_message(Request(self.request_piece_index))
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 1 and self.peer_choking == 1:
                     self.send_message(Interested())
-                    print('I want you know I am interested with you!')
+                    logger.debug('I want you know I am interested with you!')
                     self.request_piece_wait_response = 1
                 
             # 发送数据块部分的状态转移
@@ -104,7 +115,7 @@ class PeerConnection(threading.Thread):
                     self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 0:
                     # TODO:等待态,需要想想怎么处理
-                    print('waiting!')
+                    logger.debug('waiting!')
                     # 然后就会在self.recv_message()阻塞住
                     self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 1:
@@ -115,13 +126,13 @@ class PeerConnection(threading.Thread):
             # 如果没有收到消息，就继续循环,否则就处理消息
             if not recv_msg:
                 # 如果超时还没有收到消息，就将wait_response置为0，重新发送消息
-                print('[ warning ] no message')
+                logger.warning('[ warning ] no message')
                 if self.send_piece_wait_response == 1 and (time.clock()-self.send_piece_time_keeper > 1):
-                    print('send_piece time out!')
+                    logger.warning('send_piece time out!')
                     self.send_piece_wait_response = 0
                 
                 if self.request_piece_wait_response == 1 and (time.clock()-self.request_piece_time_keeper > 1):
-                    print('request_piece time out!')
+                    logger.warning('request_piece time out!')
                     self.request_piece_wait_response = 0
                 continue
 
@@ -131,7 +142,7 @@ class PeerConnection(threading.Thread):
                     self.peer_interested = 1
                     # TODO:这里可以决定我到底是choking 还是 no_choke
                     self.my_choking = 0
-                    print('I know you are interested with me. ')
+                    logger.debug('I know you are interested with me. ')
                     self.send_piece_wait_response = 0
                 if type(recv_msg) == Request:
                     # TODO: 需要发送东西， 而且一般发完之后紧接着的是request请求
@@ -155,7 +166,7 @@ class PeerConnection(threading.Thread):
                     recv_data_available = 0
                     # 得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
                     if str(hashlib.sha1(recv_raw_data).digest()) == pieces_manager.hash_table[recv_piece_index]:
-                        print('{} data received without error'.format(recv_piece_index))
+                        logger.debug('{} data received without error'.format(recv_piece_index))
                         recv_data_available = 1
 
                     # 如果数据可用
@@ -178,7 +189,7 @@ class PeerConnection(threading.Thread):
                             if self.peer_bitfield[self.request_piece_index] == 1:
                                 self.my_interested = 1
                                 queue_top_available = 1
-                                print("I am interested!")
+                                logger.debug("I am interested!")
                             else:
                                 left_pieces.put((self.request_piece_index, self.request_piece_hash))
                         self.request_piece_wait_response = 0
@@ -204,7 +215,7 @@ class PeerConnection(threading.Thread):
                         if left_pieces.empty():
                             self.my_interested = 0
                             self.request_piece_wait_response = 0
-                            print('The queue is empty.')
+                            logger.debug('The queue is empty.')
                             break
                         # 如果队列不空，则在队列中取一个元素
                         (self.request_piece_index, self.request_piece_hash) = left_pieces.get()
@@ -212,7 +223,7 @@ class PeerConnection(threading.Thread):
                         if self.peer_bitfield[self.request_piece_index] == 1:
                             self.my_interested = 1
                             queue_top_available = 1
-                            print("I am interested!")
+                            logger.debug("I am interested!")
                         else:
                             left_pieces.put((self.request_piece_index, self.request_piece_hash))
                     self.request_piece_wait_response = 0
@@ -227,18 +238,18 @@ class PeerConnection(threading.Thread):
     def send_message(self, msg):
         """ 传入message对象，并转成二进制发送 """
         self.socket.sendBytes(msg.to_bytes())
-        print('--------------------------------------------------')
-        print('[ send from {} to {}] : '.format(self.socket.s.getsockname(), self.socket.s.getpeername()), msg.to_json_string())
-        print('--------------------------------------------------')
+        logger.info('--------------------------------------------------')
+        logger.debug('[ send from {} to {}] : '.format(self.socket.s.getsockname(), self.socket.s.getpeername())+ msg.to_json_string())
+        logger.info('--------------------------------------------------')
 
     def recv_message(self):
         """ 接受消息，并转成对应消息的对象 """
-        print('begin recvive message')
+        logger.debug('begin recvive message')
         msg = bytes_to_message(self.socket.recvBytes())
-        print('end receive message')
-        print('--------------------------------------------------')
-        print('[ recv ] from {} to {} : '.format(self.socket.s.getpeername(), self.socket.s.getsockname()), msg.to_json_string())
-        print('--------------------------------------------------')
+        logger.debug('end receive message')
+        logger.info('--------------------------------------------------')
+        logger.debug('[ recv ] from {} to {} : '.format(self.socket.s.getpeername(), self.socket.s.getsockname()) +  msg.to_json_string())
+        logger.info('--------------------------------------------------')
         return msg
 
 class Client(threading.Thread):
@@ -277,14 +288,14 @@ class Client(threading.Thread):
         self.client_port = config['client_port']
 
     def run(self):
-        print('run')
+        logger.info('client side run...')
         # 从bitfield中初始化队列，将任务放到队列中等待连接去执行
         self.from_bitfield_setup_queue()
-        print('initing the queue ..... finished!')
+        logger.info('initing the queue ..... finished!')
         # 得到所有的peer列表。存在self.peerListResponse里。
         self.get_peers_list()
         # 监听端口，等待其他peer建立其的链接
-        print('ok get list')
+        logger.info('ok get list')
         listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         listen_socket.bind((self.client_ip, self.client_port))
         listen_socket.listen(CLIENT_LISTEN_MAX)
@@ -295,7 +306,7 @@ class Client(threading.Thread):
         while True:
             # 阻塞型接受新链接
             (new_socket, addr) = listen_socket.accept()
-            print('get new socket from listener port, addr is {}'.format(addr))
+            logger.debug('get new socket from listener port, addr is {}'.format(addr))
             # 开启新线程建立链接
             peer_connection = PeerConnection(new_socket, self.pieces_num)
             peer_connection.start()
@@ -303,15 +314,15 @@ class Client(threading.Thread):
     def get_peers_list(self):
         """ 向tracker发起链接，请求peer list """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        print('connect to tracker : {}:{}'.format(self.metadata['announce'], self.metadata['port']))
+        logger.debug('connect to tracker : {}:{} '.format(self.metadata['announce'],str(self.metadata['port'])))
         sock.connect((self.metadata['announce'], self.metadata['port']))
         rdt_s = rdt_socket.rdt_socket(sock)
         rdt_s.sendBytes(utilities.objEncode(self.make_resquest(START_EVENT)))
         data = rdt_s.recvBytes()
-        print(utilities.binary_to_beautiful_json(data))
+        logger.debug(utilities.binary_to_beautiful_json(data))
         sock.close()
         self.peers_list_response = utilities.objDecode(data)
-        print('finish get peer list')
+        logger.debug('finish get peer list')
 
     def establish_link(self):
         """ 主动向peer建立链接 """
@@ -319,19 +330,19 @@ class Client(threading.Thread):
             if idx >= 4: return # TODO: add constant here
             peer_ip = peer_info['peer-ip']
             peer_port = peer_info['peer-port']
-            print('trying to connect to peer {}:{}'.format(peer_ip, peer_port))
+            logger.debug('trying to connect to peer {}:{}'.format(peer_ip, peer_port))
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((peer_ip, peer_port))
             # 拉起新的线程管理该tcp
             peer_connection = PeerConnection(sock, self.pieces_num)
-            print('connect to {}:{} finish. tcp start'.format(peer_ip, peer_port))
+            logger.debug('connect to {}:{} finish. tcp start'.format(peer_ip, peer_port))
             peer_connection.start()
     
     def from_bitfield_setup_queue(self):
         """ 根据现有的bitfield，将没有的块的（索引，哈希值）二元组push进全局队列中 """
         for i in range(0, self.pieces_num):
             if pieces_manager.bitfield[i] == 0:
-                print('put the {}:{} into queue !'.format(i,self.metadata['info']['piece_hash'][i]))
+                logger.info('put the {}:{} into queue !'.format(i,self.metadata['info']['piece_hash'][i]))
                 left_pieces.put((i,self.metadata['info']['piece_hash'][i]))
     
     def get_id(self):
@@ -360,3 +371,6 @@ def init_config_file(config_file_name='client_config.json'):
 
 if __name__ == "__main__":
     init_config_file()
+    logger.info('in file client.py')
+    logger.debug('test case (NULL) running...')
+    logger.debug('test case finish')

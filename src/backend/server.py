@@ -12,6 +12,15 @@ import socket
 import json
 from rdt_socket import *
 from server_config import *
+import logging 
+
+logging.basicConfig(
+    # filename='../../log/client.log',
+    format='[%(asctime)s - %(levelname)s ]: \n%(message)s\n',
+    datefmt='%M:%S',
+)
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
 
 SERVER_IP = utilities.get_host_ip()
 SERVER_PORT = 6666
@@ -34,7 +43,7 @@ class Peer(object):
 available_peers = []
 
 # start callback
-print('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
+logger.info('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
 while True:
     (client_socket, address) = server_socket.accept()
     # try:
@@ -48,7 +57,7 @@ while True:
         id = json_data['peer_id']
         event = json_data['event']
         if event == 'started':
-            print(available_peers)
+            logger.debug(available_peers)
             retList = [{
                 'peer-id': obj.id,
                 'peer-port': obj.port,
@@ -63,23 +72,17 @@ while True:
             client_socket.close()
             if id not in [peer.id for peer in available_peers]:
                 available_peers.append(Peer(ip, port, id))
-            print('connected by ', (ip, port, id))
+            logger.debug('connected by %s', (ip, port, id))
             break
         elif event == 'completed':
             available_peers.remove(Peer(ip, port, id))
             client_socket.close()
-            print("{} disconnect", id)
-            print(available_peers)
+            logger.debug("{} disconnect %d", id)
+            logger.debug(available_peers)
         else:
-            print("warning, known event {}".format(event), json_data)
+            logger.warning("warning, known event {}".format(event), json_data)
             client_socket.send(utilities.objEncode({
                 'error_code': 1,
                 'message': 'no event in request. abort.'
             }))
             client_socket.close()
-# except Exception as e:
-#     print('exception!')
-#     print(e)
-#     print(e.args)
-#     client_socket.close()
-#     continue
