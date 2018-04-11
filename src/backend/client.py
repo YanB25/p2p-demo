@@ -9,6 +9,7 @@ import server_config
 import rdt_socket as rdts
 import utilities
 import random
+import time
 import queue
 import rdt_socket
 import torrent
@@ -42,23 +43,88 @@ class PeerConnection(threading.Thread):
         self.socket = rdt_socket.rdt_socket(sock)
         self.peer_bitfield = 0
         self.pieces_num = pieces_num
+        self.wait_respone = 0
+        self.my_choking = 1
+        self.my_interested = 0
+        self.peer_choking = 1
+        self.peer_interested = 0
+
 
     def run(self):
         """ 连接 线程主函数 """
         # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
-        bitfield_ret = self.send_message(msg.bitfield(pieces_manager.get_bitfield().to01()))
-        print(utilities.obj_to_beautiful_json(bitfield_ret))
-        print('exchange the bitfield completed!')
-        self.peer_bitfield = bitfield_ret['bitfield']
-        while True:
-            
-            pass
 
-    def send_message(self, message):
-        """ 发送一条消息，参数为message字典，返回服务器的回应 TODO:默认能够收到信息 """
-        self.socket.sendBytes(utilities.objEncode(message))
-        return utilities.objDecode(self.socket.recvBytes())
+        self.send_message(msg.bitfield(pieces_manager.get_bitfield().to01()))
+        # print(utilities.obj_to_beautiful_json(bitfield_ret))
+        # print('exchange the bitfield completed!')
+        # self.peer_bitfield = bitfield_ret['bitfield']
+
+        self.time_keeper = 0
+        while True:
+            # TODO:下面为示例代码，不一定能够正确运行
+            # 一旦发送消息，wait_respoine = 1,就不再发送消息，等待回应
+            # 防止同一个状态下重复发送多条消息
+            if self.wait_respone == 0:
+                # 开始一个定时器
+                self.time_keeper = time.clock()
+                # 封装一个发送消息函数，里面能够修改self.wait_respone为1
+
+                # 请求数据块部分
+                if self.my_interested == 0 and self.peer_choking == 0:
+                    self.send_message(msg.no_interested())
+                elif self.my_interested == 0 and self.peer_choking == 1:
+                    # TODO:等待态
+                    pass
+                elif self.my_interested == 1 and self.peer_choking == 0:
+                    # 从队列中取出一个数据块索引并发送
+                    self.socket.sendbytes(msg.request(piece_index))
+                elif self.my_interested == 1 and self.peer_choking == 1:
+                    self.socket.sendbytes(msg.interested())
+                
+                # 接受数据块部分
+                if self.my_choking == 0 and self.peer_interested == 0:
+                    # 应该是没有机会到达这样的状态的
+                    pass
+                elif self.my_choking == 0 and self.peer_interested == 1:
+                    self.send_message(msg.no_choke())
+                elif self.my_choking == 1 and self.peer_interested == 0:
+                    # TODO:等待态,需要想想怎么处理
+                    pass
+                elif self.my_choking == 1 and self.peer_interested == 1:
+                    self.send_message(msg.choke())
+
+            recv_msg = self.recv_message()
+            # 如果没有收到消息，就继续循环,否则就处理消息
+            if not recv_msg:
+                # 如果超时还没有收到消息，就将wait_respone置为0，重新发送消息
+                if self.wait_respone == 1 and (time.clock()-self.time_keeper > 1):
+                    self.wait_respone = 0
+                continue
+            else:
+                # 收到了消息，就处理消息，并且修改状态位
+                self.wait_respone = 0
+            
+            if recv_msg['type'] == 'bitfield':
+                self.peer_bitfield = bitarray.bitarray(recv_msg['bitfield'])
+                print(self.peer_bitfield)
+
+
+            # if recv_msg['type'] == 'no_choking':
+            #     # 修改状态位
+            #     peer_choking = 1
+            
+            # if recv_msg['type'] == 'interested':
+            #     peer_interested = 1
+                
+    def send_message(self, msg):
+        """ 传入message字典，并转成二进制发送，并将wait_respone置为1 """
+        self.socket.sendBytes(utilities.objEncode(msg))
+        self.wait_respone = 1
     
+    def recv_message(self):
+        """ 接受消息，并转成字典 """
+        data = self.socket.recvBytes()
+        return utilities.objDecode(data)
 
 class Client(threading.Thread):
     '''
