@@ -196,7 +196,7 @@ class PeerConnection(threading.Thread):
         print('--------------------------------------------------')
         print('[ recv ] : ', msg.to_json_string())
         print('--------------------------------------------------')
-        return data
+        return msg
 
 class Client(threading.Thread):
     '''
