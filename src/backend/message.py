@@ -55,6 +55,9 @@ def create_message(type):
     msg['type'] = type
     return msg
 
+
+
+
 if __name__ == '__main__':
     print(Message.keep_alive())
     print(Message.choke())
@@ -63,6 +66,6 @@ if __name__ == '__main__':
     print(Message.no_interested())
     print(Message.have(3))
     print(Message.bitfield(3))
-    print(Message.resquest(4))
+    print(Message.request(4))
     data = b'testest'
     print(Message.piece(3, data))

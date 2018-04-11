@@ -145,12 +145,12 @@ class PeerConnection(threading.Thread):
             # 请求数据块部分的状态转移
             if self.request_piece_wait_response == 1:
                 if recv_msg['type'] == 'piece':
-                    # TODO:得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
                     # 得到字符串,原数据块的二进制代码的01串
                     recv_data_01_string = recv_msg['raw_data']
                     recv_data = bitarray.bitarray(recv_data_01_string).tobytes()
                     print(recv_data)
                     recv_data_available = 1
+                    # TODO:得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
 
                     if recv_data_available == 1:
                         # pieces_manager.update_data_field(self.request_piece_index, recv_data)
