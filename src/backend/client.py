@@ -14,8 +14,8 @@ import time
 import queue
 import rdt_socket
 import torrent
-from message import Message
 from piecemanager import pieceManager
+from message import *
 
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
@@ -31,7 +31,6 @@ COMPLETED_EVENT = 'completed'
 
 # 全局变量
 left_pieces = queue.Queue(300)
-msg = Message()
 pieces_manager = 0
 
 class PeerConnection(threading.Thread):
@@ -66,7 +65,7 @@ class PeerConnection(threading.Thread):
         """ 连接 线程主函数 """
         # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
 
-        self.send_message(msg.bitfield(pieces_manager.get_bitfield().to01()))
+        self.send_message(Bitfield(pieces_manager.get_bitfield().to01()))
         self.send_piece_wait_response = 1
         self.request_piece_wait_response = 1
         # print(utilities.obj_to_beautiful_json(bitfield_ret))
@@ -186,16 +185,16 @@ class PeerConnection(threading.Thread):
  
     def send_message(self, msg):
         """ 传入message字典，并转成二进制发送，并将wait_response置为1 """
-        self.socket.sendBytes(utilities.objEncode(msg))
+        self.socket.sendBytes(msg.to_bytes()))
         print('--------------------------------------------------')
-        print('[ send ] : ', utilities.obj_to_beautiful_json(msg))
+        print('[ send ] : ', msg.to_json_string())
         print('--------------------------------------------------')
 
     def recv_message(self):
-        """ 接受消息，并转成字典 """
-        data = utilities.objDecode(self.socket.recvBytes())
+        """ 接受消息，并转成对应消息的对象 """
+        msg = bytes_to_message(self.socket.recvBytes())
         print('--------------------------------------------------')
-        print('[ recv ] : ', utilities.obj_to_beautiful_json(data))
+        print('[ recv ] : ', msg.to_json_string())
         print('--------------------------------------------------')
         return data
 
