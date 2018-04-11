@@ -53,7 +53,7 @@ while True:
                 'peer-id': obj.id,
                 'peer-port': obj.port,
                 'peer-ip': obj.ip
-            } for obj in available_peers]
+            } for obj in available_peers if obj.id != id]
             rdt_s.sendBytes(utilities.objEncode({
                 'error_code': 0,
                 'message': 'started ACK',
