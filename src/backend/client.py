@@ -43,11 +43,16 @@ class PeerConnection(threading.Thread):
         self.socket = rdt_socket.rdt_socket(sock)
         self.peer_bitfield = 0
         self.pieces_num = pieces_num
+        
         self.wait_respone = 0
+        
         self.my_choking = 1
         self.my_interested = 0
         self.peer_choking = 1
         self.peer_interested = 0
+
+        self.request_piece_index = 0
+        self.request_piece_hash = 0
 
 
     def run(self):
@@ -61,7 +66,6 @@ class PeerConnection(threading.Thread):
 
         self.time_keeper = 0
         while True:
-            # TODO:下面为示例代码，不一定能够正确运行
             # 一旦发送消息，wait_respoine = 1,就不再发送消息，等待回应
             # 防止同一个状态下重复发送多条消息
             if self.wait_respone == 0:
@@ -69,7 +73,7 @@ class PeerConnection(threading.Thread):
                 self.time_keeper = time.clock()
                 # 封装一个发送消息函数，里面能够修改self.wait_respone为1
 
-                # 请求数据块部分
+                # 请求数据块部分的状态转移
                 if self.my_interested == 0 and self.peer_choking == 0:
                     self.send_message(msg.no_interested())
                 elif self.my_interested == 0 and self.peer_choking == 1:
@@ -81,7 +85,7 @@ class PeerConnection(threading.Thread):
                 elif self.my_interested == 1 and self.peer_choking == 1:
                     self.socket.sendbytes(msg.interested())
                 
-                # 接受数据块部分
+                # 接受数据块部分的状态转移
                 if self.my_choking == 0 and self.peer_interested == 0:
                     # 应该是没有机会到达这样的状态的
                     pass
@@ -104,17 +108,38 @@ class PeerConnection(threading.Thread):
                 # 收到了消息，就处理消息，并且修改状态位
                 self.wait_respone = 0
             
+            if recv_msg['type'] == 'keep_alive':
+                pass
+            if recv_msg['type'] == 'choking':
+                self.peer_choking = 1
+            if recv_msg['type'] == 'no_choking':
+                self.peer_choking = 0
+            if recv_msg['type'] == 'interested':
+                self.peer_interested = 1
+            if recv_msg['type'] == 'no_interested':
+                self.peer_choking = 0
+            if recv_msg['type'] == 'have':
+                piece_index = recv_msg['piece_index']
+                self.peer_bitfield[piece_index] = 1
             if recv_msg['type'] == 'bitfield':
                 self.peer_bitfield = bitarray.bitarray(recv_msg['bitfield'])
                 print(self.peer_bitfield)
+            if recv_msg['type'] == 'request':
+                # TODO: 似乎需要发送东西
+            if recv_msg['type'] == 'piece':
+                # TODO:
+                pass
 
+            """
+            遇到了一个问题
+            交换完bitfield之后，如何确定我是否interested？
+            我是需要在这时候就从队列里拿出一个数据块，然后看看bitfield里面有没有？
+            如果bitfield有，那就interested，否则没有的话就no_interested
+            那么就需要做一下异常处理，对面掉线的话就要把这个放回队列中
 
-            # if recv_msg['type'] == 'no_choking':
-            #     # 修改状态位
-            #     peer_choking = 1
-            
-            # if recv_msg['type'] == 'interested':
-            #     peer_interested = 1
+            我要加一个状态位：表明我是否在请求文件？当我从队列里拿了一个块，表明我负责请求这一个块的时候，我就要将这个状态位置为1
+            当我拿完了，发出了have消息，我就把这个状态位置为0，下一次循环我就会从队列中拿新的块索引去请求。
+            """
                 
     def send_message(self, msg):
         """ 传入message字典，并转成二进制发送，并将wait_respone置为1 """
