@@ -6,6 +6,7 @@ import json
 import random
 
 class KeepAlive():
+    """ KeepAlive类消息 """
     def __init__(self):
         self.length = 0
     def to_bytes(self):
@@ -14,7 +15,7 @@ class KeepAlive():
         msg = {}
         msg['type'] = self.__class__.__name__
         msg['length'] = self.length
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
         
 class Choke():
     """ Choke类消息 """
@@ -28,7 +29,7 @@ class Choke():
         msg['type'] = self.__class__.__name__
         msg['length'] = self.length
         msg['message_id'] = self.message_id
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
 class UnChoke():
     """ UnChoke类消息 """
     def __init__(self):
@@ -41,7 +42,7 @@ class UnChoke():
         msg['type'] = self.__class__.__name__
         msg['length'] = self.length
         msg['message_id'] = self.message_id
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
 class Interested():
     """ Interested类消息 """
     def __init__(self):
@@ -54,7 +55,7 @@ class Interested():
         msg['type'] = self.__class__.__name__
         msg['length'] = self.length
         msg['message_id'] = self.message_id
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
 class UnInterested():
     """ UnInterested类消息 """
     def __init__(self):
@@ -67,7 +68,7 @@ class UnInterested():
         msg['type'] = self.__class__.__name__
         msg['length'] = self.length
         msg['message_id'] = self.message_id
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
 
 class Have():
     """ Have类消息 """
@@ -85,7 +86,7 @@ class Have():
         msg['length'] = self.length
         msg['message_id'] = self.message_id
         msg['piece_index'] = self.piece_index
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
         
         
 class Bitfield():
@@ -104,7 +105,7 @@ class Bitfield():
         msg['length'] = self.length
         msg['message_id'] = self.message_id
         msg['bitfield'] = bitarray.bitarray(self.bitfield).to01()
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
 
 class Request():
     """ Request类消息 """
@@ -122,7 +123,7 @@ class Request():
         msg['length'] = self.length
         msg['message_id'] = self.message_id
         msg['piece_index'] = self.piece_index
-        return json.dumps(msg, indent=4)
+        return json.dumps(msg, indent=4, sort_keys=True)
         
 class Piece():
     """ Piece类消息 """
@@ -141,11 +142,14 @@ class Piece():
         msg['length'] = self.length
         msg['message_id'] = self.message_id
         msg['raw_data'] = str(self.raw_data)
-        return json.dumps(msg, indent=4)
+        msg['piece_index'] = self.piece_index
+        return json.dumps(msg, indent=4, sort_keys=True)
 
 
 
 def bytes_to_message(binary):
+    if not binary:
+        return None
     _msg_length = struct.unpack_from('!i', binary, 0)
     # 因为会返回元组，只能够这样加上索引来访问,下面同理
     msg_length = _msg_length[0]

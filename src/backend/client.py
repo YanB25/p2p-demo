@@ -65,7 +65,7 @@ class PeerConnection(threading.Thread):
         """ 连接 线程主函数 """
         # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
 
-        self.send_message(Bitfield(pieces_manager.get_bitfield().to01()))
+        self.send_message(Bitfield(pieces_manager.get_bitfield().tolist()))
         self.send_piece_wait_response = 1
         self.request_piece_wait_response = 1
         # print(utilities.obj_to_beautiful_json(bitfield_ret))
@@ -78,17 +78,17 @@ class PeerConnection(threading.Thread):
                 # 开始一个定时器
                 self.request_piece_time_keeper = time.clock()
                 if self.my_interested == 0 and self.peer_choking == 0:
-                    self.send_message(msg.no_interested())
+                    self.send_message(UnInterested())
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 0 and self.peer_choking == 1:
                     # TODO:等待态,不需等待回应
                     self.request_piece_wait_response = 0
                 elif self.my_interested == 1 and self.peer_choking == 0:
                     print('I am accepted by remote host!')
-                    self.send_message(msg.request(self.request_piece_index))
+                    self.send_message(Request(self.request_piece_index))
                     self.request_piece_wait_response = 1
                 elif self.my_interested == 1 and self.peer_choking == 1:
-                    self.send_message(msg.interested())
+                    self.send_message(Interested())
                     print('I want you know I am interested with you!')
                     self.request_piece_wait_response = 1
                 
@@ -99,13 +99,13 @@ class PeerConnection(threading.Thread):
                     # 应该是没有机会到达这样的状态的
                     pass
                 elif self.my_choking == 0 and self.peer_interested == 1:
-                    self.send_message(msg.no_choke())
+                    self.send_message(UnChoke())
                     self.send_piece_wait_response = 1
                 elif self.my_choking == 1 and self.peer_interested == 0:
                     # TODO:等待态,需要想想怎么处理
                     pass
                 elif self.my_choking == 1 and self.peer_interested == 1:
-                    self.send_message(msg.choke())
+                    self.send_message(Choke())
                     self.send_piece_wait_response = 1
 
             recv_msg = self.recv_message()
@@ -122,32 +122,31 @@ class PeerConnection(threading.Thread):
 
             # 发送数据块部分的状态转移
             if self.send_piece_wait_response == 1:
-                if recv_msg['type'] == 'interested':
+                if type(recv_msg) == Interested:
                     self.peer_interested = 1
                     # TODO:这里可以决定我到底是choking 还是 no_choke
                     self.my_choking = 0
                     print('I know you are interested with me. ')
                     self.send_piece_wait_response = 0
-                if recv_msg['type'] == 'resquest':
+                if type(recv_msg) == Request:
                     # TODO: 需要发送东西， 而且一般发完之后紧接着的是request请求
-                    cur_piece_index = recv_msg['piece_index']
+                    cur_piece_index = recv_msg.piece_index
                     cur_piece_binary_data = pieces_manager.get_piece(cur_piece_index)
                     print(cur_piece_binary_data)
-                    cur_piece_binary_data_01 = bitarray.bitarray(cur_piece_binary_data).to01()
-                    self.send_message(msg.piece(cur_piece_index, cur_piece_binary_data_01))
+                    self.send_message(Piece(cur_piece_index, cur_piece_binary_data))
                     self.send_piece_wait_response = 1
-                if recv_msg['type'] == 'no_interested':
+                if type(recv_msg) == UnInterested:
                     self.peer_interested = 0
                     self.my_choking = 1
                     self.send_piece_wait_response = 0
 
             # 请求数据块部分的状态转移
             if self.request_piece_wait_response == 1:
-                if recv_msg['type'] == 'piece':
+                if type(recv_msg) == Piece:
                     # 得到字符串,原数据块的二进制代码的01串
-                    recv_data_01_string = recv_msg['raw_data']
-                    recv_data = bitarray.bitarray(recv_data_01_string).tobytes()
-                    print(recv_data)
+                    recv_raw_data = recv_msg.raw_data
+                    recv_piece_index = recv_msg.piece_index
+                    print(recv_raw_data)
                     recv_data_available = 1
                     # TODO:得到的数据块，经过哈希检验后若无误，放入pieceManager中，同时从队列中更新待下载数据块
 
@@ -159,14 +158,14 @@ class PeerConnection(threading.Thread):
                         else:
                             self.request_piece_index, self.request_piece_hash = left_pieces.get()
                     self.request_piece_wait_response = 0
-                if recv_msg['type'] == 'choke':
+                if type(recv_msg) == Choke:
                     self.peer_choking = 1
                     self.request_piece_wait_response = 0
-                if recv_msg['type'] == 'no_choke':
+                if type(recv_msg) == UnChoke:
                     self.peer_choking = 0
                     self.request_piece_wait_response = 0
-                if recv_msg['type'] == 'bitfield':
-                    self.peer_bitfield = bitarray.bitarray(recv_msg['bitfield'])
+                if type(recv_msg) == Bitfield:
+                    self.peer_bitfield = bitarray.bitarray(recv_msg.bitfield)
                     print(self.peer_bitfield)
                     # TODO:从队列中拿出一个，试一试，如果在bitfield中就interested，如果不在队列中就不管
                     self.request_piece_index, self.request_piece_hash = left_pieces.get()
@@ -177,15 +176,15 @@ class PeerConnection(threading.Thread):
                         left_pieces.put(self.request_piece_index, self.request_piece_hash)
                     self.request_piece_wait_response = 0
 
-            if recv_msg['type'] == 'keep_alive':
+            if type(recv_msg) == KeepAlive:
                 pass
-            if recv_msg['type'] == 'have':
-                piece_index = recv_msg['piece_index']
+            if type(recv_msg) == Have:
+                piece_index = recv_msg.piece_index
                 pieces_manager.bitfield[piece_index] = 1
  
     def send_message(self, msg):
         """ 传入message字典，并转成二进制发送，并将wait_response置为1 """
-        self.socket.sendBytes(msg.to_bytes()))
+        self.socket.sendBytes(msg.to_bytes())
         print('--------------------------------------------------')
         print('[ send ] : ', msg.to_json_string())
         print('--------------------------------------------------')
