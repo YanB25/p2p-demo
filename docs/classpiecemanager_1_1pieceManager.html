@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacepiecemanager.html">piecemanager</a></li><li class="navelem"><a class="el" href="classpiecemanager_1_1pieceManager.html">pieceManager</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -96,7 +82,7 @@ $(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab7db05f24ad594fd2edc29c21d82a58c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c">__init__</a> (self, torrent_file_name)</td></tr>
+<tr class="memitem:ab7db05f24ad594fd2edc29c21d82a58c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c">__init__</a> (self, <a class="el" href="namespacepiecemanager.html#a22b3e409a52b25cec583642c9e9f8b79">torrent_file_name</a>)</td></tr>
 <tr class="separator:ab7db05f24ad594fd2edc29c21d82a58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4031bc9ace5a4d95a1bfb59e0a31e2b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ae4031bc9ace5a4d95a1bfb59e0a31e2b">load_previous_data</a> (self, temp_file_name='temp_piece_data')</td></tr>
 <tr class="separator:ae4031bc9ace5a4d95a1bfb59e0a31e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,32 +96,24 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9c7c82a7f3807ed8498e7d7b1684a095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade276aa3961690368a2cf41f75df0048"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048">load_download_file_data</a> (self, download_file_name='')</td></tr>
 <tr class="separator:ade276aa3961690368a2cf41f75df0048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4562b7ac8d50cc746d07699f047be7d2"><td class="memItemLeft" align="right" valign="top"><a id="a4562b7ac8d50cc746d07699f047be7d2"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>merge_full_data_to_file</b> (self, save_file_name)</td></tr>
+<tr class="memitem:a4562b7ac8d50cc746d07699f047be7d2"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#a4562b7ac8d50cc746d07699f047be7d2">merge_full_data_to_file</a> (self, <a class="el" href="namespacepiecemanager.html#a72904c214e4b1af7920b21e2ad6462a4">save_file_name</a>)</td></tr>
 <tr class="separator:a4562b7ac8d50cc746d07699f047be7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ad9b092c49b932253720f68a6e3d82d98"><td class="memItemLeft" align="right" valign="top"><a id="ad9b092c49b932253720f68a6e3d82d98"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>hash_table</b></td></tr>
+<tr class="memitem:ad9b092c49b932253720f68a6e3d82d98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ad9b092c49b932253720f68a6e3d82d98">hash_table</a></td></tr>
 <tr class="separator:ad9b092c49b932253720f68a6e3d82d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e77254c5c75494e7440313cc432d39c"><td class="memItemLeft" align="right" valign="top"><a id="a5e77254c5c75494e7440313cc432d39c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>piece_length</b></td></tr>
+<tr class="memitem:a5e77254c5c75494e7440313cc432d39c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#a5e77254c5c75494e7440313cc432d39c">piece_length</a></td></tr>
 <tr class="separator:a5e77254c5c75494e7440313cc432d39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a613795b4411f27ca815c70871d4d526e"><td class="memItemLeft" align="right" valign="top"><a id="a613795b4411f27ca815c70871d4d526e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>file_name</b></td></tr>
+<tr class="memitem:a613795b4411f27ca815c70871d4d526e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#a613795b4411f27ca815c70871d4d526e">file_name</a></td></tr>
 <tr class="separator:a613795b4411f27ca815c70871d4d526e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7f5ee5a0e561174b38ba101043d513a"><td class="memItemLeft" align="right" valign="top"><a id="ac7f5ee5a0e561174b38ba101043d513a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>file_length</b></td></tr>
+<tr class="memitem:ac7f5ee5a0e561174b38ba101043d513a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#ac7f5ee5a0e561174b38ba101043d513a">file_length</a></td></tr>
 <tr class="separator:ac7f5ee5a0e561174b38ba101043d513a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a347e97607eb1992d72d52cfe8360d608"><td class="memItemLeft" align="right" valign="top"><a id="a347e97607eb1992d72d52cfe8360d608"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>piece_num</b></td></tr>
+<tr class="memitem:a347e97607eb1992d72d52cfe8360d608"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#a347e97607eb1992d72d52cfe8360d608">piece_num</a></td></tr>
 <tr class="separator:a347e97607eb1992d72d52cfe8360d608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ed0f1a7f430e41bc8d764b6574dc426"><td class="memItemLeft" align="right" valign="top"><a id="a3ed0f1a7f430e41bc8d764b6574dc426"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>pieces_data</b></td></tr>
+<tr class="memitem:a3ed0f1a7f430e41bc8d764b6574dc426"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#a3ed0f1a7f430e41bc8d764b6574dc426">pieces_data</a></td></tr>
 <tr class="separator:a3ed0f1a7f430e41bc8d764b6574dc426"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecbd27c0660f9512ce916eee52091e96"><td class="memItemLeft" align="right" valign="top"><a id="aecbd27c0660f9512ce916eee52091e96"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>bitfield</b></td></tr>
+<tr class="memitem:aecbd27c0660f9512ce916eee52091e96"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpiecemanager_1_1pieceManager.html#aecbd27c0660f9512ce916eee52091e96">bitfield</a></td></tr>
 <tr class="separator:aecbd27c0660f9512ce916eee52091e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -193,11 +171,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph" alt=""/></div>
 <map name="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph" id="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph">
-<area shape="rect" id="node2" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="985,5,1141,32"/>
-<area shape="rect" id="node3" href="classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095" title="piecemanager.pieceManager.load\l_exist_full_file_data" alt="" coords="245,53,461,94"/>
-<area shape="rect" id="node4" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="509,53,725,94"/>
-<area shape="rect" id="node5" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="773,57,933,84"/>
-<area shape="rect" id="node6" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="981,57,1144,84"/>
+<area shape="rect" id="node2" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="245,13,401,39"/>
 </map>
 </div>
 
@@ -281,26 +255,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 <pre class="fragment">将一个已有的文件作为该种子文件对应的文件 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00070">70</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">def </span>load_download_file_data(self, download_file_name=&#39;&#39;):</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 将一个已有的文件作为该种子文件对应的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment"># 默认参数为种子文件的文件名</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> download_file_name:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            download_file_name = self.file_name</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        with open(download_file_name, <span class="stringliteral">&#39;rb&#39;</span>) <span class="keyword">as</span> f:</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.piece_num):</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                self.pieces_data[i] = f.read(self.piece_length)</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                self.bitfield[i] = 1</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        print(<span class="stringliteral">&#39;load the file completed!&#39;</span>)</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        print(<span class="stringliteral">&#39;The bitfield is &#39;</span>, self.bitfield)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div></div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph" alt=""/></div>
-<map name="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph" id="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph">
-<area shape="rect" id="node2" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="269,31,429,57"/>
-<area shape="rect" id="node3" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="481,5,637,32"/>
-<area shape="rect" id="node4" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="477,56,640,83"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph" alt=""/></div>
-<map name="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph" id="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph">
-<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095" title="piecemanager.pieceManager.load\l_exist_full_file_data" alt="" coords="269,5,485,47"/>
-<area shape="rect" id="node3" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c" title="piecemanager.pieceManager.\l__init__" alt="" coords="533,5,725,47"/>
-</map>
-</div>
-
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">def </span>load_download_file_data(self, download_file_name=&#39;&#39;):</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 将一个已有的文件作为该种子文件对应的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment"># 默认参数为种子文件的文件名</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> download_file_name:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            download_file_name = self.file_name</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        with open(download_file_name, <span class="stringliteral">&#39;rb&#39;</span>) <span class="keyword">as</span> f:</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.piece_num):</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                self.pieces_data[i] = f.read(self.piece_length)</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                self.bitfield[i] = 1</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        print(<span class="stringliteral">&#39;load the file completed!&#39;</span>)</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        print(<span class="stringliteral">&#39;The bitfield is &#39;</span>, self.bitfield)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div></div><!-- fragment -->
 </div>
 </div>
 <a id="a9c7c82a7f3807ed8498e7d7b1684a095"></a>
@@ -320,23 +275,13 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <pre class="fragment">如果一个文件已经存在，则加载进来，作为已经下载完整的文件 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00064">64</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">def </span>load_exist_full_file_data(self):</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 如果一个文件已经存在，则加载进来，作为已经下载完整的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> os.path.isfile(self.file_name):</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            print(<span class="stringliteral">&#39;file {} exist!&#39;</span>.format(self.file_name) )</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            self.load_download_file_data(self.file_name)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">def </span>load_exist_full_file_data(self):</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 如果一个文件已经存在，则加载进来，作为已经下载完整的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> os.path.isfile(self.file_name):</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            print(<span class="stringliteral">&#39;file {} exist!&#39;</span>.<a class="code" href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">format</a>(self.file_name) )</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            self.load_download_file_data(self.file_name)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="ttc" id="namespaceclient_html_af3444767b8ed08b8e5f201442b70dff3"><div class="ttname"><a href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">client.format</a></div><div class="ttdeci">format</div><div class="ttdef"><b>Definition:</b> <a href="client_8py_source.html#l00023">client.py:23</a></div></div>
+</div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph" alt=""/></div>
 <map name="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph" id="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph">
-<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="269,23,485,65"/>
-<area shape="rect" id="node3" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="533,31,693,57"/>
-<area shape="rect" id="node4" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="745,5,901,32"/>
-<area shape="rect" id="node5" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="741,56,904,83"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph" alt=""/></div>
-<map name="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph" id="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph">
-<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c" title="piecemanager.pieceManager.\l__init__" alt="" coords="269,5,461,47"/>
+<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="269,5,485,47"/>
 </map>
 </div>
 
@@ -370,6 +315,36 @@ Here is the caller graph for this function:</div>
 <pre class="fragment">TODO:打算是加载下载到一半的数据进来，放到piece_data成员变量中 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00043">43</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">def </span>load_previous_data(self, temp_file_name=&#39;temp_piece_data&#39;):</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; TODO:打算是加载下载到一半的数据进来，放到piece_data成员变量中 &quot;&quot;&quot;</span></div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">return</span></div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a4562b7ac8d50cc746d07699f047be7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4562b7ac8d50cc746d07699f047be7d2">&#9670;&nbsp;</a></span>merge_full_data_to_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def piecemanager.pieceManager.merge_full_data_to_file </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>save_file_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00082">82</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">def </span>merge_full_data_to_file(self, save_file_name):</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">if</span> 0 <span class="keywordflow">in</span> self.bitfield:</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="comment"># TODO: 如果文件不完整，不能够运行这个函数，异常处理</span></div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            print(<span class="stringliteral">&#39;The data is not completed&#39;</span>)</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keywordflow">pass</span></div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">else</span>:</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            print(<span class="stringliteral">&#39;The data is completed&#39;</span>)</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            with open(save_file_name, <span class="stringliteral">&#39;wb&#39;</span>) <span class="keyword">as</span> f:</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.piece_num):</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                    f.write(self.pieces_data[i])</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div></div><!-- fragment -->
 </div>
 </div>
 <a id="a99974c6b9fd6c9f8d912879660256d1d"></a>
@@ -408,19 +383,128 @@ Here is the caller graph for this function:</div>
 <div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">def </span>update_data_field(self, piece_index, piece_data):</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 将数据块放入到对应的index的列表中 &quot;&quot;&quot;</span></div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment"># 默认认为数据块一定是正确的，并且原来没有这个数据块</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        self.pieces_data[piece_index] = piece_data</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        self.bitfield[piece_index] = 1</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        print(self.bitfield)</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    </div></div><!-- fragment -->
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aecbd27c0660f9512ce916eee52091e96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecbd27c0660f9512ce916eee52091e96">&#9670;&nbsp;</a></span>bitfield</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.bitfield</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00038">38</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="ac7f5ee5a0e561174b38ba101043d513a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7f5ee5a0e561174b38ba101043d513a">&#9670;&nbsp;</a></span>file_length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.file_length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00035">35</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="a613795b4411f27ca815c70871d4d526e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a613795b4411f27ca815c70871d4d526e">&#9670;&nbsp;</a></span>file_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.file_name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00034">34</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="ad9b092c49b932253720f68a6e3d82d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9b092c49b932253720f68a6e3d82d98">&#9670;&nbsp;</a></span>hash_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.hash_table</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00032">32</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="a5e77254c5c75494e7440313cc432d39c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e77254c5c75494e7440313cc432d39c">&#9670;&nbsp;</a></span>piece_length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.piece_length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00033">33</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="a347e97607eb1992d72d52cfe8360d608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a347e97607eb1992d72d52cfe8360d608">&#9670;&nbsp;</a></span>piece_num</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.piece_num</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00036">36</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
+<a id="a3ed0f1a7f430e41bc8d764b6574dc426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ed0f1a7f430e41bc8d764b6574dc426">&#9670;&nbsp;</a></span>pieces_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">piecemanager.pieceManager.pieces_data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00037">37</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/backend/<a class="el" href="piecemanager_8py_source.html">piecemanager.py</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><b>piecemanager</b></li><li class="navelem"><a class="el" href="classpiecemanager_1_1pieceManager.html">pieceManager</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

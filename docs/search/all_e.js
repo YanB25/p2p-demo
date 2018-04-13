@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['same_5fas_5ftorrent',['same_as_torrent',['../namespacetorrent.html#a790fdf4e74514685b5478720d0c77806',1,'torrent']]],
-  ['send_5fmessage',['send_message',['../classclient_1_1PeerConnection.html#ad14d725e13f6dd54b725dbe972091647',1,'client::PeerConnection']]],
-  ['sendfilestate',['sendFileState',['../classstate_1_1sendFileState.html',1,'state']]],
-  ['server',['server',['../namespaceserver.html',1,'']]],
-  ['state',['State',['../classstate_1_1State.html',1,'state']]],
-  ['state01',['State01',['../classstate_1_1State01.html',1,'state']]]
+  ['obj_5fto_5fbeautiful_5fjson',['obj_to_beautiful_json',['../namespaceutilities.html#a95bdcc5c418592c68e42b1ead51fd1cf',1,'utilities']]],
+  ['objdecode',['objDecode',['../namespaceutilities.html#ab075ea66f45f37708362613716c23ffb',1,'utilities']]],
+  ['objencode',['objEncode',['../namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d',1,'utilities']]],
+  ['opentorrent',['openTorrent',['../classsendFile_1_1Client.html#a1ba5a68352f031e431de062adb92524c',1,'sendFile::Client']]]
 ];

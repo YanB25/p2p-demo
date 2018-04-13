@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classUI_1_1Window.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classUI_1_1Window.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceUI.html">UI</a></li><li class="navelem"><a class="el" href="classUI_1_1Window.html">Window</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -97,129 +83,828 @@ $(document).ready(function(){initNavTree('classUI_1_1Window.html','');});
 Inheritance diagram for UI.Window:</div>
 <div class="dyncontent">
 <div class="center"><img src="classUI_1_1Window__inherit__graph.png" border="0" usemap="#UI_8Window_inherit__map" alt="Inheritance graph"/></div>
-<map name="UI_8Window_inherit__map" id="UI_8Window_inherit__map">
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for UI.Window:</div>
-<div class="dyncontent">
-<div class="center"><img src="classUI_1_1Window__coll__graph.png" border="0" usemap="#UI_8Window_coll__map" alt="Collaboration graph"/></div>
-<map name="UI_8Window_coll__map" id="UI_8Window_coll__map">
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d0022c8692fe3d9e2d8823409691f69"><td class="memItemLeft" align="right" valign="top"><a id="a7d0022c8692fe3d9e2d8823409691f69"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b> (self)</td></tr>
+<tr class="memitem:a7d0022c8692fe3d9e2d8823409691f69"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a7d0022c8692fe3d9e2d8823409691f69">__init__</a> (self)</td></tr>
 <tr class="separator:a7d0022c8692fe3d9e2d8823409691f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7158dd6c4ca8c358f5b533c1890083b3"><td class="memItemLeft" align="right" valign="top"><a id="a7158dd6c4ca8c358f5b533c1890083b3"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (self)</td></tr>
+<tr class="memitem:a7158dd6c4ca8c358f5b533c1890083b3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a7158dd6c4ca8c358f5b533c1890083b3">run</a> (self)</td></tr>
 <tr class="separator:a7158dd6c4ca8c358f5b533c1890083b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8d2cd8bfd048014ba707987a8f99246"><td class="memItemLeft" align="right" valign="top"><a id="ad8d2cd8bfd048014ba707987a8f99246"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>submitOnClick</b> (self)</td></tr>
+<tr class="memitem:ad8d2cd8bfd048014ba707987a8f99246"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#ad8d2cd8bfd048014ba707987a8f99246">submitOnClick</a> (self)</td></tr>
 <tr class="separator:ad8d2cd8bfd048014ba707987a8f99246"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa33c816568ba73e132be6ab85fbda58a"><td class="memItemLeft" align="right" valign="top"><a id="aa33c816568ba73e132be6ab85fbda58a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initIP</b> (self, window)</td></tr>
+<tr class="memitem:aa33c816568ba73e132be6ab85fbda58a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aa33c816568ba73e132be6ab85fbda58a">initIP</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:aa33c816568ba73e132be6ab85fbda58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6c869360a685795cf62d9c0900d0728"><td class="memItemLeft" align="right" valign="top"><a id="aa6c869360a685795cf62d9c0900d0728"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initPort</b> (self, window)</td></tr>
+<tr class="memitem:aa6c869360a685795cf62d9c0900d0728"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aa6c869360a685795cf62d9c0900d0728">initPort</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:aa6c869360a685795cf62d9c0900d0728"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa445fc6d4d8e2ce409236c7fb491c774"><td class="memItemLeft" align="right" valign="top"><a id="aa445fc6d4d8e2ce409236c7fb491c774"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initLog</b> (self, window)</td></tr>
+<tr class="memitem:aa445fc6d4d8e2ce409236c7fb491c774"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aa445fc6d4d8e2ce409236c7fb491c774">initLog</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:aa445fc6d4d8e2ce409236c7fb491c774"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7de39a60553143ca7799169f3e09fc5a"><td class="memItemLeft" align="right" valign="top"><a id="a7de39a60553143ca7799169f3e09fc5a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initSubmit</b> (self, window)</td></tr>
+<tr class="memitem:a7de39a60553143ca7799169f3e09fc5a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a7de39a60553143ca7799169f3e09fc5a">initSubmit</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a7de39a60553143ca7799169f3e09fc5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a958f1179a8aad94c6445da4b1b71107f"><td class="memItemLeft" align="right" valign="top"><a id="a958f1179a8aad94c6445da4b1b71107f"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initLogTexbox</b> (self, window)</td></tr>
+<tr class="memitem:a958f1179a8aad94c6445da4b1b71107f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a958f1179a8aad94c6445da4b1b71107f">initLogTexbox</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a958f1179a8aad94c6445da4b1b71107f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0342b2c6dfb9f70a1b291adbf402ff04"><td class="memItemLeft" align="right" valign="top"><a id="a0342b2c6dfb9f70a1b291adbf402ff04"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initLogLabel</b> (self, window)</td></tr>
+<tr class="memitem:a0342b2c6dfb9f70a1b291adbf402ff04"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a0342b2c6dfb9f70a1b291adbf402ff04">initLogLabel</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a0342b2c6dfb9f70a1b291adbf402ff04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6816e33c3116bbf69f2e60f2e536a2fb"><td class="memItemLeft" align="right" valign="top"><a id="a6816e33c3116bbf69f2e60f2e536a2fb"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initIPAddressTextbox</b> (self, window)</td></tr>
+<tr class="memitem:a6816e33c3116bbf69f2e60f2e536a2fb"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a6816e33c3116bbf69f2e60f2e536a2fb">initIPAddressTextbox</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a6816e33c3116bbf69f2e60f2e536a2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d4bbbef2d3088d9640133dba26e1847"><td class="memItemLeft" align="right" valign="top"><a id="a3d4bbbef2d3088d9640133dba26e1847"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initPortTexbox</b> (self, window)</td></tr>
+<tr class="memitem:a3d4bbbef2d3088d9640133dba26e1847"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a3d4bbbef2d3088d9640133dba26e1847">initPortTexbox</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a3d4bbbef2d3088d9640133dba26e1847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1afb57214b8e940b715f4d9f929cf99a"><td class="memItemLeft" align="right" valign="top"><a id="a1afb57214b8e940b715f4d9f929cf99a"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initIPLabel</b> (self, window)</td></tr>
+<tr class="memitem:a1afb57214b8e940b715f4d9f929cf99a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a1afb57214b8e940b715f4d9f929cf99a">initIPLabel</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:a1afb57214b8e940b715f4d9f929cf99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeef5ada03219d1f860d9af2b05bb8d3b"><td class="memItemLeft" align="right" valign="top"><a id="aeef5ada03219d1f860d9af2b05bb8d3b"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>initPortLabel</b> (self, window)</td></tr>
+<tr class="memitem:aeef5ada03219d1f860d9af2b05bb8d3b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aeef5ada03219d1f860d9af2b05bb8d3b">initPortLabel</a> (self, <a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a>)</td></tr>
 <tr class="separator:aeef5ada03219d1f860d9af2b05bb8d3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c114b3eb0f5363c6912b9bb823a17f8"><td class="memItemLeft" align="right" valign="top"><a id="a7c114b3eb0f5363c6912b9bb823a17f8"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>editIP</b> (self, newIP)</td></tr>
+<tr class="memitem:a7c114b3eb0f5363c6912b9bb823a17f8"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a7c114b3eb0f5363c6912b9bb823a17f8">editIP</a> (self, newIP)</td></tr>
 <tr class="separator:a7c114b3eb0f5363c6912b9bb823a17f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa32177bee3df59da514513fd06f74bc1"><td class="memItemLeft" align="right" valign="top"><a id="aa32177bee3df59da514513fd06f74bc1"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>editPort</b> (self, newPort)</td></tr>
+<tr class="memitem:aa32177bee3df59da514513fd06f74bc1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aa32177bee3df59da514513fd06f74bc1">editPort</a> (self, newPort)</td></tr>
 <tr class="separator:aa32177bee3df59da514513fd06f74bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c302ae7dbdd8861dbbdd6d79aff88a9"><td class="memItemLeft" align="right" valign="top"><a id="a9c302ae7dbdd8861dbbdd6d79aff88a9"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>IPValidator</b> (self, ip)</td></tr>
+<tr class="memitem:a9c302ae7dbdd8861dbbdd6d79aff88a9"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a9c302ae7dbdd8861dbbdd6d79aff88a9">IPValidator</a> (self, <a class="el" href="classUI_1_1Window.html#a5140b03fa13c7009039eb22caecbe7ea">ip</a>)</td></tr>
 <tr class="separator:a9c302ae7dbdd8861dbbdd6d79aff88a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83278c99b4ddcd830f31de5d8634ebca"><td class="memItemLeft" align="right" valign="top"><a id="a83278c99b4ddcd830f31de5d8634ebca"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>PortValidator</b> (self, port)</td></tr>
+<tr class="memitem:a83278c99b4ddcd830f31de5d8634ebca"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a83278c99b4ddcd830f31de5d8634ebca">PortValidator</a> (self, <a class="el" href="classUI_1_1Window.html#a1bc870b44f8d5bc72c6bca1592620d73">port</a>)</td></tr>
 <tr class="separator:a83278c99b4ddcd830f31de5d8634ebca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fb9873c82f6ad674d4ac9c753084b6e"><td class="memItemLeft" align="right" valign="top"><a id="a2fb9873c82f6ad674d4ac9c753084b6e"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>append</b> (self, txt)</td></tr>
+<tr class="memitem:a2fb9873c82f6ad674d4ac9c753084b6e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a2fb9873c82f6ad674d4ac9c753084b6e">append</a> (self, txt)</td></tr>
 <tr class="separator:a2fb9873c82f6ad674d4ac9c753084b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7ee8fe418148caffe401fbd6bc8674ee"><td class="memItemLeft" align="right" valign="top"><a id="a7ee8fe418148caffe401fbd6bc8674ee"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>app</b></td></tr>
+<tr class="memitem:a7ee8fe418148caffe401fbd6bc8674ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a7ee8fe418148caffe401fbd6bc8674ee">app</a></td></tr>
 <tr class="separator:a7ee8fe418148caffe401fbd6bc8674ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c16c67d9a782d58ee330f76f1244662"><td class="memItemLeft" align="right" valign="top"><a id="a0c16c67d9a782d58ee330f76f1244662"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>window</b></td></tr>
+<tr class="memitem:a0c16c67d9a782d58ee330f76f1244662"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a0c16c67d9a782d58ee330f76f1244662">window</a></td></tr>
 <tr class="separator:a0c16c67d9a782d58ee330f76f1244662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24d69a6f4bd0f46309051fb9c23870cb"><td class="memItemLeft" align="right" valign="top"><a id="a24d69a6f4bd0f46309051fb9c23870cb"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>task</b></td></tr>
+<tr class="memitem:a24d69a6f4bd0f46309051fb9c23870cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a24d69a6f4bd0f46309051fb9c23870cb">task</a></td></tr>
 <tr class="separator:a24d69a6f4bd0f46309051fb9c23870cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a549e36360500576a39bb0e461499b75b"><td class="memItemLeft" align="right" valign="top"><a id="a549e36360500576a39bb0e461499b75b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>logIndex</b></td></tr>
+<tr class="memitem:a549e36360500576a39bb0e461499b75b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a549e36360500576a39bb0e461499b75b">logIndex</a></td></tr>
 <tr class="separator:a549e36360500576a39bb0e461499b75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5895f51be5ebf36242abbff503321c0"><td class="memItemLeft" align="right" valign="top"><a id="ad5895f51be5ebf36242abbff503321c0"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>submitButton</b></td></tr>
+<tr class="memitem:ad5895f51be5ebf36242abbff503321c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#ad5895f51be5ebf36242abbff503321c0">submitButton</a></td></tr>
 <tr class="separator:ad5895f51be5ebf36242abbff503321c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78954d2e45b4470ea48f583fce233f3f"><td class="memItemLeft" align="right" valign="top"><a id="a78954d2e45b4470ea48f583fce233f3f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LogTextbox</b></td></tr>
+<tr class="memitem:a78954d2e45b4470ea48f583fce233f3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a78954d2e45b4470ea48f583fce233f3f">LogTextbox</a></td></tr>
 <tr class="separator:a78954d2e45b4470ea48f583fce233f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab66feab7b74b4e3f7afead4a0a5b73"><td class="memItemLeft" align="right" valign="top"><a id="aaab66feab7b74b4e3f7afead4a0a5b73"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LogLabel</b></td></tr>
+<tr class="memitem:aaab66feab7b74b4e3f7afead4a0a5b73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aaab66feab7b74b4e3f7afead4a0a5b73">LogLabel</a></td></tr>
 <tr class="separator:aaab66feab7b74b4e3f7afead4a0a5b73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acea78f556b6d7890c2b7328a0b1b67c7"><td class="memItemLeft" align="right" valign="top"><a id="acea78f556b6d7890c2b7328a0b1b67c7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IPTextbox</b></td></tr>
+<tr class="memitem:acea78f556b6d7890c2b7328a0b1b67c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#acea78f556b6d7890c2b7328a0b1b67c7">IPTextbox</a></td></tr>
 <tr class="separator:acea78f556b6d7890c2b7328a0b1b67c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe842bc6c75316a5687f6fea0c49df7"><td class="memItemLeft" align="right" valign="top"><a id="aefe842bc6c75316a5687f6fea0c49df7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>portTexbox</b></td></tr>
+<tr class="memitem:aefe842bc6c75316a5687f6fea0c49df7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aefe842bc6c75316a5687f6fea0c49df7">portTexbox</a></td></tr>
 <tr class="separator:aefe842bc6c75316a5687f6fea0c49df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea62b6ff62b71340ce6b513a1c701a69"><td class="memItemLeft" align="right" valign="top"><a id="aea62b6ff62b71340ce6b513a1c701a69"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IPLabel</b></td></tr>
+<tr class="memitem:aea62b6ff62b71340ce6b513a1c701a69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#aea62b6ff62b71340ce6b513a1c701a69">IPLabel</a></td></tr>
 <tr class="separator:aea62b6ff62b71340ce6b513a1c701a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5140b03fa13c7009039eb22caecbe7ea"><td class="memItemLeft" align="right" valign="top"><a id="a5140b03fa13c7009039eb22caecbe7ea"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ip</b></td></tr>
+<tr class="memitem:a5140b03fa13c7009039eb22caecbe7ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a5140b03fa13c7009039eb22caecbe7ea">ip</a></td></tr>
 <tr class="separator:a5140b03fa13c7009039eb22caecbe7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1bc870b44f8d5bc72c6bca1592620d73"><td class="memItemLeft" align="right" valign="top"><a id="a1bc870b44f8d5bc72c6bca1592620d73"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
+<tr class="memitem:a1bc870b44f8d5bc72c6bca1592620d73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUI_1_1Window.html#a1bc870b44f8d5bc72c6bca1592620d73">port</a></td></tr>
 <tr class="separator:a1bc870b44f8d5bc72c6bca1592620d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00021">21</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7d0022c8692fe3d9e2d8823409691f69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0022c8692fe3d9e2d8823409691f69">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00022">22</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">def </span>__init__(self):</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        self.app = QtWidgets.QApplication(sys.argv)</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        w = QtWidgets.QWidget()</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        w.setGeometry(100,100,200,50)</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        w.setWindowTitle(<span class="stringliteral">&quot;P2P Demo&quot;</span>)</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        self.window = w</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        self.initIP(w)</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        self.initPort(w)</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        self.initLog(w)</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        self.initSubmit(w)</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        w.resize(WINDOW_WIDTH, WINDOW_HEIGHT)</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        w.show()</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2fb9873c82f6ad674d4ac9c753084b6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fb9873c82f6ad674d4ac9c753084b6e">&#9670;&nbsp;</a></span>append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.append </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>txt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00121">121</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">def </span>append(self, txt):</div><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        self.logIndex += 1</div><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        self.LogTextbox.setPlainText(self.LogTextbox.toPlainText()  + txt + <span class="stringliteral">&quot;\n&quot;</span>)</div><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        self.LogTextbox.verticalScrollBar().setValue(self.logIndex)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a7c114b3eb0f5363c6912b9bb823a17f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c114b3eb0f5363c6912b9bb823a17f8">&#9670;&nbsp;</a></span>editIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.editIP </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>newIP</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00092">92</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">def </span>editIP(self, newIP):</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        self.ip = newIP</div></div><!-- fragment -->
+</div>
+</div>
+<a id="aa32177bee3df59da514513fd06f74bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa32177bee3df59da514513fd06f74bc1">&#9670;&nbsp;</a></span>editPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.editPort </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>newPort</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00094">94</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">def </span>editPort(self, newPort):</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        self.port = newPort</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div></div><!-- fragment -->
+</div>
+</div>
+<a id="aa33c816568ba73e132be6ab85fbda58a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa33c816568ba73e132be6ab85fbda58a">&#9670;&nbsp;</a></span>initIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initIP </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00049">49</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">def </span>initIP(self, window):</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        self.initIPAddressTextbox(window)</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        self.initIPLabel(window)</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUI_1_1Window_aa33c816568ba73e132be6ab85fbda58a_cgraph.png" border="0" usemap="#classUI_1_1Window_aa33c816568ba73e132be6ab85fbda58a_cgraph" alt=""/></div>
+<map name="classUI_1_1Window_aa33c816568ba73e132be6ab85fbda58a_cgraph" id="classUI_1_1Window_aa33c816568ba73e132be6ab85fbda58a_cgraph">
+<area shape="rect" id="node2" href="classUI_1_1Window.html#a6816e33c3116bbf69f2e60f2e536a2fb" title="UI.Window.initIPAddressTextbox" alt="" coords="175,5,391,32"/>
+<area shape="rect" id="node3" href="classUI_1_1Window.html#a1afb57214b8e940b715f4d9f929cf99a" title="UI.Window.initIPLabel" alt="" coords="207,56,359,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6816e33c3116bbf69f2e60f2e536a2fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6816e33c3116bbf69f2e60f2e536a2fb">&#9670;&nbsp;</a></span>initIPAddressTextbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initIPAddressTextbox </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00075">75</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">def </span>initIPAddressTextbox(self, window):</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        self.IPTextbox = QtWidgets.QLineEdit(window) </div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        self.IPTextbox.move(LEFT_MARGIN + LABEL_WIDTH, MARGIN)</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        self.IPTextbox.textChanged.connect(self.editIP)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a1afb57214b8e940b715f4d9f929cf99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1afb57214b8e940b715f4d9f929cf99a">&#9670;&nbsp;</a></span>initIPLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initIPLabel </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00083">83</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">def </span>initIPLabel(self,window):</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        self.IPLabel = QtWidgets.QLabel(window)</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        self.IPLabel.setText(<span class="stringliteral">&#39;IP&#39;</span>)</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        self.IPLabel.move(LEFT_MARGIN, MARGIN + WORD_OFFSET)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="aa445fc6d4d8e2ce409236c7fb491c774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa445fc6d4d8e2ce409236c7fb491c774">&#9670;&nbsp;</a></span>initLog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initLog </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00055">55</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">def </span>initLog(self, window):</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        self.initLogTexbox(window)</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        self.initLogLabel(window)</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        self.logIndex = 0</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUI_1_1Window_aa445fc6d4d8e2ce409236c7fb491c774_cgraph.png" border="0" usemap="#classUI_1_1Window_aa445fc6d4d8e2ce409236c7fb491c774_cgraph" alt=""/></div>
+<map name="classUI_1_1Window_aa445fc6d4d8e2ce409236c7fb491c774_cgraph" id="classUI_1_1Window_aa445fc6d4d8e2ce409236c7fb491c774_cgraph">
+<area shape="rect" id="node2" href="classUI_1_1Window.html#a958f1179a8aad94c6445da4b1b71107f" title="UI.Window.initLogTexbox" alt="" coords="183,5,355,32"/>
+<area shape="rect" id="node3" href="classUI_1_1Window.html#a0342b2c6dfb9f70a1b291adbf402ff04" title="UI.Window.initLogLabel" alt="" coords="189,56,349,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0342b2c6dfb9f70a1b291adbf402ff04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0342b2c6dfb9f70a1b291adbf402ff04">&#9670;&nbsp;</a></span>initLogLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initLogLabel </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00070">70</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">def </span>initLogLabel(self, window):</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        self.LogLabel = QtWidgets.QLabel(window)</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        self.LogLabel.setText(<span class="stringliteral">&quot;Log&quot;</span>)</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        self.LogLabel.move(LOG_LABEL_LEFT_MARGIN, 10)</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a958f1179a8aad94c6445da4b1b71107f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a958f1179a8aad94c6445da4b1b71107f">&#9670;&nbsp;</a></span>initLogTexbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initLogTexbox </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00065">65</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">def </span>initLogTexbox(self, window):</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        self.LogTextbox = QtWidgets.QPlainTextEdit(window)</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        self.LogTextbox.move(LOG_LEFT_MARGIN, MARGIN)</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        self.LogTextbox.resize(LOG_WIDTH, LOG_HEIGH)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        self.LogTextbox.setReadOnly(<span class="keyword">True</span>)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="aa6c869360a685795cf62d9c0900d0728"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6c869360a685795cf62d9c0900d0728">&#9670;&nbsp;</a></span>initPort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initPort </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00052">52</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">def </span>initPort(self, window):</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        self.initPortTexbox(window)</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        self.initPortLabel(window)</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUI_1_1Window_aa6c869360a685795cf62d9c0900d0728_cgraph.png" border="0" usemap="#classUI_1_1Window_aa6c869360a685795cf62d9c0900d0728_cgraph" alt=""/></div>
+<map name="classUI_1_1Window_aa6c869360a685795cf62d9c0900d0728_cgraph" id="classUI_1_1Window_aa6c869360a685795cf62d9c0900d0728_cgraph">
+<area shape="rect" id="node2" href="classUI_1_1Window.html#a3d4bbbef2d3088d9640133dba26e1847" title="UI.Window.initPortTexbox" alt="" coords="185,5,360,32"/>
+<area shape="rect" id="node3" href="classUI_1_1Window.html#aeef5ada03219d1f860d9af2b05bb8d3b" title="UI.Window.initPortLabel" alt="" coords="191,56,354,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aeef5ada03219d1f860d9af2b05bb8d3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeef5ada03219d1f860d9af2b05bb8d3b">&#9670;&nbsp;</a></span>initPortLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initPortLabel </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00087">87</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">def </span>initPortLabel(self,window):</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        self.IPLabel = QtWidgets.QLabel(window)</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        self.IPLabel.move(LEFT_MARGIN, MARGIN + WORD_OFFSET + LABEL_HEIGHT)</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        self.IPLabel.setText(<span class="stringliteral">&#39;Port&#39;</span>)</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a3d4bbbef2d3088d9640133dba26e1847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4bbbef2d3088d9640133dba26e1847">&#9670;&nbsp;</a></span>initPortTexbox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initPortTexbox </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00079">79</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">def </span>initPortTexbox(self, window):</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        self.portTexbox = QtWidgets.QLineEdit(window)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        self.portTexbox.move(LEFT_MARGIN + LABEL_WIDTH, MARGIN + LABEL_HEIGHT)</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        self.portTexbox.textChanged.connect(self.editPort)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a7de39a60553143ca7799169f3e09fc5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7de39a60553143ca7799169f3e09fc5a">&#9670;&nbsp;</a></span>initSubmit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.initSubmit </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>window</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00059">59</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">def </span>initSubmit(self, window):</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        self.submitButton = QtWidgets.QPushButton(window)</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        self.submitButton.setText(<span class="stringliteral">&quot;submit&quot;</span>)</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        self.submitButton.move(SUBMIT_LEFT_MARGIN, SUBMIT_BUTTON_TOP_MARGIN)</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        self.submitButton.clicked.connect(self.submitOnClick)</div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a9c302ae7dbdd8861dbbdd6d79aff88a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c302ae7dbdd8861dbbdd6d79aff88a9">&#9670;&nbsp;</a></span>IPValidator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.IPValidator </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00097">97</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">def </span>IPValidator(self, ip):</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        ips = ip.split(<span class="stringliteral">&#39;.&#39;</span>)</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">if</span> (len(ips) != 4):</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            print(<span class="stringliteral">&quot;Error &#39;.&#39; in IP&quot;</span>)</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">False</span></div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">try</span>:</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <span class="keywordflow">for</span> part <span class="keywordflow">in</span> ips:</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                ipart = int(part)</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="keywordflow">if</span> (ipart &lt;= 0 <span class="keywordflow">or</span> ipart &gt;= 256):</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">False</span></div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">except</span>:</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            print(<span class="stringliteral">&quot;Error in parcing IP&quot;</span>)</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">False</span></div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">True</span></div></div><!-- fragment -->
+</div>
+</div>
+<a id="a83278c99b4ddcd830f31de5d8634ebca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83278c99b4ddcd830f31de5d8634ebca">&#9670;&nbsp;</a></span>PortValidator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.PortValidator </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00111">111</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">def </span>PortValidator(self, port):</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">try</span>:</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            iport = int(port)</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">if</span> (iport &lt;= 1024 <span class="keywordflow">or</span> iport &gt;= 65536):</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                print(<span class="stringliteral">&quot;port {} not in range(1024, 65535)&quot;</span>.<a class="code" href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">format</a>(iport))</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">False</span></div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordflow">except</span>:</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            print(<span class="stringliteral">&quot;Port {} not int&quot;</span>.<a class="code" href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">format</a>(port))</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">False</span></div><div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">True</span></div><div class="ttc" id="namespaceclient_html_af3444767b8ed08b8e5f201442b70dff3"><div class="ttname"><a href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">client.format</a></div><div class="ttdeci">format</div><div class="ttdef"><b>Definition:</b> <a href="client_8py_source.html#l00023">client.py:23</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7158dd6c4ca8c358f5b533c1890083b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7158dd6c4ca8c358f5b533c1890083b3">&#9670;&nbsp;</a></span>run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.run </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00036">36</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">def </span>run(self):</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        self.window.show()</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> self.app.exec_()</div></div><!-- fragment -->
+</div>
+</div>
+<a id="ad8d2cd8bfd048014ba707987a8f99246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d2cd8bfd048014ba707987a8f99246">&#9670;&nbsp;</a></span>submitOnClick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def UI.Window.submitOnClick </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00039">39</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">def </span>submitOnClick(self):</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> self.IPValidator(self.ip) <span class="keywordflow">and</span> self.PortValidator(self.port):</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            print(<span class="stringliteral">&#39;success&#39;</span>, self.ip, self.port)</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            self.task = WorkingDemo()</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            self.task.sinOut.connect(self.append)</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            self.task.start()</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">else</span>:</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span> self.task:</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                self.task.terminate()</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classUI_1_1Window_ad8d2cd8bfd048014ba707987a8f99246_cgraph.png" border="0" usemap="#classUI_1_1Window_ad8d2cd8bfd048014ba707987a8f99246_cgraph" alt=""/></div>
+<map name="classUI_1_1Window_ad8d2cd8bfd048014ba707987a8f99246_cgraph" id="classUI_1_1Window_ad8d2cd8bfd048014ba707987a8f99246_cgraph">
+<area shape="rect" id="node2" href="classUI_1_1Window.html#a9c302ae7dbdd8861dbbdd6d79aff88a9" title="UI.Window.IPValidator" alt="" coords="237,5,391,32"/>
+<area shape="rect" id="node3" href="classUI_1_1Window.html#a83278c99b4ddcd830f31de5d8634ebca" title="UI.Window.PortValidator" alt="" coords="231,56,397,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7ee8fe418148caffe401fbd6bc8674ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee8fe418148caffe401fbd6bc8674ee">&#9670;&nbsp;</a></span>app</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.app</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00023">23</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a5140b03fa13c7009039eb22caecbe7ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5140b03fa13c7009039eb22caecbe7ea">&#9670;&nbsp;</a></span>ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.ip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00093">93</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="aea62b6ff62b71340ce6b513a1c701a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea62b6ff62b71340ce6b513a1c701a69">&#9670;&nbsp;</a></span>IPLabel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.IPLabel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00084">84</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="acea78f556b6d7890c2b7328a0b1b67c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea78f556b6d7890c2b7328a0b1b67c7">&#9670;&nbsp;</a></span>IPTextbox</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.IPTextbox</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00076">76</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a549e36360500576a39bb0e461499b75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a549e36360500576a39bb0e461499b75b">&#9670;&nbsp;</a></span>logIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.logIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00058">58</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="aaab66feab7b74b4e3f7afead4a0a5b73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab66feab7b74b4e3f7afead4a0a5b73">&#9670;&nbsp;</a></span>LogLabel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.LogLabel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00071">71</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a78954d2e45b4470ea48f583fce233f3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78954d2e45b4470ea48f583fce233f3f">&#9670;&nbsp;</a></span>LogTextbox</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.LogTextbox</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00066">66</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a1bc870b44f8d5bc72c6bca1592620d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc870b44f8d5bc72c6bca1592620d73">&#9670;&nbsp;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00095">95</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="aefe842bc6c75316a5687f6fea0c49df7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefe842bc6c75316a5687f6fea0c49df7">&#9670;&nbsp;</a></span>portTexbox</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.portTexbox</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00080">80</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="ad5895f51be5ebf36242abbff503321c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5895f51be5ebf36242abbff503321c0">&#9670;&nbsp;</a></span>submitButton</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.submitButton</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00060">60</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a24d69a6f4bd0f46309051fb9c23870cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d69a6f4bd0f46309051fb9c23870cb">&#9670;&nbsp;</a></span>task</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.task</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00042">42</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<a id="a0c16c67d9a782d58ee330f76f1244662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c16c67d9a782d58ee330f76f1244662">&#9670;&nbsp;</a></span>window</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UI.Window.window</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UI_8py_source.html#l00027">27</a> of file <a class="el" href="UI_8py_source.html">UI.py</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/frontent/<a class="el" href="UI_8py_source.html">UI.py</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><b>UI</b></li><li class="navelem"><a class="el" href="classUI_1_1Window.html">Window</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

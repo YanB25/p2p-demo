@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -54,22 +52,6 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('functions_func.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -85,17 +67,77 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a id="index__"></a>- _ -</h3><ul>
+<li>__eq__()
+: <a class="el" href="classserver_1_1Peer.html#a8386e2c18e13c68e424ed41cec120719">server.Peer</a>
+</li>
 <li>__init__()
 : <a class="el" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1">client.Client</a>
+, <a class="el" href="classclient_1_1PeerConnection.html#a4cae6f8851d504676cd01bceec49eb17">client.PeerConnection</a>
+, <a class="el" href="classmessage_1_1Bitfield.html#ae100dd38a75510c4dee55f19f3fe2eff">message.Bitfield</a>
+, <a class="el" href="classmessage_1_1Choke.html#a2555aa87d873abd73e7c6d77274febb0">message.Choke</a>
+, <a class="el" href="classmessage_1_1Have.html#a72e6b623873290bc0bfe0fd25abb13e5">message.Have</a>
+, <a class="el" href="classmessage_1_1Interested.html#a6ef7be8ebb6e4b889393aab36f003b1e">message.Interested</a>
+, <a class="el" href="classmessage_1_1KeepAlive.html#a05a34d35331baf48736324cbff4ddde7">message.KeepAlive</a>
+, <a class="el" href="classmessage_1_1Piece.html#a495a50eec5413769238687ea1b318eed">message.Piece</a>
+, <a class="el" href="classmessage_1_1Request.html#a5e25e29e69ea2b57841ee0a29644cc49">message.Request</a>
+, <a class="el" href="classmessage_1_1UnChoke.html#a5cd1a840d5b061a6b654b49866908e39">message.UnChoke</a>
+, <a class="el" href="classmessage_1_1UnInterested.html#af4ff92d90743c52d9b13f70fbdefdbe2">message.UnInterested</a>
 , <a class="el" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c">piecemanager.pieceManager</a>
+, <a class="el" href="classrdt__socket_1_1rdt__socket.html#a5fc2b9d0f0ad5ea2df1d1185252ac1a4">rdt_socket.rdt_socket</a>
+, <a class="el" href="classsendFile_1_1Peer.html#a34baf6d0a01f4fa03a7828c5fa0b34e4">sendFile.Peer</a>
+, <a class="el" href="classserver_1_1Peer.html#a0cc1550800bd313b47e3ef575691ef91">server.Peer</a>
+, <a class="el" href="classstate_1_1recvFileState.html#abdc926e7827421f2ca4d3a8ec073937b">state.recvFileState</a>
+, <a class="el" href="classstate_1_1sendFileState.html#ac257dfd8a835dce855a2eb50665b8557">state.sendFileState</a>
+, <a class="el" href="classstate_1_1State.html#a96130471727cf3ba6915d2e2a59739f4">state.State</a>
+, <a class="el" href="classstate_1_1State01.html#a1b273174ef40321528f4457d8041d17c">state.State01</a>
+, <a class="el" href="classUI_1_1Window.html#a7d0022c8692fe3d9e2d8823409691f69">UI.Window</a>
+, <a class="el" href="classUI_1_1WorkingDemo.html#a2cd9f242d0fe20f655ac181268911f10">UI.WorkingDemo</a>
+</li>
+<li>__str__()
+: <a class="el" href="classserver_1_1Peer.html#ab664d9fdef3044a9dbd51a5b495ed10d">server.Peer</a>
+, <a class="el" href="classstate_1_1State.html#ac1c2cc5ea345820678e401dc0e0fbc43">state.State</a>
+</li>
+</ul>
+
+
+<h3><a id="index_a"></a>- a -</h3><ul>
+<li>append()
+: <a class="el" href="classUI_1_1Window.html#a2fb9873c82f6ad674d4ac9c753084b6e">UI.Window</a>
+</li>
+</ul>
+
+
+<h3><a id="index_c"></a>- c -</h3><ul>
+<li>connectPeer()
+: <a class="el" href="classsendFile_1_1Client.html#aa8b9a3c16875c8a5d943fe5aa5724ad3">sendFile.Client</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>editIP()
+: <a class="el" href="classUI_1_1Window.html#a7c114b3eb0f5363c6912b9bb823a17f8">UI.Window</a>
+</li>
+<li>editPort()
+: <a class="el" href="classUI_1_1Window.html#aa32177bee3df59da514513fd06f74bc1">UI.Window</a>
 </li>
 <li>establish_link()
 : <a class="el" href="classclient_1_1Client.html#a1f5475e4c61b8257db081f51b8a4a649">client.Client</a>
 </li>
+</ul>
+
+
+<h3><a id="index_f"></a>- f -</h3><ul>
 <li>from_bitfield_setup_queue()
 : <a class="el" href="classclient_1_1Client.html#ad5e2a1de87528ca6366b1eaae205a869">client.Client</a>
 </li>
+</ul>
+
+
+<h3><a id="index_g"></a>- g -</h3><ul>
 <li>get_bitfield()
 : <a class="el" href="classpiecemanager_1_1pieceManager.html#abc7cefdf91ca5555ca89a0fba12bc328">piecemanager.pieceManager</a>
 </li>
@@ -108,6 +150,59 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>get_piece()
 : <a class="el" href="classpiecemanager_1_1pieceManager.html#a498b6c003c7727d3ffde3b082639aaac">piecemanager.pieceManager</a>
 </li>
+</ul>
+
+
+<h3><a id="index_i"></a>- i -</h3><ul>
+<li>initIP()
+: <a class="el" href="classUI_1_1Window.html#aa33c816568ba73e132be6ab85fbda58a">UI.Window</a>
+</li>
+<li>initIPAddressTextbox()
+: <a class="el" href="classUI_1_1Window.html#a6816e33c3116bbf69f2e60f2e536a2fb">UI.Window</a>
+</li>
+<li>initIPLabel()
+: <a class="el" href="classUI_1_1Window.html#a1afb57214b8e940b715f4d9f929cf99a">UI.Window</a>
+</li>
+<li>initLog()
+: <a class="el" href="classUI_1_1Window.html#aa445fc6d4d8e2ce409236c7fb491c774">UI.Window</a>
+</li>
+<li>initLogLabel()
+: <a class="el" href="classUI_1_1Window.html#a0342b2c6dfb9f70a1b291adbf402ff04">UI.Window</a>
+</li>
+<li>initLogTexbox()
+: <a class="el" href="classUI_1_1Window.html#a958f1179a8aad94c6445da4b1b71107f">UI.Window</a>
+</li>
+<li>initPort()
+: <a class="el" href="classUI_1_1Window.html#aa6c869360a685795cf62d9c0900d0728">UI.Window</a>
+</li>
+<li>initPortLabel()
+: <a class="el" href="classUI_1_1Window.html#aeef5ada03219d1f860d9af2b05bb8d3b">UI.Window</a>
+</li>
+<li>initPortTexbox()
+: <a class="el" href="classUI_1_1Window.html#a3d4bbbef2d3088d9640133dba26e1847">UI.Window</a>
+</li>
+<li>initSubmit()
+: <a class="el" href="classUI_1_1Window.html#a7de39a60553143ca7799169f3e09fc5a">UI.Window</a>
+</li>
+<li>IPValidator()
+: <a class="el" href="classUI_1_1Window.html#a9c302ae7dbdd8861dbbdd6d79aff88a9">UI.Window</a>
+</li>
+<li>is_00()
+: <a class="el" href="classstate_1_1State01.html#ace212adf3fb26cdeecb27aab2af8bb0c">state.State01</a>
+</li>
+<li>is_01()
+: <a class="el" href="classstate_1_1State01.html#a751d327f258f7c174fc09dd6797ca272">state.State01</a>
+</li>
+<li>is_10()
+: <a class="el" href="classstate_1_1State01.html#aa99c15c6687b5d99ad35ceeaffa2c62c">state.State01</a>
+</li>
+<li>is_11()
+: <a class="el" href="classstate_1_1State01.html#af041dc39c11ad5e706266e7c9ff984d8">state.State01</a>
+</li>
+</ul>
+
+
+<h3><a id="index_l"></a>- l -</h3><ul>
 <li>load_config_file()
 : <a class="el" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd">client.Client</a>
 </li>
@@ -120,31 +215,114 @@ $(document).ready(function(){initNavTree('functions_func.html','');});
 <li>load_previous_data()
 : <a class="el" href="classpiecemanager_1_1pieceManager.html#ae4031bc9ace5a4d95a1bfb59e0a31e2b">piecemanager.pieceManager</a>
 </li>
+</ul>
+
+
+<h3><a id="index_m"></a>- m -</h3><ul>
 <li>make_resquest()
 : <a class="el" href="classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3">client.Client</a>
 </li>
+<li>merge_full_data_to_file()
+: <a class="el" href="classpiecemanager_1_1pieceManager.html#a4562b7ac8d50cc746d07699f047be7d2">piecemanager.pieceManager</a>
+</li>
+</ul>
+
+
+<h3><a id="index_o"></a>- o -</h3><ul>
+<li>openTorrent()
+: <a class="el" href="classsendFile_1_1Client.html#a1ba5a68352f031e431de062adb92524c">sendFile.Client</a>
+</li>
+</ul>
+
+
+<h3><a id="index_p"></a>- p -</h3><ul>
+<li>PortValidator()
+: <a class="el" href="classUI_1_1Window.html#a83278c99b4ddcd830f31de5d8634ebca">UI.Window</a>
+</li>
+</ul>
+
+
+<h3><a id="index_r"></a>- r -</h3><ul>
 <li>recv_message()
 : <a class="el" href="classclient_1_1PeerConnection.html#a5ffa699731567bddc0dbd80a09e75f7d">client.PeerConnection</a>
 </li>
-<li>run()
-: <a class="el" href="classclient_1_1PeerConnection.html#aa7ad7862e02a841ebb22b90b3f723b86">client.PeerConnection</a>
+<li>recvBytes()
+: <a class="el" href="classrdt__socket_1_1rdt__socket.html#ac68e8dea94584e803351a80bea39c0ec">rdt_socket.rdt_socket</a>
 </li>
+<li>requestServer()
+: <a class="el" href="classsendFile_1_1Client.html#a8adf03689c813f84ff22bcb4d3032763">sendFile.Client</a>
+</li>
+<li>run()
+: <a class="el" href="classclient_1_1Client.html#a5d5cb104d3ef947189be3814bfa4449e">client.Client</a>
+, <a class="el" href="classclient_1_1PeerConnection.html#aa7ad7862e02a841ebb22b90b3f723b86">client.PeerConnection</a>
+, <a class="el" href="classUI_1_1Window.html#a7158dd6c4ca8c358f5b533c1890083b3">UI.Window</a>
+, <a class="el" href="classUI_1_1WorkingDemo.html#a6dff6e744e0e1bc699d38bd7c09e38d5">UI.WorkingDemo</a>
+</li>
+</ul>
+
+
+<h3><a id="index_s"></a>- s -</h3><ul>
 <li>send_message()
 : <a class="el" href="classclient_1_1PeerConnection.html#ad14d725e13f6dd54b725dbe972091647">client.PeerConnection</a>
 </li>
+<li>sendBytes()
+: <a class="el" href="classrdt__socket_1_1rdt__socket.html#ab95581ebbe99e9891b2d3854d83f1f2e">rdt_socket.rdt_socket</a>
+</li>
+<li>submitOnClick()
+: <a class="el" href="classUI_1_1Window.html#ad8d2cd8bfd048014ba707987a8f99246">UI.Window</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>to_00()
+: <a class="el" href="classstate_1_1State01.html#ac79b669e58f319783a329f81ca86a97d">state.State01</a>
+</li>
+<li>to_01()
+: <a class="el" href="classstate_1_1State01.html#a691707d54430fe9c916df15c08de2124">state.State01</a>
+</li>
+<li>to_10()
+: <a class="el" href="classstate_1_1State01.html#a6d29be17a5a8e6cfa717a78d6c7033bb">state.State01</a>
+</li>
+<li>to_11()
+: <a class="el" href="classstate_1_1State01.html#a6cbc21fa29198f469eab3d2687a32a38">state.State01</a>
+</li>
+<li>to_bytes()
+: <a class="el" href="classmessage_1_1Bitfield.html#a144e41e3f21842a2f805d994953ed494">message.Bitfield</a>
+, <a class="el" href="classmessage_1_1Choke.html#ac8b9e3f9ced397b54c01b3dead948a68">message.Choke</a>
+, <a class="el" href="classmessage_1_1Have.html#a097b2b2de4e24a9942c03fa7960cbb8f">message.Have</a>
+, <a class="el" href="classmessage_1_1Interested.html#a1cf67ad15871da5da8c3936fdc0ae0db">message.Interested</a>
+, <a class="el" href="classmessage_1_1KeepAlive.html#a79fd1683c33fc40371d3437134f21df6">message.KeepAlive</a>
+, <a class="el" href="classmessage_1_1Piece.html#a6dea276a45464c4ed4f9fa9db3701465">message.Piece</a>
+, <a class="el" href="classmessage_1_1Request.html#abae4c0985607f9e7404344bf25f51dc9">message.Request</a>
+, <a class="el" href="classmessage_1_1UnChoke.html#a8e07991276da94482514b65fa77c62f2">message.UnChoke</a>
+, <a class="el" href="classmessage_1_1UnInterested.html#a7ab4cae20da54b07fcedc95ccac99f97">message.UnInterested</a>
+</li>
+<li>to_json_string()
+: <a class="el" href="classmessage_1_1Bitfield.html#a4a60c401f065edfd3f5e8ecb107bdfe6">message.Bitfield</a>
+, <a class="el" href="classmessage_1_1Choke.html#a12deab5e01748e6d42e6374b01b6dbea">message.Choke</a>
+, <a class="el" href="classmessage_1_1Have.html#a868fba8eac184ed4ca13c4ae1b949cd0">message.Have</a>
+, <a class="el" href="classmessage_1_1Interested.html#a85124185485e343b141653039f028e4d">message.Interested</a>
+, <a class="el" href="classmessage_1_1KeepAlive.html#ad02a3d9aaf153a7fd41abf0fba8d3096">message.KeepAlive</a>
+, <a class="el" href="classmessage_1_1Piece.html#afbc5c648524ae898715bdf91f2db1ba3">message.Piece</a>
+, <a class="el" href="classmessage_1_1Request.html#a0c40a28ef85b5c21ceab6e946ab9ac7a">message.Request</a>
+, <a class="el" href="classmessage_1_1UnChoke.html#a47fd0b2a784559e231a280ed01c86701">message.UnChoke</a>
+, <a class="el" href="classmessage_1_1UnInterested.html#aa2d0d974577eab14f5cfe2e479e0905e">message.UnInterested</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
 <li>update_data_field()
 : <a class="el" href="classpiecemanager_1_1pieceManager.html#a99974c6b9fd6c9f8d912879660256d1d">piecemanager.pieceManager</a>
 </li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

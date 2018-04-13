@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('config_8py_source.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,21 +65,22 @@ $(document).ready(function(){initNavTree('config_8py_source.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3d570edb5d0b7fe6a6d598eed4cbb949.html">frontent</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">config.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;MARGIN = 40</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;LEFT_MARGIN = 20</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;TINY_MARGIN = 10</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;WINDOW_WIDTH = 800</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;WINDOW_HEIGHT = 500</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;LABEL_HEIGHT = 50</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;LABEL_WIDTH = 40</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;WORD_OFFSET = 5</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;TEX_BOX_WIDTH = 100</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;LOG_LEFT_MARGIN = LEFT_MARGIN + LABEL_WIDTH + TEX_BOX_WIDTH +100</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;LOG_WIDTH = 500</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;LOG_HEIGH = WINDOW_HEIGHT - 2 * MARGIN</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;LOG_LABEL_LEFT_MARGIN = LOG_LEFT_MARGIN + LOG_WIDTH / 2</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;SUBMIT_BUTTON_TOP_MARGIN = MARGIN + 2 * LABEL_HEIGHT + TINY_MARGIN</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;SUBMIT_LEFT_MARGIN = LEFT_MARGIN + TEX_BOX_WIDTH</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;MAX_INT = 1e100</div></div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
+<a href="config_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a825e922de1b2aa5cca4e638f4fbac460">    1</a></span>&#160;MARGIN = 40</div><div class="line"><a name="l00002"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a404282d505b2d47ccbc88fd04d5d2045">    2</a></span>&#160;LEFT_MARGIN = 20</div><div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="namespaceconfig.html#aa6bf4456504d802c89eed8403143e6ab">    3</a></span>&#160;TINY_MARGIN = 10</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div><div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a35bfc3d4987a4fd5a07368fc13553963">    5</a></span>&#160;WINDOW_WIDTH = 800</div><div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a9df40d83ca227f58923ed370a3db302d">    6</a></span>&#160;WINDOW_HEIGHT = 500</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespaceconfig.html#acc7a055f8621e2520e6128cd84cdf4dd">    8</a></span>&#160;LABEL_HEIGHT = 50</div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a0e7a478c091f6a417810ed95820ffb5c">    9</a></span>&#160;LABEL_WIDTH = 40</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceconfig.html#acba58dd6e407e802eb401eb3b8f6c93e">   11</a></span>&#160;WORD_OFFSET = 5</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a958bdc267c10f5a07d48aadcbda0b2ac">   13</a></span>&#160;TEX_BOX_WIDTH = 100</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a994a49c8758e4d350354dc61b5bf1f83">   15</a></span>&#160;LOG_LEFT_MARGIN = LEFT_MARGIN + LABEL_WIDTH + TEX_BOX_WIDTH +100</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a18aabc8baa8471f3e3e84c5e030b1ea2">   16</a></span>&#160;LOG_WIDTH = 500</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a063c7712af69cae2a29ec31947b85c8d">   17</a></span>&#160;LOG_HEIGH = WINDOW_HEIGHT - 2 * MARGIN</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceconfig.html#aca204f42e59b9bbbba45001a3389d790">   19</a></span>&#160;LOG_LABEL_LEFT_MARGIN = LOG_LEFT_MARGIN + LOG_WIDTH / 2</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div><div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a2f8e02351ce3b4bda4d07ed9ae3f2f49">   21</a></span>&#160;SUBMIT_BUTTON_TOP_MARGIN = MARGIN + 2 * LABEL_HEIGHT + TINY_MARGIN</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="namespaceconfig.html#a84b272c73c10bf8cab717caab541f846">   22</a></span>&#160;SUBMIT_LEFT_MARGIN = LEFT_MARGIN + TEX_BOX_WIDTH</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;MAX_INT = 1e100</div></div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_3d570edb5d0b7fe6a6d598eed4cbb949.html">frontent</a></li><li class="navelem"><b>config.py</b></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['read_5ftorrent_5ffile',['read_torrent_file',['../namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4',1,'torrent']]],
-  ['recv_5fmessage',['recv_message',['../classclient_1_1PeerConnection.html#a5ffa699731567bddc0dbd80a09e75f7d',1,'client::PeerConnection']]],
-  ['run',['run',['../classclient_1_1PeerConnection.html#aa7ad7862e02a841ebb22b90b3f723b86',1,'client::PeerConnection']]]
+  ['load_5fconfig_5ffile',['load_config_file',['../classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd',1,'client::Client']]],
+  ['load_5fdownload_5ffile_5fdata',['load_download_file_data',['../classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048',1,'piecemanager::pieceManager']]],
+  ['load_5fexist_5ffull_5ffile_5fdata',['load_exist_full_file_data',['../classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095',1,'piecemanager::pieceManager']]],
+  ['load_5fprevious_5fdata',['load_previous_data',['../classpiecemanager_1_1pieceManager.html#ae4031bc9ace5a4d95a1bfb59e0a31e2b',1,'piecemanager::pieceManager']]]
 ];

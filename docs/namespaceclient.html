@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('namespaceclient.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,7 @@ $(document).ready(function(){initNavTree('namespaceclient.html','');});
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
@@ -108,47 +90,33 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af3444767b8ed08b8e5f201442b70dff3"><td class="memItemLeft" align="right" valign="top"><a id="af3444767b8ed08b8e5f201442b70dff3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr>
+<tr class="memitem:af3444767b8ed08b8e5f201442b70dff3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#af3444767b8ed08b8e5f201442b70dff3">format</a></td></tr>
 <tr class="separator:af3444767b8ed08b8e5f201442b70dff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac904724db554b5fe0227eb74f52c5d26"><td class="memItemLeft" align="right" valign="top"><a id="ac904724db554b5fe0227eb74f52c5d26"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>datefmt</b></td></tr>
+<tr class="memitem:ac904724db554b5fe0227eb74f52c5d26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#ac904724db554b5fe0227eb74f52c5d26">datefmt</a></td></tr>
 <tr class="separator:ac904724db554b5fe0227eb74f52c5d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0bfe782759c8255c924917ce4a9b700"><td class="memItemLeft" align="right" valign="top"><a id="ae0bfe782759c8255c924917ce4a9b700"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b> = logging.getLogger(__name__)</td></tr>
+<tr class="memitem:ae0bfe782759c8255c924917ce4a9b700"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#ae0bfe782759c8255c924917ce4a9b700">logger</a> = logging.getLogger(__name__)</td></tr>
 <tr class="separator:ae0bfe782759c8255c924917ce4a9b700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b5d9a5e48b17b1e0f5989325c23680f"><td class="memItemLeft" align="right" valign="top"><a id="a2b5d9a5e48b17b1e0f5989325c23680f"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>CLIENT_PORT</b> = 5555</td></tr>
+<tr class="memitem:a2b5d9a5e48b17b1e0f5989325c23680f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a2b5d9a5e48b17b1e0f5989325c23680f">CLIENT_PORT</a> = 5555</td></tr>
 <tr class="separator:a2b5d9a5e48b17b1e0f5989325c23680f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6140830236a2160bb4b8efaf756459"><td class="memItemLeft" align="right" valign="top"><a id="a2d6140830236a2160bb4b8efaf756459"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>CLIENT_LISTEN_MAX</b> = 8</td></tr>
+<tr class="memitem:a2d6140830236a2160bb4b8efaf756459"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a2d6140830236a2160bb4b8efaf756459">CLIENT_LISTEN_MAX</a> = 8</td></tr>
 <tr class="separator:a2d6140830236a2160bb4b8efaf756459"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0acc1ffa89195cc7fa88b12b3e774c85"><td class="memItemLeft" align="right" valign="top"><a id="a0acc1ffa89195cc7fa88b12b3e774c85"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>FILE_HEADER_SIZE</b> = 8</td></tr>
+<tr class="memitem:a0acc1ffa89195cc7fa88b12b3e774c85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a0acc1ffa89195cc7fa88b12b3e774c85">FILE_HEADER_SIZE</a> = 8</td></tr>
 <tr class="separator:a0acc1ffa89195cc7fa88b12b3e774c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2bb1cdcb4dc4afd231094ac7782c432"><td class="memItemLeft" align="right" valign="top"><a id="ac2bb1cdcb4dc4afd231094ac7782c432"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>INIT_AM_INTERESTED</b> = False</td></tr>
+<tr class="memitem:ac2bb1cdcb4dc4afd231094ac7782c432"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#ac2bb1cdcb4dc4afd231094ac7782c432">INIT_AM_INTERESTED</a> = False</td></tr>
 <tr class="separator:ac2bb1cdcb4dc4afd231094ac7782c432"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa33a5b5077e87945f48d9e565d02c5f"><td class="memItemLeft" align="right" valign="top"><a id="afa33a5b5077e87945f48d9e565d02c5f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>INIT_AM_CHOCKED</b> = False</td></tr>
+<tr class="memitem:afa33a5b5077e87945f48d9e565d02c5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#afa33a5b5077e87945f48d9e565d02c5f">INIT_AM_CHOCKED</a> = False</td></tr>
 <tr class="separator:afa33a5b5077e87945f48d9e565d02c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2883fbf4cbd600c07365f5ba2be7575"><td class="memItemLeft" align="right" valign="top"><a id="ad2883fbf4cbd600c07365f5ba2be7575"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>INIT_PEER_INTERESTED</b> = False</td></tr>
+<tr class="memitem:ad2883fbf4cbd600c07365f5ba2be7575"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#ad2883fbf4cbd600c07365f5ba2be7575">INIT_PEER_INTERESTED</a> = False</td></tr>
 <tr class="separator:ad2883fbf4cbd600c07365f5ba2be7575"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b3ccd723216663c33d305ae4c22567e"><td class="memItemLeft" align="right" valign="top"><a id="a6b3ccd723216663c33d305ae4c22567e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>INIT_PEER_CHOCKED</b> = False</td></tr>
+<tr class="memitem:a6b3ccd723216663c33d305ae4c22567e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a6b3ccd723216663c33d305ae4c22567e">INIT_PEER_CHOCKED</a> = False</td></tr>
 <tr class="separator:a6b3ccd723216663c33d305ae4c22567e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a011f04c9feded50c11bbb4a8fad32cc1"><td class="memItemLeft" align="right" valign="top"><a id="a011f04c9feded50c11bbb4a8fad32cc1"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>START_EVENT</b> = 'started'</td></tr>
+<tr class="memitem:a011f04c9feded50c11bbb4a8fad32cc1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a011f04c9feded50c11bbb4a8fad32cc1">START_EVENT</a> = 'started'</td></tr>
 <tr class="separator:a011f04c9feded50c11bbb4a8fad32cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3483e3b5f36bb82f965d2eab10f37d7f"><td class="memItemLeft" align="right" valign="top"><a id="a3483e3b5f36bb82f965d2eab10f37d7f"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>COMPLETED_EVENT</b> = 'completed'</td></tr>
+<tr class="memitem:a3483e3b5f36bb82f965d2eab10f37d7f"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a3483e3b5f36bb82f965d2eab10f37d7f">COMPLETED_EVENT</a> = 'completed'</td></tr>
 <tr class="separator:a3483e3b5f36bb82f965d2eab10f37d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa99db161576194fe9910add039f9e23"><td class="memItemLeft" align="right" valign="top"><a id="afa99db161576194fe9910add039f9e23"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>left_pieces</b> = queue.Queue(300)</td></tr>
+<tr class="memitem:afa99db161576194fe9910add039f9e23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#afa99db161576194fe9910add039f9e23">left_pieces</a> = queue.Queue(300)</td></tr>
 <tr class="separator:afa99db161576194fe9910add039f9e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a732342cbb505a27a524608ccdf11d0c3"><td class="memItemLeft" align="right" valign="top"><a id="a732342cbb505a27a524608ccdf11d0c3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>pieces_manager</b> = 0</td></tr>
+<tr class="memitem:a732342cbb505a27a524608ccdf11d0c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceclient.html#a732342cbb505a27a524608ccdf11d0c3">pieces_manager</a> = 0</td></tr>
 <tr class="separator:a732342cbb505a27a524608ccdf11d0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -171,19 +139,241 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>pieces_manager</b> = 0
 </div><div class="memdoc">
 <pre class="fragment">如果没有配置文件，先初始化一个 </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00408">408</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="keyword">def </span>init_config_file(config_file_name=&#39;client_config.json&#39;):</div><div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="stringliteral">&quot;&quot;&quot; 如果没有配置文件，先初始化一个 &quot;&quot;&quot;</span></div><div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    config = {}</div><div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    config[<span class="stringliteral">&#39;client_listen_max&#39;</span>] = 8</div><div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    config[<span class="stringliteral">&#39;client_port&#39;</span>] = 5555</div><div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    config[<span class="stringliteral">&#39;file_header_size&#39;</span>] = 8</div><div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    with open(config_file_name, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> config_f:</div><div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        json.dump(config, config_f, indent=4)</div><div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="keyword">def </span><a class="code" href="namespaceclient.html#abae867d25823c11069f62417b7fc8c47">init_config_file</a>(config_file_name=&#39;client_config.json&#39;):</div><div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="stringliteral">&quot;&quot;&quot; 如果没有配置文件，先初始化一个 &quot;&quot;&quot;</span></div><div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    config = {}</div><div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    config[<span class="stringliteral">&#39;client_listen_max&#39;</span>] = 8</div><div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    config[<span class="stringliteral">&#39;client_port&#39;</span>] = 5555</div><div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    config[<span class="stringliteral">&#39;file_header_size&#39;</span>] = 8</div><div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    with open(config_file_name, <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> config_f:</div><div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        json.dump(config, config_f, indent=4)</div><div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div><div class="ttc" id="namespaceclient_html_abae867d25823c11069f62417b7fc8c47"><div class="ttname"><a href="namespaceclient.html#abae867d25823c11069f62417b7fc8c47">client.init_config_file</a></div><div class="ttdeci">def init_config_file(config_file_name='client_config.json')</div><div class="ttdef"><b>Definition:</b> <a href="client_8py_source.html#l00408">client.py:408</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a2d6140830236a2160bb4b8efaf756459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d6140830236a2160bb4b8efaf756459">&#9670;&nbsp;</a></span>CLIENT_LISTEN_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int client.CLIENT_LISTEN_MAX = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00030">30</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a2b5d9a5e48b17b1e0f5989325c23680f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b5d9a5e48b17b1e0f5989325c23680f">&#9670;&nbsp;</a></span>CLIENT_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int client.CLIENT_PORT = 5555</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00029">29</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a3483e3b5f36bb82f965d2eab10f37d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3483e3b5f36bb82f965d2eab10f37d7f">&#9670;&nbsp;</a></span>COMPLETED_EVENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string client.COMPLETED_EVENT = 'completed'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00039">39</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="ac904724db554b5fe0227eb74f52c5d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac904724db554b5fe0227eb74f52c5d26">&#9670;&nbsp;</a></span>datefmt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">client.datefmt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00024">24</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a0acc1ffa89195cc7fa88b12b3e774c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0acc1ffa89195cc7fa88b12b3e774c85">&#9670;&nbsp;</a></span>FILE_HEADER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int client.FILE_HEADER_SIZE = 8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00031">31</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="af3444767b8ed08b8e5f201442b70dff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3444767b8ed08b8e5f201442b70dff3">&#9670;&nbsp;</a></span>format</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">client.format</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00023">23</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="afa33a5b5077e87945f48d9e565d02c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa33a5b5077e87945f48d9e565d02c5f">&#9670;&nbsp;</a></span>INIT_AM_CHOCKED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool client.INIT_AM_CHOCKED = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00035">35</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="ac2bb1cdcb4dc4afd231094ac7782c432"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2bb1cdcb4dc4afd231094ac7782c432">&#9670;&nbsp;</a></span>INIT_AM_INTERESTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool client.INIT_AM_INTERESTED = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00034">34</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a6b3ccd723216663c33d305ae4c22567e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b3ccd723216663c33d305ae4c22567e">&#9670;&nbsp;</a></span>INIT_PEER_CHOCKED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool client.INIT_PEER_CHOCKED = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00037">37</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="ad2883fbf4cbd600c07365f5ba2be7575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2883fbf4cbd600c07365f5ba2be7575">&#9670;&nbsp;</a></span>INIT_PEER_INTERESTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool client.INIT_PEER_INTERESTED = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00036">36</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="afa99db161576194fe9910add039f9e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa99db161576194fe9910add039f9e23">&#9670;&nbsp;</a></span>left_pieces</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">client.left_pieces = queue.Queue(300)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00042">42</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="ae0bfe782759c8255c924917ce4a9b700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0bfe782759c8255c924917ce4a9b700">&#9670;&nbsp;</a></span>logger</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">client.logger = logging.getLogger(__name__)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00026">26</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a732342cbb505a27a524608ccdf11d0c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a732342cbb505a27a524608ccdf11d0c3">&#9670;&nbsp;</a></span>pieces_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int client.pieces_manager = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00043">43</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
+</div>
+</div>
+<a id="a011f04c9feded50c11bbb4a8fad32cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a011f04c9feded50c11bbb4a8fad32cc1">&#9670;&nbsp;</a></span>START_EVENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string client.START_EVENT = 'started'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00038">38</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespaceclient.html">client</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

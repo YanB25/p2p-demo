@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classmessage_1_1Have.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classmessage_1_1Have.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacemessage.html">message</a></li><li class="navelem"><a class="el" href="classmessage_1_1Have.html">Have</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -96,44 +82,155 @@ $(document).ready(function(){initNavTree('classmessage_1_1Have.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72e6b623873290bc0bfe0fd25abb13e5"><td class="memItemLeft" align="right" valign="top"><a id="a72e6b623873290bc0bfe0fd25abb13e5"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b></td></tr>
+<tr class="memitem:a72e6b623873290bc0bfe0fd25abb13e5"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a72e6b623873290bc0bfe0fd25abb13e5">__init__</a></td></tr>
 <tr class="separator:a72e6b623873290bc0bfe0fd25abb13e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a097b2b2de4e24a9942c03fa7960cbb8f"><td class="memItemLeft" align="right" valign="top"><a id="a097b2b2de4e24a9942c03fa7960cbb8f"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>to_bytes</b> (self)</td></tr>
+<tr class="memitem:a097b2b2de4e24a9942c03fa7960cbb8f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a097b2b2de4e24a9942c03fa7960cbb8f">to_bytes</a> (self)</td></tr>
 <tr class="separator:a097b2b2de4e24a9942c03fa7960cbb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a868fba8eac184ed4ca13c4ae1b949cd0"><td class="memItemLeft" align="right" valign="top"><a id="a868fba8eac184ed4ca13c4ae1b949cd0"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>to_json_string</b> (self)</td></tr>
+<tr class="memitem:a868fba8eac184ed4ca13c4ae1b949cd0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a868fba8eac184ed4ca13c4ae1b949cd0">to_json_string</a> (self)</td></tr>
 <tr class="separator:a868fba8eac184ed4ca13c4ae1b949cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5e37a8b4ead00b28bfce0f117850f019"><td class="memItemLeft" align="right" valign="top"><a id="a5e37a8b4ead00b28bfce0f117850f019"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>length</b></td></tr>
+<tr class="memitem:a5e37a8b4ead00b28bfce0f117850f019"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a5e37a8b4ead00b28bfce0f117850f019">length</a></td></tr>
 <tr class="separator:a5e37a8b4ead00b28bfce0f117850f019"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b38863ec0e750ddd57243ea97bde907"><td class="memItemLeft" align="right" valign="top"><a id="a7b38863ec0e750ddd57243ea97bde907"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>message_id</b></td></tr>
+<tr class="memitem:a7b38863ec0e750ddd57243ea97bde907"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a7b38863ec0e750ddd57243ea97bde907">message_id</a></td></tr>
 <tr class="separator:a7b38863ec0e750ddd57243ea97bde907"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a535f29f5637ddb925b975610e50dfd99"><td class="memItemLeft" align="right" valign="top"><a id="a535f29f5637ddb925b975610e50dfd99"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>piece_index</b></td></tr>
+<tr class="memitem:a535f29f5637ddb925b975610e50dfd99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessage_1_1Have.html#a535f29f5637ddb925b975610e50dfd99">piece_index</a></td></tr>
 <tr class="separator:a535f29f5637ddb925b975610e50dfd99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">Have类消息 </pre> 
 <p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00073">73</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a72e6b623873290bc0bfe0fd25abb13e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72e6b623873290bc0bfe0fd25abb13e5">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def message.Have.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>piece_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00075">75</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">def </span>__init__(self, piece_index : int ):</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; piece_index为请求对应的数据块的索引 &quot;&quot;&quot;</span></div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        self.length = 1 + 4</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        self.message_id = 4</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        self.piece_index = piece_index</div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a097b2b2de4e24a9942c03fa7960cbb8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097b2b2de4e24a9942c03fa7960cbb8f">&#9670;&nbsp;</a></span>to_bytes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def message.Have.to_bytes </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00080">80</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">def </span>to_bytes(self):</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        fmt = <span class="stringliteral">&#39;!ibi&#39;</span></div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">return</span> struct.pack(fmt, self.length, self.message_id, self.piece_index)</div></div><!-- fragment -->
+</div>
+</div>
+<a id="a868fba8eac184ed4ca13c4ae1b949cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868fba8eac184ed4ca13c4ae1b949cd0">&#9670;&nbsp;</a></span>to_json_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def message.Have.to_json_string </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00083">83</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">def </span>to_json_string(self):</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        msg = {}</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        msg[<span class="stringliteral">&#39;type&#39;</span>] = self.__class__.__name__</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        msg[<span class="stringliteral">&#39;length&#39;</span>] = self.length</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        msg[<span class="stringliteral">&#39;message_id&#39;</span>] = self.message_id</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        msg[<span class="stringliteral">&#39;piece_index&#39;</span>] = self.piece_index</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> json.dumps(msg, indent=4, sort_keys=<span class="keyword">True</span>)</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        </div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5e37a8b4ead00b28bfce0f117850f019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e37a8b4ead00b28bfce0f117850f019">&#9670;&nbsp;</a></span>length</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">message.Have.length</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00077">77</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+
+</div>
+</div>
+<a id="a7b38863ec0e750ddd57243ea97bde907"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b38863ec0e750ddd57243ea97bde907">&#9670;&nbsp;</a></span>message_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">message.Have.message_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00078">78</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+
+</div>
+</div>
+<a id="a535f29f5637ddb925b975610e50dfd99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a535f29f5637ddb925b975610e50dfd99">&#9670;&nbsp;</a></span>piece_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">message.Have.piece_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="message_8py_source.html#l00079">79</a> of file <a class="el" href="message_8py_source.html">message.py</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/backend/<a class="el" href="message_8py_source.html">message.py</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="namespacemessage.html">message</a></li><li class="navelem"><a class="el" href="classmessage_1_1Have.html">Have</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

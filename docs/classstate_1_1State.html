@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classstate_1_1State.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classstate_1_1State.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacestate.html">state</a></li><li class="navelem"><a class="el" href="classstate_1_1State.html">State</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -102,39 +88,101 @@ Inheritance diagram for state.State:</div>
 <area shape="rect" id="node3" href="classstate_1_1recvFileState.html" title="state.recvFileState" alt="" coords="5,155,137,181"/>
 <area shape="rect" id="node4" href="classstate_1_1sendFileState.html" title="state.sendFileState" alt="" coords="161,155,296,181"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a96130471727cf3ba6915d2e2a59739f4"><td class="memItemLeft" align="right" valign="top"><a id="a96130471727cf3ba6915d2e2a59739f4"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__init__</b></td></tr>
+<tr class="memitem:a96130471727cf3ba6915d2e2a59739f4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate_1_1State.html#a96130471727cf3ba6915d2e2a59739f4">__init__</a></td></tr>
 <tr class="separator:a96130471727cf3ba6915d2e2a59739f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1c2cc5ea345820678e401dc0e0fbc43"><td class="memItemLeft" align="right" valign="top"><a id="ac1c2cc5ea345820678e401dc0e0fbc43"></a>
-def&#160;</td><td class="memItemRight" valign="bottom"><b>__str__</b> (self)</td></tr>
+<tr class="memitem:ac1c2cc5ea345820678e401dc0e0fbc43"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate_1_1State.html#ac1c2cc5ea345820678e401dc0e0fbc43">__str__</a> (self)</td></tr>
 <tr class="separator:ac1c2cc5ea345820678e401dc0e0fbc43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5a58dca85baca80eeab344d39d5b5f0c"><td class="memItemLeft" align="right" valign="top"><a id="a5a58dca85baca80eeab344d39d5b5f0c"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>states</b></td></tr>
+<tr class="memitem:a5a58dca85baca80eeab344d39d5b5f0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstate_1_1State.html#a5a58dca85baca80eeab344d39d5b5f0c">states</a></td></tr>
 <tr class="separator:a5a58dca85baca80eeab344d39d5b5f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><pre class="fragment">状态基类 </pre> 
 <p class="definition">Definition at line <a class="el" href="state_8py_source.html#l00001">1</a> of file <a class="el" href="state_8py_source.html">state.py</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a96130471727cf3ba6915d2e2a59739f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96130471727cf3ba6915d2e2a59739f4">&#9670;&nbsp;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def state.State.__init__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>states</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="state_8py_source.html#l00003">3</a> of file <a class="el" href="state_8py_source.html">state.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    <span class="keyword">def </span>__init__(self, states : str):</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;        self.states = states</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    </div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac1c2cc5ea345820678e401dc0e0fbc43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c2cc5ea345820678e401dc0e0fbc43">&#9670;&nbsp;</a></span>__str__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def state.State.__str__ </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="state_8py_source.html#l00006">6</a> of file <a class="el" href="state_8py_source.html">state.py</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">def </span>__str__(self):</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keywordflow">return</span> self.states</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    </div></div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5a58dca85baca80eeab344d39d5b5f0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a58dca85baca80eeab344d39d5b5f0c">&#9670;&nbsp;</a></span>states</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">state.State.states</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="state_8py_source.html#l00004">4</a> of file <a class="el" href="state_8py_source.html">state.py</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/backend/<a class="el" href="state_8py_source.html">state.py</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><b>state</b></li><li class="navelem"><a class="el" href="classstate_1_1State.html">State</a></li>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

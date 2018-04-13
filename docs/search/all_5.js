@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['get_5fbitfield',['get_bitfield',['../classpiecemanager_1_1pieceManager.html#abc7cefdf91ca5555ca89a0fba12bc328',1,'piecemanager::pieceManager']]],
-  ['get_5fhost_5fip',['get_host_ip',['../namespaceutilities.html#a011f8d35e1fa8d9d882997ab35d09383',1,'utilities']]],
-  ['get_5fid',['get_id',['../classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859',1,'client::Client']]],
-  ['get_5fpeers_5flist',['get_peers_list',['../classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663',1,'client::Client']]],
-  ['get_5fpiece',['get_piece',['../classpiecemanager_1_1pieceManager.html#a498b6c003c7727d3ffde3b082639aaac',1,'piecemanager::pieceManager']]]
+  ['editip',['editIP',['../classUI_1_1Window.html#a7c114b3eb0f5363c6912b9bb823a17f8',1,'UI::Window']]],
+  ['editport',['editPort',['../classUI_1_1Window.html#aa32177bee3df59da514513fd06f74bc1',1,'UI::Window']]],
+  ['establish_5flink',['establish_link',['../classclient_1_1Client.html#a1f5475e4c61b8257db081f51b8a4a649',1,'client::Client']]],
+  ['event',['event',['../namespaceserver.html#ab6f46efd4a30f3fa043b234af8ff3aa4',1,'server']]],
+  ['example',['example',['../namespacebittorrentParcer.html#a6ab4fc7f24ea284cbd841119697caef0',1,'bittorrentParcer']]]
 ];

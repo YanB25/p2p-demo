@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['establish_5flink',['establish_link',['../classclient_1_1Client.html#a1f5475e4c61b8257db081f51b8a4a649',1,'client::Client']]]
+  ['binary_5fto_5fbeautiful_5fjson',['binary_to_beautiful_json',['../namespaceutilities.html#adb02b571b2d95ebe47646651e2140820',1,'utilities']]],
+  ['bytes_5fto_5fmessage',['bytes_to_message',['../namespacemessage.html#a69331d89f545ea68f8662445387e58f0',1,'message']]]
 ];

@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacepiecemanager.html">piecemanager</a></li><li class="navelem"><a class="el" href="classpiecemanager_1_1pieceManager.html">pieceManager</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">piecemanager.pieceManager Member List</div>  </div>
@@ -93,29 +79,26 @@ $(document).ready(function(){initNavTree('classpiecemanager_1_1pieceManager.html
 <p>This is the complete list of members for <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c">__init__</a>(self, torrent_file_name)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>bitfield</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>file_length</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>file_name</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#aecbd27c0660f9512ce916eee52091e96">bitfield</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#ac7f5ee5a0e561174b38ba101043d513a">file_length</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a613795b4411f27ca815c70871d4d526e">file_name</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#abc7cefdf91ca5555ca89a0fba12bc328">get_bitfield</a>(self)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a498b6c003c7727d3ffde3b082639aaac">get_piece</a>(self, piece_index)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>hash_table</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#ad9b092c49b932253720f68a6e3d82d98">hash_table</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048">load_download_file_data</a>(self, download_file_name='')</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095">load_exist_full_file_data</a>(self)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#ae4031bc9ace5a4d95a1bfb59e0a31e2b">load_previous_data</a>(self, temp_file_name='temp_piece_data')</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>merge_full_data_to_file</b>(self, save_file_name) (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>piece_length</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>piece_num</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>pieces_data</b> (defined in <a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a>)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a4562b7ac8d50cc746d07699f047be7d2">merge_full_data_to_file</a>(self, save_file_name)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a5e77254c5c75494e7440313cc432d39c">piece_length</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a347e97607eb1992d72d52cfe8360d608">piece_num</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a3ed0f1a7f430e41bc8d764b6574dc426">pieces_data</a></td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html#a99974c6b9fd6c9f8d912879660256d1d">update_data_field</a>(self, piece_index, piece_data)</td><td class="entry"><a class="el" href="classpiecemanager_1_1pieceManager.html">piecemanager.pieceManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>

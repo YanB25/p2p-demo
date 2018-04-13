@@ -9,17 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-  $(document).ready(initResizable);
-/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -53,23 +51,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classserver_1_1Peer.html','');});
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -84,6 +65,11 @@ $(document).ready(function(){initNavTree('classserver_1_1Peer.html','');});
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceserver.html">server</a></li><li class="navelem"><a class="el" href="classserver_1_1Peer.html">Peer</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">server.Peer Member List</div>  </div>
@@ -92,21 +78,18 @@ $(document).ready(function(){initNavTree('classserver_1_1Peer.html','');});
 
 <p>This is the complete list of members for <a class="el" href="classserver_1_1Peer.html">server.Peer</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>__eq__</b>(self, rhs) (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>__init__</b>(self, ip, port, id) (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>__str__</b>(self) (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>id</b> (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ip</b> (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>port</b> (defined in <a class="el" href="classserver_1_1Peer.html">server.Peer</a>)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classserver_1_1Peer.html#a8386e2c18e13c68e424ed41cec120719">__eq__</a>(self, rhs)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classserver_1_1Peer.html#a0cc1550800bd313b47e3ef575691ef91">__init__</a>(self, ip, port, id)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classserver_1_1Peer.html#ab664d9fdef3044a9dbd51a5b495ed10d">__str__</a>(self)</td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classserver_1_1Peer.html#a875389c5e7f340c741b9917aaf83b8ca">id</a></td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classserver_1_1Peer.html#a52373788cd18d09bed2b1f457bf66150">ip</a></td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classserver_1_1Peer.html#a89c2abce9ceafef3df51a8b12fa5c37e">port</a></td><td class="entry"><a class="el" href="classserver_1_1Peer.html">server.Peer</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">Generated by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.15
+</small></address>
 </body>
 </html>
