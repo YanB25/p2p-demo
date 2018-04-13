@@ -19,7 +19,7 @@ DEFAULT_CLIENT_PORT = 6666
 
 
 def make_torrent_file(file_name):
-    """使用本机ip及文件制作torrent文件"""
+    """使用本机ip及文件制作torrent文件,会在当前目录下命名为file_name.torrent存放"""
     
     torrent = {}
     torrent['announce'] = get_host_ip() # 获取本机IP
@@ -40,7 +40,7 @@ def make_torrent_file(file_name):
                 break
             else:
                 torrent['info']['piece_hash'].append(str(hashlib.sha1(piece_contents).digest()))
-    with open(file_name+'.torrent', 'w') as file:
+    with open(torrent['info']['file_name']+'.torrent', 'w') as file:
         json.dump(torrent, file)
 
 def read_torrent_file(torrent_file_name):
