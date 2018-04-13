@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '../src/backend/')
+sys.path.insert(0, '../../src/backend/')
 from client import *
 from torrent import *
 
