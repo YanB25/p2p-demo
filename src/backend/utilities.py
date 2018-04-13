@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*
 '''
 utilities functions here
 '''
@@ -6,7 +7,7 @@ import socket
 
 def objEncode(obj):
     """ obj，返回binary对象 """
-    return json.dumps(obj,indent=4, sort_keys=True,separators=(',', ':')).encode('utf-8')
+    return json.dumps(obj,indent=4, sort_keys=True,separators=(',',':')).encode('utf-8')
 
 def objDecode(binary):
     """ binary 返回dict对象 """
