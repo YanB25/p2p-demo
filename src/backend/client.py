@@ -16,6 +16,7 @@ import rdt_socket
 import torrent
 from piecemanager import pieceManager
 from message import *
+from state import *
 import logging
 logging.basicConfig(
     # filename='../../log/client.{}.log'.format(__name__),
@@ -52,35 +53,79 @@ class PeerConnection(threading.Thread):
         # self.peer_bitfield = 0
         self.pieces_num = pieces_num
         
-        # 发送数据块的自动机对应的计时器
-        self.send_piece_wait_response = 0
-        self.send_piece_time_keeper = 0
-
-        # 接受数据块的自动机对应的计时器
-        self.request_piece_wait_response = 0
-        self.request_piece_time_keeper = 0
-
-        self.my_choking = 1
-        self.my_interested = 0
-        self.peer_choking = 1
-        self.peer_interested = 0
-
         self.request_piece_index = 0
         self.request_piece_hash = 0
 
         logger.info('peer init connection %s', self.socket.s.getsockname())
 
-
     def run(self):
         """ 连接 线程主函数 """
         # TODO:这里是需要读全局的bitfield的，发送一个全局的bitfield
-
         self.send_message(Bitfield(pieces_manager.get_bitfield().tolist()))
-        self.send_piece_wait_response = 1
-        self.request_piece_wait_response = 1
+        self.initial_flag = 1
+        self.send_file_state = sendFileState('10')
+        self.recv_file_state = recvFileState('10')
 
         logger.info('peer connection %s begin to listen', self.socket.s.getsockname())
         while True:
+            recv_msg = self.recv_message()
+            # 由于这个是阻塞接受消息，不需要读取不到就循环
+            
+            # 第一次连接必须交换bitfield
+            if self.initial_flag == 1:
+                if type(recv_msg) == Bitfield:
+                # TODO:从队列中取出一个可下载数据块
+                # TODO: 如果有可下载数据块，则改变状态,并发送interest包
+                self.send_file_state.to_11()
+                self.initial_flag = 0
+                continue
+
+            
+            # 不是第一次连接，开始检查发送文件部分的状态
+            if self.send_file_state.is_10() and type(recv_msg) == Interested:
+                # TODO:这里可以决定我到底是choking 还是 no_choke
+                # 这里是直接设置我不choke，对方interested
+                send_available = 1
+                
+                logger.debug('I know you are interested with me. ')
+                if send_available == 1:
+                    self.send_file_state.to_01()
+                    self.send_message(UnChoke())    
+                # else : #  吸血鬼的话是需要 发Choke的，不过这里不考虑
+                #     self.send_file_state.to_11()
+                #     self.send_message(Choke())
+            elif self.send_file_state.is_01() and type(recv_msg) == Request:
+                # 当我Un choke并且对方 interested，发送数据包
+                cur_piece_index = recv_msg.piece_index
+                cur_piece_binary_data = pieces_manager.get_piece(cur_piece_index)
+                self.send_message(Piece(cur_piece_index, cur* _piece_binary_data))
+            elif self.send_file_state.is_01() and type(recv_msg) == UnInterested:
+                # 当我处于可以发送文件的状态，但是peer收完了，不感兴趣
+                self.send_file_state.to_10()
+            
+
+            # 开始检查接受文件部分的状态
+            if self.recv_file_state.is_11() and type(recv_msg) == UnChoke:
+                self.recv_file_state.to_01()
+                # TODO:从队列中取一个来发Request
+                self.send_message(Request())
+            elif self.recv_file_state.is_01() and type(recv_msg) == Piece:
+                # TODO:将Piece放到pieces_manager中，如果
+                piece_available = 1
+
+                if piece_available == 1:
+                    # TODO:如果收到，可用，从队列中取一个新的，并发送新的Request
+                    # TODO: 如果队列已经空了，就发送Un interested,并且表明文件已经收完，改变状态
+                else :
+                    # TODO: 如果不可用，重发Request
+
+
+            if self.recv_file_state.is_01() and self.send_file_state.is_01():
+            # 检查连接是否应该断开
+                # TODO:连接断开
+
+
+
             # 请求数据块部分的状态转移
             if self.request_piece_wait_response == 0:
                 # 开始一个定时器
