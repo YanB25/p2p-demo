@@ -1,0 +1,6 @@
+<map id="client.Client.get_id" name="client.Client.get_id">
+<area shape="rect" id="node2" href="$classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="184,5,311,47"/>
+<area shape="rect" id="node3" href="$classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663" title="client.Client.get_peers_list" alt="" coords="359,13,535,39"/>
+<area shape="rect" id="node4" href="$classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="583,5,701,47"/>
+<area shape="rect" id="node5" href="$classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="749,13,889,39"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="torrent.read_torrent_file" name="torrent.read_torrent_file">
+<area shape="rect" id="node2" href="$classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="219,5,359,32"/>
+<area shape="rect" id="node3" href="$classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c" title="piecemanager.pieceManager.\l__init__" alt="" coords="945,78,1137,119"/>
+<area shape="rect" id="node4" href="$namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="209,111,369,137"/>
+<area shape="rect" id="node5" href="$classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="417,107,633,149"/>
+<area shape="rect" id="node6" href="$classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095" title="piecemanager.pieceManager.load\l_exist_full_file_data" alt="" coords="681,107,897,149"/>
+</map>

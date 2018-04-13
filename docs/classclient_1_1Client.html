@@ -96,11 +96,17 @@ $(document).ready(function(){initNavTree('classclient_1_1Client.html','');});
 <div class="dynheader">
 Inheritance diagram for client.Client:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="classclient_1_1Client.png" usemap="#client.Client_map" alt=""/>
-  <map id="client.Client_map" name="client.Client_map">
+<div class="center"><img src="classclient_1_1Client__inherit__graph.png" border="0" usemap="#client_8Client_inherit__map" alt="Inheritance graph"/></div>
+<map name="client_8Client_inherit__map" id="client_8Client_inherit__map">
 </map>
- </div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for client.Client:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client__coll__graph.png" border="0" usemap="#client_8Client_coll__map" alt="Collaboration graph"/></div>
+<map name="client_8Client_coll__map" id="client_8Client_coll__map">
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -183,7 +189,25 @@ Public Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00304">304</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keyword">def </span>__init__(self, torrent_file_name, config_file_name):</div><div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 对客户端对象，初始化客户端ip，端口，并读取种子文件，将种子元数据存到客户端中 &quot;&quot;&quot;</span></div><div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        threading.Thread.__init__(self)</div><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        <span class="comment"># 初始化种子文件元数据</span></div><div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        self.metadata = <a class="code" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4">torrent.read_torrent_file</a>(torrent_file_name)</div><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        self.pieces_num = len(self.metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>])</div><div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="comment"># TODO:bitfield需要思考如何处理，这个应该能够被各个连接访问</span></div><div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        self.bitfield = bitarray.bitarray([0 <span class="keywordflow">for</span> _ <span class="keywordflow">in</span> range(1, self.pieces_num+1)])</div><div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;        <span class="comment"># 得到本机ip并且作为客户端的成员变量存进来</span></div><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        self.client_ip = <a class="code" href="namespaceutilities.html#a011f8d35e1fa8d9d882997ab35d09383">utilities.get_host_ip</a>()</div><div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        self.client_port = 0</div><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;        <span class="comment"># 从配置文件中读取数据,同时更新client_port</span></div><div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        self.load_config_file(config_file_name)</div><div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        <span class="comment"># 初始化可用peer列表</span></div><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        self.peers_list_response = []</div><div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        <span class="comment"># TODO:没有什么特别好的解决方法</span></div><div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <span class="keyword">global</span> pieces_manager</div><div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        pieces_manager = pieceManager(torrent_file_name)</div><div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div><div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div><div class="ttc" id="namespaceutilities_html_a011f8d35e1fa8d9d882997ab35d09383"><div class="ttname"><a href="namespaceutilities.html#a011f8d35e1fa8d9d882997ab35d09383">utilities.get_host_ip</a></div><div class="ttdeci">def get_host_ip()</div><div class="ttdef"><b>Definition:</b> <a href="utilities_8py_source.html#l00024">utilities.py:24</a></div></div>
 <div class="ttc" id="namespacetorrent_html_adf1d6585a72695cb0fdf391b196dcea4"><div class="ttname"><a href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4">torrent.read_torrent_file</a></div><div class="ttdeci">def read_torrent_file(torrent_file_name)</div><div class="ttdef"><b>Definition:</b> <a href="torrent_8py_source.html#l00046">torrent.py:46</a></div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_a055e4093d0da78d6d4450fdd10801bf1_cgraph.png" border="0" usemap="#classclient_1_1Client_a055e4093d0da78d6d4450fdd10801bf1_cgraph" alt=""/></div>
+<map name="classclient_1_1Client_a055e4093d0da78d6d4450fdd10801bf1_cgraph" id="classclient_1_1Client_a055e4093d0da78d6d4450fdd10801bf1_cgraph">
+<area shape="rect" id="node2" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="193,5,349,32"/>
+<area shape="rect" id="node3" href="namespaceutilities.html#a011f8d35e1fa8d9d882997ab35d09383" title="utilities.get_host_ip" alt="" coords="204,56,339,83"/>
+<area shape="rect" id="node4" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="212,107,331,149"/>
+<area shape="rect" id="node5" href="classclient_1_1Client.html#ad5e2a1de87528ca6366b1eaae205a869" title="client.Client.from\l_bitfield_setup_queue" alt="" coords="411,49,559,90"/>
+<area shape="rect" id="node6" href="classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663" title="client.Client.get_peers_list" alt="" coords="397,115,573,141"/>
+<area shape="rect" id="node12" href="classclient_1_1Client.html#a1f5475e4c61b8257db081f51b8a4a649" title="client.Client.establish_link" alt="" coords="398,165,573,192"/>
+<area shape="rect" id="node7" href="namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d" title="utilities.objEncode" alt="" coords="621,23,749,49"/>
+<area shape="rect" id="node8" href="classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="622,74,749,115"/>
+<area shape="rect" id="node10" href="namespaceutilities.html#adb02b571b2d95ebe47646651e2140820" title="utilities.binary_to\l_beautiful_json" alt="" coords="625,139,745,181"/>
+<area shape="rect" id="node11" href="namespaceutilities.html#ab075ea66f45f37708362613716c23ffb" title="utilities.objDecode" alt="" coords="798,176,927,203"/>
+<area shape="rect" id="node9" href="classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859" title="client.Client.get_id" alt="" coords="797,81,928,108"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -204,7 +228,16 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">主动向peer建立链接 </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00372">372</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keyword">def </span>establish_link(self):</div><div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 主动向peer建立链接 &quot;&quot;&quot;</span></div><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordflow">for</span> idx, peer_info <span class="keywordflow">in</span> enumerate(self.peers_list_response[<span class="stringliteral">&#39;peers&#39;</span>]):</div><div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">if</span> idx &gt;= 4: <span class="keywordflow">return</span> <span class="comment"># TODO: add constant here</span></div><div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            peer_ip = peer_info[<span class="stringliteral">&#39;peer-ip&#39;</span>]</div><div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            peer_port = peer_info[<span class="stringliteral">&#39;peer-port&#39;</span>]</div><div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            logger.debug(<span class="stringliteral">&#39;trying to connect to peer {}:{}&#39;</span>.format(peer_ip, peer_port))</div><div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</div><div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            sock.connect((peer_ip, peer_port))</div><div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <span class="comment"># 拉起新的线程管理该tcp</span></div><div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            peer_connection = PeerConnection(sock, self.pieces_num)</div><div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            logger.debug(<span class="stringliteral">&#39;connect to {}:{} finish. tcp start&#39;</span>.format(peer_ip, peer_port))</div><div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            peer_connection.start()</div><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    </div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keyword">def </span>establish_link(self):</div><div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 主动向peer建立链接 &quot;&quot;&quot;</span></div><div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordflow">for</span> idx, peer_info <span class="keywordflow">in</span> enumerate(self.peers_list_response[<span class="stringliteral">&#39;peers&#39;</span>]):</div><div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            <span class="keywordflow">if</span> idx &gt;= 4: <span class="keywordflow">return</span> <span class="comment"># TODO: add constant here</span></div><div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;            peer_ip = peer_info[<span class="stringliteral">&#39;peer-ip&#39;</span>]</div><div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;            peer_port = peer_info[<span class="stringliteral">&#39;peer-port&#39;</span>]</div><div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            logger.debug(<span class="stringliteral">&#39;trying to connect to peer {}:{}&#39;</span>.format(peer_ip, peer_port))</div><div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</div><div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            sock.connect((peer_ip, peer_port))</div><div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <span class="comment"># 拉起新的线程管理该tcp</span></div><div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            peer_connection = PeerConnection(sock, self.pieces_num)</div><div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            logger.debug(<span class="stringliteral">&#39;connect to {}:{} finish. tcp start&#39;</span>.format(peer_ip, peer_port))</div><div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            peer_connection.start()</div><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    </div></div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_a1f5475e4c61b8257db081f51b8a4a649_icgraph.png" border="0" usemap="#classclient_1_1Client_a1f5475e4c61b8257db081f51b8a4a649_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_a1f5475e4c61b8257db081f51b8a4a649_icgraph" id="classclient_1_1Client_a1f5475e4c61b8257db081f51b8a4a649_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="228,5,347,47"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="395,13,535,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad5e2a1de87528ca6366b1eaae205a869"></a>
@@ -224,7 +257,16 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">根据现有的bitfield，将没有的块的（索引，哈希值）二元组push进全局队列中 </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00386">386</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keyword">def </span>from_bitfield_setup_queue(self):</div><div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 根据现有的bitfield，将没有的块的（索引，哈希值）二元组push进全局队列中 &quot;&quot;&quot;</span></div><div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.pieces_num):</div><div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            <span class="keywordflow">if</span> pieces_manager.bitfield[i] == 0:</div><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                logger.info(<span class="stringliteral">&#39;put the {}:{} into queue !&#39;</span>.format(i,self.metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>][i]))</div><div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                left_pieces.put((i,self.metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>][i]))</div><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    </div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keyword">def </span>from_bitfield_setup_queue(self):</div><div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 根据现有的bitfield，将没有的块的（索引，哈希值）二元组push进全局队列中 &quot;&quot;&quot;</span></div><div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.pieces_num):</div><div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;            <span class="keywordflow">if</span> pieces_manager.bitfield[i] == 0:</div><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                logger.info(<span class="stringliteral">&#39;put the {}:{} into queue !&#39;</span>.format(i,self.metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>][i]))</div><div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                left_pieces.put((i,self.metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>][i]))</div><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    </div></div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_ad5e2a1de87528ca6366b1eaae205a869_icgraph.png" border="0" usemap="#classclient_1_1Client_ad5e2a1de87528ca6366b1eaae205a869_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_ad5e2a1de87528ca6366b1eaae205a869_icgraph" id="classclient_1_1Client_ad5e2a1de87528ca6366b1eaae205a869_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="201,5,320,47"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="368,13,508,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a71f2c58079455aba829ca068aeae3859"></a>
@@ -244,7 +286,18 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">使用客户端自己的信息生成自己的id </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00393">393</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keyword">def </span>get_id(self):</div><div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 使用客户端自己的信息生成自己的id &quot;&quot;&quot;</span></div><div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordflow">return</span> self.client_ip + <span class="stringliteral">&#39;:&#39;</span> + str(self.client_port)</div><div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="keyword">def </span>get_id(self):</div><div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 使用客户端自己的信息生成自己的id &quot;&quot;&quot;</span></div><div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordflow">return</span> self.client_ip + <span class="stringliteral">&#39;:&#39;</span> + str(self.client_port)</div><div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_a71f2c58079455aba829ca068aeae3859_icgraph.png" border="0" usemap="#classclient_1_1Client_a71f2c58079455aba829ca068aeae3859_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_a71f2c58079455aba829ca068aeae3859_icgraph" id="classclient_1_1Client_a71f2c58079455aba829ca068aeae3859_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="184,5,311,47"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663" title="client.Client.get_peers_list" alt="" coords="359,13,535,39"/>
+<area shape="rect" id="node4" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="583,5,701,47"/>
+<area shape="rect" id="node5" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="749,13,889,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa0a20adfc6f9bb67d7b65570cc8d0663"></a>
@@ -268,7 +321,28 @@ Public Attributes</h2></td></tr>
 <div class="ttc" id="namespaceutilities_html_a34d5862eb592b742fc7ad9c31e25b45d"><div class="ttname"><a href="namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d">utilities.objEncode</a></div><div class="ttdeci">def objEncode(obj)</div><div class="ttdef"><b>Definition:</b> <a href="utilities_8py_source.html#l00007">utilities.py:7</a></div></div>
 <div class="ttc" id="classrdt__socket_1_1rdt__socket_html"><div class="ttname"><a href="classrdt__socket_1_1rdt__socket.html">rdt_socket.rdt_socket</a></div><div class="ttdef"><b>Definition:</b> <a href="rdt__socket_8py_source.html#l00017">rdt_socket.py:17</a></div></div>
 <div class="ttc" id="namespaceutilities_html_adb02b571b2d95ebe47646651e2140820"><div class="ttname"><a href="namespaceutilities.html#adb02b571b2d95ebe47646651e2140820">utilities.binary_to_beautiful_json</a></div><div class="ttdeci">def binary_to_beautiful_json(binary)</div><div class="ttdef"><b>Definition:</b> <a href="utilities_8py_source.html#l00015">utilities.py:15</a></div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_cgraph.png" border="0" usemap="#classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_cgraph" alt=""/></div>
+<map name="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_cgraph" id="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_cgraph">
+<area shape="rect" id="node2" href="namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d" title="utilities.objEncode" alt="" coords="229,5,357,32"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="230,57,357,98"/>
+<area shape="rect" id="node5" href="namespaceutilities.html#adb02b571b2d95ebe47646651e2140820" title="utilities.binary_to\l_beautiful_json" alt="" coords="233,122,353,163"/>
+<area shape="rect" id="node6" href="namespaceutilities.html#ab075ea66f45f37708362613716c23ffb" title="utilities.objDecode" alt="" coords="406,159,535,185"/>
+<area shape="rect" id="node4" href="classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859" title="client.Client.get_id" alt="" coords="405,64,536,91"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_icgraph.png" border="0" usemap="#classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_icgraph" id="classclient_1_1Client_aa0a20adfc6f9bb67d7b65570cc8d0663_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="229,5,348,47"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="396,13,536,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a883f5fcf6132014b09fa10ee5e9316fd"></a>
@@ -298,7 +372,30 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">从json配置文件中加载进来 </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00324">324</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keyword">def </span>load_config_file(self, config_file_name):</div><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 从json配置文件中加载进来 &quot;&quot;&quot;</span></div><div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        with open(config_file_name, <span class="stringliteral">&#39;r&#39;) as f:</span></div><div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="stringliteral">            config = json.load(f)</span></div><div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="stringliteral">        </span><span class="comment"># 初始化几个全局常量TODO:讲道理全局常量不应该变，这么写好像不太好</span></div><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keyword">global</span> CLIENT_LISTEN_MAX</div><div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        <span class="keyword">global</span> FILE_HEADER_SIZE</div><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        CLIENT_LISTEN_MAX = config[<span class="stringliteral">&#39;client_listen_max&#39;</span>]</div><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        FILE_HEADER_SIZE =  config[<span class="stringliteral">&#39;file_header_size&#39;</span>]</div><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        self.client_port = config[<span class="stringliteral">&#39;client_port&#39;</span>]</div><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    <span class="keyword">def </span>load_config_file(self, config_file_name):</div><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 从json配置文件中加载进来 &quot;&quot;&quot;</span></div><div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        with open(config_file_name, <span class="stringliteral">&#39;r&#39;) as f:</span></div><div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="stringliteral">            config = json.load(f)</span></div><div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="stringliteral">        </span><span class="comment"># 初始化几个全局常量TODO:讲道理全局常量不应该变，这么写好像不太好</span></div><div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keyword">global</span> CLIENT_LISTEN_MAX</div><div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        <span class="keyword">global</span> FILE_HEADER_SIZE</div><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        CLIENT_LISTEN_MAX = config[<span class="stringliteral">&#39;client_listen_max&#39;</span>]</div><div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        FILE_HEADER_SIZE =  config[<span class="stringliteral">&#39;file_header_size&#39;</span>]</div><div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        self.client_port = config[<span class="stringliteral">&#39;client_port&#39;</span>]</div><div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_cgraph.png" border="0" usemap="#classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_cgraph" alt=""/></div>
+<map name="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_cgraph" id="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_cgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#ad5e2a1de87528ca6366b1eaae205a869" title="client.Client.from\l_bitfield_setup_queue" alt="" coords="186,31,334,73"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663" title="client.Client.get_peers_list" alt="" coords="172,97,348,124"/>
+<area shape="rect" id="node9" href="classclient_1_1Client.html#a1f5475e4c61b8257db081f51b8a4a649" title="client.Client.establish_link" alt="" coords="173,148,347,175"/>
+<area shape="rect" id="node4" href="namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d" title="utilities.objEncode" alt="" coords="396,5,524,32"/>
+<area shape="rect" id="node5" href="classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="397,57,523,98"/>
+<area shape="rect" id="node7" href="namespaceutilities.html#adb02b571b2d95ebe47646651e2140820" title="utilities.binary_to\l_beautiful_json" alt="" coords="400,122,520,163"/>
+<area shape="rect" id="node8" href="namespaceutilities.html#ab075ea66f45f37708362613716c23ffb" title="utilities.objDecode" alt="" coords="573,159,702,185"/>
+<area shape="rect" id="node6" href="classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859" title="client.Client.get_id" alt="" coords="572,64,703,91"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_icgraph.png" border="0" usemap="#classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_icgraph" id="classclient_1_1Client_a883f5fcf6132014b09fa10ee5e9316fd_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="172,13,312,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="aa5c400f71381c9b8d6a054ea62269fe3"></a>
@@ -328,7 +425,25 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">制作特定事件的请求，返回对应请求的对象 </pre> 
 <p class="definition">Definition at line <a class="el" href="client_8py_source.html#l00397">397</a> of file <a class="el" href="client_8py_source.html">client.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keyword">def </span>make_resquest(self, event):</div><div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 制作特定事件的请求，返回对应请求的对象 &quot;&quot;&quot;</span></div><div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        peer_list_request_obj = {</div><div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            <span class="stringliteral">&#39;ip&#39;</span>: self.client_ip,</div><div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="stringliteral">&#39;port&#39;</span>: self.client_port,</div><div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <span class="stringliteral">&#39;peer_id&#39;</span>: self.get_id(),</div><div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <span class="stringliteral">&#39;event&#39;</span>: event</div><div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        }</div><div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <span class="keywordflow">return</span> peer_list_request_obj</div><div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div><div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="keyword">def </span>make_resquest(self, event):</div><div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 制作特定事件的请求，返回对应请求的对象 &quot;&quot;&quot;</span></div><div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        peer_list_request_obj = {</div><div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            <span class="stringliteral">&#39;ip&#39;</span>: self.client_ip,</div><div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="stringliteral">&#39;port&#39;</span>: self.client_port,</div><div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            <span class="stringliteral">&#39;peer_id&#39;</span>: self.get_id(),</div><div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <span class="stringliteral">&#39;event&#39;</span>: event</div><div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        }</div><div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <span class="keywordflow">return</span> peer_list_request_obj</div><div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div><div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_cgraph.png" border="0" usemap="#classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_cgraph" alt=""/></div>
+<map name="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_cgraph" id="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_cgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859" title="client.Client.get_id" alt="" coords="180,13,311,39"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_icgraph.png" border="0" usemap="#classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_icgraph" alt=""/></div>
+<map name="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_icgraph" id="classclient_1_1Client_aa5c400f71381c9b8d6a054ea62269fe3_icgraph">
+<area shape="rect" id="node2" href="classclient_1_1Client.html#aa0a20adfc6f9bb67d7b65570cc8d0663" title="client.Client.get_peers_list" alt="" coords="180,13,356,39"/>
+<area shape="rect" id="node3" href="classclient_1_1Client.html#a883f5fcf6132014b09fa10ee5e9316fd" title="client.Client.load\l_config_file" alt="" coords="404,5,523,47"/>
+<area shape="rect" id="node4" href="classclient_1_1Client.html#a055e4093d0da78d6d4450fdd10801bf1" title="client.Client.__init__" alt="" coords="571,13,711,39"/>
+</map>
+</div>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

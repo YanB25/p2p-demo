@@ -188,7 +188,19 @@ Public Attributes</h2></td></tr>
 <pre class="fragment">需要传入种子文件文件名，通过种子文件初始化，默认没有文件 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00029">29</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
 <div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">def </span>__init__(self, torrent_file_name):</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 需要传入种子文件文件名，通过种子文件初始化，默认没有文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        metadata = <a class="code" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4">torrent.read_torrent_file</a>(torrent_file_name)</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        self.hash_table = metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_hash&#39;</span>] <span class="comment"># 得到了一个哈希列表</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        self.piece_length = metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;piece_length&#39;</span>]</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        self.file_name = metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;file_name&#39;</span>]</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        self.file_length = metadata[<span class="stringliteral">&#39;info&#39;</span>][<span class="stringliteral">&#39;file_length&#39;</span>]</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        self.piece_num = len(self.hash_table)</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        self.pieces_data = [<span class="keywordtype">None</span>]*self.piece_num <span class="comment"># 给列表预初始化大小</span></div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        self.bitfield = bitarray.bitarray([0 <span class="keywordflow">for</span> _ <span class="keywordflow">in</span> range(1, self.piece_num+1)])</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        self.load_exist_full_file_data()</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment"># self.load_previous_data()</span></div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="ttc" id="namespacetorrent_html_adf1d6585a72695cb0fdf391b196dcea4"><div class="ttname"><a href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4">torrent.read_torrent_file</a></div><div class="ttdeci">def read_torrent_file(torrent_file_name)</div><div class="ttdef"><b>Definition:</b> <a href="torrent_8py_source.html#l00046">torrent.py:46</a></div></div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph" alt=""/></div>
+<map name="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph" id="classpiecemanager_1_1pieceManager_ab7db05f24ad594fd2edc29c21d82a58c_cgraph">
+<area shape="rect" id="node2" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="985,5,1141,32"/>
+<area shape="rect" id="node3" href="classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095" title="piecemanager.pieceManager.load\l_exist_full_file_data" alt="" coords="245,53,461,94"/>
+<area shape="rect" id="node4" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="509,53,725,94"/>
+<area shape="rect" id="node5" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="773,57,933,84"/>
+<area shape="rect" id="node6" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="981,57,1144,84"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -269,7 +281,26 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">将一个已有的文件作为该种子文件对应的文件 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00070">70</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">def </span>load_download_file_data(self, download_file_name=&#39;&#39;):</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 将一个已有的文件作为该种子文件对应的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment"># 默认参数为种子文件的文件名</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> download_file_name:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            download_file_name = self.file_name</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        with open(download_file_name, <span class="stringliteral">&#39;rb&#39;</span>) <span class="keyword">as</span> f:</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.piece_num):</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                self.pieces_data[i] = f.read(self.piece_length)</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                self.bitfield[i] = 1</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        print(<span class="stringliteral">&#39;load the file completed!&#39;</span>)</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        print(<span class="stringliteral">&#39;The bitfield is &#39;</span>, self.bitfield)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">def </span>load_download_file_data(self, download_file_name=&#39;&#39;):</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 将一个已有的文件作为该种子文件对应的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment"># 默认参数为种子文件的文件名</span></div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> <span class="keywordflow">not</span> download_file_name:</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            download_file_name = self.file_name</div><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        with open(download_file_name, <span class="stringliteral">&#39;rb&#39;</span>) <span class="keyword">as</span> f:</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(0, self.piece_num):</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                self.pieces_data[i] = f.read(self.piece_length)</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                self.bitfield[i] = 1</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        print(<span class="stringliteral">&#39;load the file completed!&#39;</span>)</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        print(<span class="stringliteral">&#39;The bitfield is &#39;</span>, self.bitfield)</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    </div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph" alt=""/></div>
+<map name="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph" id="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_cgraph">
+<area shape="rect" id="node2" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="269,31,429,57"/>
+<area shape="rect" id="node3" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="481,5,637,32"/>
+<area shape="rect" id="node4" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="477,56,640,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph" alt=""/></div>
+<map name="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph" id="classpiecemanager_1_1pieceManager_ade276aa3961690368a2cf41f75df0048_icgraph">
+<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#a9c7c82a7f3807ed8498e7d7b1684a095" title="piecemanager.pieceManager.load\l_exist_full_file_data" alt="" coords="269,5,485,47"/>
+<area shape="rect" id="node3" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c" title="piecemanager.pieceManager.\l__init__" alt="" coords="533,5,725,47"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a9c7c82a7f3807ed8498e7d7b1684a095"></a>
@@ -289,7 +320,26 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">如果一个文件已经存在，则加载进来，作为已经下载完整的文件 </pre> 
 <p class="definition">Definition at line <a class="el" href="piecemanager_8py_source.html#l00064">64</a> of file <a class="el" href="piecemanager_8py_source.html">piecemanager.py</a>.</p>
-<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">def </span>load_exist_full_file_data(self):</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 如果一个文件已经存在，则加载进来，作为已经下载完整的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> os.path.isfile(self.file_name):</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            print(<span class="stringliteral">&#39;file {} exist!&#39;</span>.format(self.file_name) )</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            self.load_download_file_data(self.file_name)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div></div><!-- fragment -->
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">def </span>load_exist_full_file_data(self):</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="stringliteral">&quot;&quot;&quot; 如果一个文件已经存在，则加载进来，作为已经下载完整的文件 &quot;&quot;&quot;</span></div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordflow">if</span> os.path.isfile(self.file_name):</div><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            print(<span class="stringliteral">&#39;file {} exist!&#39;</span>.format(self.file_name) )</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            self.load_download_file_data(self.file_name)</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div></div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph" alt=""/></div>
+<map name="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph" id="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_cgraph">
+<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#ade276aa3961690368a2cf41f75df0048" title="piecemanager.pieceManager.load\l_download_file_data" alt="" coords="269,23,485,65"/>
+<area shape="rect" id="node3" href="namespacetorrent.html#a790fdf4e74514685b5478720d0c77806" title="torrent.same_as_torrent" alt="" coords="533,31,693,57"/>
+<area shape="rect" id="node4" href="namespacetorrent.html#adf1d6585a72695cb0fdf391b196dcea4" title="torrent.read_torrent_file" alt="" coords="745,5,901,32"/>
+<area shape="rect" id="node5" href="namespacetorrent.html#aecfbf289098f867c839f9fc238885149" title="torrent.make_torrent_file" alt="" coords="741,56,904,83"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph.png" border="0" usemap="#classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph" alt=""/></div>
+<map name="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph" id="classpiecemanager_1_1pieceManager_a9c7c82a7f3807ed8498e7d7b1684a095_icgraph">
+<area shape="rect" id="node2" href="classpiecemanager_1_1pieceManager.html#ab7db05f24ad594fd2edc29c21d82a58c" title="piecemanager.pieceManager.\l__init__" alt="" coords="269,5,461,47"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ae4031bc9ace5a4d95a1bfb59e0a31e2b"></a>

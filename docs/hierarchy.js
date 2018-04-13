@@ -9,10 +9,14 @@ var hierarchy =
       [ "rdt_socket.rdt_socket", "classrdt__socket_1_1rdt__socket.html", null ],
       [ "sendFile.Client", "classsendFile_1_1Client.html", null ],
       [ "sendFile.Peer", "classsendFile_1_1Peer.html", null ],
-      [ "server.Peer", "classserver_1_1Peer.html", null ]
+      [ "server.Peer", "classserver_1_1Peer.html", null ],
+      [ "UI.Window", "classUI_1_1Window.html", null ]
     ] ],
     [ "message.Piece", "classmessage_1_1Piece.html", null ],
     [ "piecemanager.pieceManager", "classpiecemanager_1_1pieceManager.html", null ],
+    [ "QThread", null, [
+      [ "UI.WorkingDemo", "classUI_1_1WorkingDemo.html", null ]
+    ] ],
     [ "message.Request", "classmessage_1_1Request.html", null ],
     [ "state.State", "classstate_1_1State.html", [
       [ "state.State01", "classstate_1_1State01.html", [

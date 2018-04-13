@@ -799,7 +799,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = src/backend src/frontend
+INPUT                  = src
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -872,8 +872,8 @@ FILE_PATTERNS          = *.c \
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
 # The default value is: NO.
-
-RECURSIVE              = NO
+# TODO: has edited here
+RECURSIVE              = YES
 
 # The EXCLUDE tag can be used to specify files and/or directories that should be
 # excluded from the INPUT source files. This way you can easily exclude a
@@ -2212,8 +2212,8 @@ HIDE_UNDOC_RELATIONS   = YES
 # Bell Labs. The other options in this section have no effect if this option is
 # set to NO
 # The default value is: NO.
-
-HAVE_DOT               = NO
+# TODO: has edited here
+HAVE_DOT               = YES
 
 # The DOT_NUM_THREADS specifies the number of dot invocations doxygen is allowed
 # to run in parallel. When set to 0 doxygen will base this on the number of
@@ -2329,8 +2329,8 @@ INCLUDED_BY_GRAPH      = YES
 # accomplished by means of the command \hidecallgraph.
 # The default value is: NO.
 # This tag requires that the tag HAVE_DOT is set to YES.
-
-CALL_GRAPH             = NO
+# TODO: has edited here
+CALL_GRAPH             = YES
 
 # If the CALLER_GRAPH tag is set to YES then doxygen will generate a caller
 # dependency graph for every global function or class method.
@@ -2341,8 +2341,8 @@ CALL_GRAPH             = NO
 # accomplished by means of the command \hidecallergraph.
 # The default value is: NO.
 # This tag requires that the tag HAVE_DOT is set to YES.
-
-CALLER_GRAPH           = NO
+# TODO: has edited here
+CALLER_GRAPH           = YES
 
 # If the GRAPHICAL_HIERARCHY tag is set to YES then doxygen will graphical
 # hierarchy of all classes instead of a textual one.
@@ -2397,8 +2397,8 @@ DOT_PATH               = D:\graphviz-2.38\bin\dot.exe
 # contain dot files that are included in the documentation (see the \dotfile
 # command).
 # This tag requires that the tag HAVE_DOT is set to YES.
-
-DOTFILE_DIRS           =
+# TODO: has edited here
+DOTFILE_DIRS           = dot
 
 # The MSCFILE_DIRS tag can be used to specify one or more directories that
 # contain msc files that are included in the documentation (see the \mscfile
@@ -2417,8 +2417,8 @@ DIAFILE_DIRS           =
 # PlantUML is not used or called during a preprocessing step. Doxygen will
 # generate a warning when it encounters a \startuml command in this case and
 # will not generate output for the diagram.
-
-PLANTUML_JAR_PATH      =
+# TODO: has edited here
+PLANTUML_JAR_PATH      = D:\graphviz-2.38\bin\plantuml.jar
 
 # When using plantuml, the PLANTUML_CFG_FILE tag can be used to specify a
 # configuration file for plantuml.
@@ -2427,8 +2427,8 @@ PLANTUML_CFG_FILE      =
 
 # When using plantuml, the specified paths are searched for files specified by
 # the !include statement in a plantuml block.
-
-PLANTUML_INCLUDE_PATH  =
+# TODO: has edited here
+PLANTUML_INCLUDE_PATH  = dot
 
 # The DOT_GRAPH_MAX_NODES tag can be used to set the maximum number of nodes
 # that will be shown in the graph. If the number of nodes in a graph becomes

@@ -16,5 +16,9 @@ var annotated_dup =
       [ "sendFileState", "classstate_1_1sendFileState.html", "classstate_1_1sendFileState" ],
       [ "State", "classstate_1_1State.html", "classstate_1_1State" ],
       [ "State01", "classstate_1_1State01.html", "classstate_1_1State01" ]
+    ] ],
+    [ "UI", null, [
+      [ "Window", "classUI_1_1Window.html", "classUI_1_1Window" ],
+      [ "WorkingDemo", "classUI_1_1WorkingDemo.html", "classUI_1_1WorkingDemo" ]
     ] ]
 ];
