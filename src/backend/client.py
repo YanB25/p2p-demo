@@ -187,7 +187,7 @@ class PeerConnection(threading.Thread):
         while True:
             if pieces_manager.bitfield == self.peer_bitfield | pieces_manager.bitfield:
                 # 过了5s后，我可能从其他客户端下载到了新块，对面可能不再有我需要的块，因此需要一直检查
-                logger.debug("{}: I don't need this peer:{}".format(piece_index,self.socket.s.getpeername()))
+                logger.debug("I don't need this peer:{}".format(self.socket.s.getpeername()))
                 # 如果对面没有我需要的块，直接返回0
                 return 0
             piece_index, piece_hash = left_pieces.get()
