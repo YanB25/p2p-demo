@@ -15,14 +15,14 @@ python3 test_main.py
 
 ### 启动做种客户端，含有完整数据
 ```sh
-cd p2p-demo/seed
+cd p2p-demo/test/seed
 python3 seed_client.py
 ```
 
 ### 启动其他客户端
 
 ```sh
-cd p2p-demo/c2
+cd p2p-demo/test/c2
 python3 test_client2.py
 ```
 
