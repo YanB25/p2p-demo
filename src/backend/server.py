@@ -86,10 +86,10 @@ while True:
             except ValueError as e:
                 logger.exception(e, exc_info=True)
                 logger.critical('no this peer. ignore.')
-                rdt_s.sendBytes(utilities.objEncode{
+                rdt_s.sendBytes(utilities.objEncode({
                     'error_code': 1,
                     'message': 'NOT a peer for this server',
-                })
+                }))
             rdt_s.sendBytes(utilities.objEncode({
                 'error_code': 0,
                 'message': 'disconnect ACK'
