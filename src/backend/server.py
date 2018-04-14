@@ -8,6 +8,7 @@ config.py
 it set ip and port for server
 '''
 import utilities
+import threading
 import socket
 import json
 from rdt_socket import *
@@ -47,61 +48,80 @@ class Peer(object):
 available_peers = []
 
 # start callback
-logger.info('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
-while True:
-    (client_socket, address) = server_socket.accept()
-    # try:
-    while True:
-        rdt_s = rdt_socket(client_socket)
-        # data = client_socket.recv(BUFFER_SIZE)
-        data = rdt_s.recvBytes()
-        json_data = utilities.objDecode(data)
-        ip, _ = address
-        port = json_data['port']
-        id = json_data['peer_id']
-        event = json_data['event']
-        if event == 'started':
-            logger.debug(available_peers)
-            retList = [{
-                'peer-id': obj.id,
-                'peer-port': obj.port,
-                'peer-ip': obj.ip
-            } for obj in available_peers if obj.id != id]
-            rdt_s.sendBytes(utilities.objEncode({
-                'error_code': 0,
-                'message': 'started ACK',
-                'num-of-peer': len(available_peers),
-                'peers': retList
-            }))
-            client_socket.close()
-            if id not in [peer.id for peer in available_peers]:
-                available_peers.append(Peer(ip, port, id))
-            logger.debug('connected by %s', (ip, port, id))
-            break
-        elif event == 'completed':
-            logger.debug('get disconnect request')
-            logger.info('ip:%s, port:%d, id:%s', ip, port, id)
-            try:
-                available_peers.remove(Peer(ip, port, id))
-            except ValueError as e:
-                logger.exception(e, exc_info=True)
-                logger.critical('no this peer. ignore.')
-                rdt_s.sendBytes(utilities.objEncode({
+class Server(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        logger.info('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
+    def run(self):
+        while True:
+            (client_socket, address) = server_socket.accept()
+
+            rdt_s = rdt_socket(client_socket)
+            data = rdt_s.recvBytes()
+            json_data = utilities.objDecode(data)
+
+            ip, _ = address
+            port = json_data['port']
+            id = json_data['peer_id']
+            event = json_data['event']
+
+            if event == 'started':
+                logger.debug(available_peers)
+                rdt_s.sendBytes(utilities.objEncode(self.START_ACK()))
+                client_socket.close()
+
+                if id not in [peer.id for peer in available_peers]:
+                    available_peers.append(Peer(ip, port, id))
+                    logger.debug('connected by %s', (ip, port, id))
+                else:
+                    logger.warning('peer already in list, ip %s port %d id %s', 
+                        ip, 
+                        port, 
+                        id)
+
+            elif event == 'completed':
+                logger.debug('get disconnect request')
+                logger.info('ip:%s, port:%d, id:%s', ip, port, id)
+                try:
+                    available_peers.remove(Peer(ip, port, id))
+                except ValueError as e:
+                    logger.exception(e, exc_info=True)
+                    logger.critical('no this peer. ignore.')
+                    rdt_s.sendBytes(utilities.objEncode({
+                        'error_code': 1,
+                        'message': 'NOT a peer for this server',
+                    }))
+                rdt_s.sendBytes(utilities.objEncode(self.COMPLETE_ACK()))
+                client_socket.close()
+                logger.debug("disconnect finished, id:%s", id)
+                logger.debug(available_peers)
+            else:
+                logger.critical("warning, known event {}".format(event), json_data)
+                client_socket.send(utilities.objEncode({
                     'error_code': 1,
-                    'message': 'NOT a peer for this server',
+                    'message': 'no event in request. abort.'
                 }))
-            rdt_s.sendBytes(utilities.objEncode({
-                'error_code': 0,
-                'message': 'disconnect ACK'
-            }))
-            client_socket.close()
-            logger.debug("disconnect finished, id:%s", id)
-            logger.debug(available_peers)
-            break
-        else:
-            logger.critical("warning, known event {}".format(event), json_data)
-            client_socket.send(utilities.objEncode({
-                'error_code': 1,
-                'message': 'no event in request. abort.'
-            }))
-            client_socket.close()
+                client_socket.close()
+
+    def available_peers_list(self):
+        return [{
+            'peer-id': obj.id,
+            'peer-port': obj.port,
+            'peer-ip': obj.ip
+            } for obj in available_peers if obj.id != id
+        ]
+    def START_ACK(self):
+        return {
+            'error_code': 0,
+            'message': 'started ACK',
+            'num-of-peer': len(available_peers),
+            'peers': self.available_peers_list()
+        }
+    def COMPLETE_ACK(self):
+        return {
+            'error_code': 0,
+            'message': 'disconnect ACK'
+        }
+if __name__ == "__main__":
+    server = Server()
+    server.start()
