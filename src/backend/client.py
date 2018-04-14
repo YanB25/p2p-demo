@@ -39,7 +39,7 @@ START_EVENT = 'started'
 COMPLETED_EVENT = 'completed'
 
 # 全局变量
-left_pieces = queue.Queue(300)
+left_pieces = queue.Queue(3000)
 pieces_manager = 0
 
 class PeerConnection(threading.Thread):
