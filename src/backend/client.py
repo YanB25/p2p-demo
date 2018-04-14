@@ -134,7 +134,7 @@ class PeerConnection(threading.Thread):
                         # 如果拿不到呢，就修改状态
                         # 当做对方choke我，我也not interested对方
                         self.send_message(UnInterested())
-                        self.recv_file_state.to_10() 
+                        self.recv_file_state.to_10()
                 else :
                     # 说明刚刚那一块传输出现了差错，重发原来的请求
                     self.send_message(Request(self.request_piece_index))
