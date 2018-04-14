@@ -47,6 +47,7 @@ class PeerConnection(threading.Thread):
     not finished
     client
     '''
+    # TODO: pieces_num 似乎没有用到？因为pieces_manager这个全局变量已经有了
     def __init__(self, sock, pieces_num):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
@@ -170,11 +171,12 @@ class PeerConnection(threading.Thread):
     
     def get_available_piece_request(self):
         """
-        调用一次，就会尝试从队列中取出一个块
         如果队列已空，返回0
-        否则取出一个块
-            对面的bitfield有，就修改成员变量（当前请求块）,并返回1
-            否则就放回队列中，停5秒再拿
+        死循环：
+            如果对面不再有我需要的块，返回0
+            取出一个块
+                对面的bitfield有，就修改成员变量（当前请求块）,并返回1
+                否则就放回队列中，停5秒再拿
         """
         if left_pieces.empty():
             logger.debug('The queue is empty.')
@@ -183,12 +185,12 @@ class PeerConnection(threading.Thread):
         # TODO:拿出来与放回去之间应该要加锁，因为会出现这样的情况
         # 拿出来后，别的连接因为队列空了就断开连接，但实际上我取到的这个快只有那一个断开的连接对应的peer才能够下载到。
         while True:
-            piece_index, piece_hash = left_pieces.get()
             if pieces_manager.bitfield == self.peer_bitfield | pieces_manager.bitfield:
                 # 过了5s后，我可能从其他客户端下载到了新块，对面可能不再有我需要的块，因此需要一直检查
                 logger.debug("{}: I don't need this peer:{}".format(piece_index,self.socket.s.getpeername()))
                 # 如果对面没有我需要的块，直接返回0
                 return 0
+            piece_index, piece_hash = left_pieces.get()
             elif self.peer_bitfield[piece_index] == 1:
                 # 如果对面有这个数据块，就interest，否则就放回队列中
                 self.request_piece_index, self.request_piece_hash = piece_index, piece_hash
