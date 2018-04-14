@@ -191,7 +191,7 @@ class PeerConnection(threading.Thread):
                 # 如果对面没有我需要的块，直接返回0
                 return 0
             piece_index, piece_hash = left_pieces.get()
-            elif self.peer_bitfield[piece_index] == 1:
+            if self.peer_bitfield[piece_index] == 1:
                 # 如果对面有这个数据块，就interest，否则就放回队列中
                 self.request_piece_index, self.request_piece_hash = piece_index, piece_hash
                 logger.debug("{}: this piece exists in peer:{}".format(piece_index,self.socket.s.getpeername()))
