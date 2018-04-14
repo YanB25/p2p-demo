@@ -147,13 +147,13 @@ class pieceManager():
         if not self.is_completed():
             # TODO: 如果文件不完整，不能够运行这个函数，异常处理
             print('The data is not completed')
-            return 0
+            return False
         print('The data is completed')
         with open(save_file_name, 'wb') as f:
             for i in range(0, self.piece_num):
                 f.write(self.pieces_data[i])
         if torrent.same_as_torrent(self.torrent_file_name, save_file_name):
-            return 1
-        return 0
+            return True
+        return False
 
 
