@@ -5,6 +5,19 @@ import bitarray
 import json
 import random
 
+class ServerClose():
+    """ Server close msg"""
+    def __init__(self):
+        self.length = 0
+        self.message_id = 10
+    def to_bytes(self):
+        return struct.pack('!ib', self.length)
+    def to_json_string(self):
+        msg = {}
+        msg['type'] = self.__class__.__name__
+        msg['length'] = self.length
+        msg['message_id'] = self.message_id
+        return json.dumps(msg, indent=4, sort_keys=True)
 class KeepAlive():
     """ KeepAlive类消息 """
     def __init__(self):
@@ -107,6 +120,7 @@ class Bitfield():
         msg['bitfield'] = bitarray.bitarray(self.bitfield).to01()
         return json.dumps(msg, indent=4, sort_keys=True)
 
+
 class Request():
     """ Request类消息 """
     def __init__(self, piece_index : int ):
@@ -182,6 +196,8 @@ def bytes_to_message(binary):
             piece_index = _piece_index[0]
             raw_data = binary[9:]
             return Piece(piece_index, raw_data)
+        elif msg_id == 10:
+            return ServerClose()
     return None    
 
 if __name__ == '__main__':

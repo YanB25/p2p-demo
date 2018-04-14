@@ -7,6 +7,7 @@ dependencies:
 config.py
 it set ip and port for server
 '''
+import os
 import utilities
 import threading
 import socket
@@ -32,6 +33,22 @@ server_socket.bind((SERVER_IP, SERVER_PORT))
 server_socket.listen(MAX_TCP_LINK)
 
 #TODO: need validator for ip, port and id
+class ServerMonitor(threading.Thread):
+    def __init__(self, server):
+        threading.Thread.__init__(self)
+        self.server = server
+    def run(self):
+        logger.info('server monitor running')
+        while True:
+            enter = input('(you can quit if enter q)...\n')
+            if enter == 'q':
+                logger.warning('server quit. all tcp link WILL NOT SAVE')
+                # self.server.fouceQuit() 
+                # #TODO: should send quit msg to all tcp link
+                # unknown bug. maybe it is becaz not check msg type in all place in client.py
+                # talk with WYF
+                os._exit(0)
+
 class Peer(object):
     """
     Peer Object storing ip, port and a unique id.
@@ -53,7 +70,12 @@ class Server(threading.Thread):
         threading.Thread.__init__(self)
         logger.info('listening to port {} at ip {}'.format(SERVER_PORT, SERVER_IP))
     def run(self):
+        ## init server monitor
+        self.server_monitor = ServerMonitor(self)
+        self.server_monitor.start()
+
         while True:
+            logger.info('server being running')
             (client_socket, address) = server_socket.accept()
 
             rdt_s = rdt_socket(client_socket)
@@ -122,6 +144,18 @@ class Server(threading.Thread):
             'error_code': 0,
             'message': 'disconnect ACK'
         }
+    def fouceQuit(self):
+        for peer in available_peers:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            logger.debug('trying to connect to peer id:%s, quit.', peer.id)
+            sock.connect((peer.ip, peer.port))
+            rdt_s = rdt_socket(sock)
+            rdt_s.sendBytes(utilities.objEncode({
+                'type': 10,
+                'message': 'server not going to keep working'
+            }))
+            logger.debug('disconnect msg has sent to peer %s', peer.id)
+            sock.close()
 if __name__ == "__main__":
     server = Server()
     server.start()

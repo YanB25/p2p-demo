@@ -73,6 +73,9 @@ class PeerConnection(threading.Thread):
         
         while True:
             recv_msg = self.recv_message()
+            if type(recv_msg) == ServerClose:
+                logger.warning('server close.')
+                return
             # 由于这个是阻塞接受消息，不需要读取不到就循环
             
             # 第一次连接必须交换bitfield
