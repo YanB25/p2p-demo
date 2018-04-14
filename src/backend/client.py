@@ -262,10 +262,10 @@ class Client(threading.Thread):
             2. 当文件传输完成，比对哈希值，并存好文件，输出相应信息，等待用户主动结束
             """
             if pieces_manager.is_completed():
-                pieces_manager.merge_full_data_to_file()
-                logging.info('the file has been downloaded fully and correctly!')
+                if pieces_manager.merge_full_data_to_file()
+                logging.info('This file has been downloaded fully and correctly!')
             else:
-                logging.info('the download file is damaged!')
+                logging.info('This download file is damaged!')
 
 
 

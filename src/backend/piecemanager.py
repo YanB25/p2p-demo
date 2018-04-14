@@ -152,7 +152,8 @@ class pieceManager():
         with open(save_file_name, 'wb') as f:
             for i in range(0, self.piece_num):
                 f.write(self.pieces_data[i])
-        print('same ?:',torrent.same_as_torrent(self.torrent_file_name, save_file_name))
-        return 1
+        if torrent.same_as_torrent(self.torrent_file_name, save_file_name):
+            return 1
+        return 0
 
 
