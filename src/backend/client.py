@@ -48,11 +48,10 @@ class PeerConnection(threading.Thread):
     client
     '''
     # TODO: pieces_num 似乎没有用到？因为pieces_manager这个全局变量已经有了
-    def __init__(self, sock, pieces_num):
+    def __init__(self, sock):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
         # self.peer_bitfield = 0
-        self.pieces_num = pieces_num
         
         self.request_piece_index = 0
         self.request_piece_hash = 0
@@ -224,6 +223,8 @@ class Client(threading.Thread):
         self.load_config_file(config_file_name)
         # 初始化可用peer列表
         self.peers_list_response = []
+        # 初始化监听线程
+        self.client_monitor = ClientMonitor(self.client_ip, self.client_port)
         # TODO:没有什么特别好的解决方法
         global pieces_manager
         pieces_manager = pieceManager(torrent_file_name)
@@ -247,22 +248,11 @@ class Client(threading.Thread):
         logger.info('initing the queue ..... finished!')
         # 得到所有的peer列表。存在self.peerListResponse里。
         self.get_peers_list()
-        # 监听端口，等待其他peer建立其的链接
         logger.info('ok get list')
-        listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        listen_socket.bind((self.client_ip, self.client_port))
-        listen_socket.listen(CLIENT_LISTEN_MAX)
-
         # 向N个peer主动发起链接
         self.establish_link()
-
-        while True:
-            # 阻塞型接受新链接
-            (new_socket, addr) = listen_socket.accept()
-            logger.debug('get new socket from listener port, addr is {}'.format(addr))
-            # 开启新线程建立链接
-            peer_connection = PeerConnection(new_socket, self.pieces_num)
-            peer_connection.start()
+        # 启动监听线程
+        self.client_monitor.start()
 
     def get_peers_list(self):
         """ 向tracker发起链接，请求peer list """
@@ -287,7 +277,7 @@ class Client(threading.Thread):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((peer_ip, peer_port))
             # 拉起新的线程管理该tcp
-            peer_connection = PeerConnection(sock, self.pieces_num)
+            peer_connection = PeerConnection(sock)
             logger.debug('connect to {}:{} finish. tcp start'.format(peer_ip, peer_port))
             peer_connection.start()
     
@@ -311,6 +301,31 @@ class Client(threading.Thread):
             'event': event
         }
         return peer_list_request_obj
+
+
+class ClientMonitor(threading.Thread):
+    '''
+    监听线程
+    '''
+    def __init__(self, client_ip, client_port):
+        threading.Thread.__init__(self)
+        self.client_ip = client_ip
+        self.client_port = client_port
+
+    def run(self):
+        # 监听端口，等待其他peer建立其的链接
+        listen_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        listen_socket.bind((self.client_ip, self.client_port))
+        listen_socket.listen(CLIENT_LISTEN_MAX)
+
+        while True:
+            # 阻塞型接受新链接
+            (new_socket, addr) = listen_socket.accept()
+            logger.debug('get new socket from listener port, addr is {}'.format(addr))
+            # 开启新线程建立链接
+            peer_connection = PeerConnection(new_socket)
+            peer_connection.start()
+
 
 def check_piece_hash_and_update(recv_piece_index,recv_raw_data):
     """ 检查收到的元数据是否和对应数据块的哈希值一致,如果一致则更新并返回1，否则就返回0 """
