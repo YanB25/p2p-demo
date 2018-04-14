@@ -42,6 +42,7 @@ class pieceManager():
     def __init__(self, torrent_file_name):
         """ 需要传入种子文件文件名，通过种子文件初始化，默认没有文件 """
         metadata = torrent.read_torrent_file(torrent_file_name)
+        self.torrent_file_name = torrent_file_name
         self.hash_table = metadata['info']['piece_hash'] # 得到了一个哈希列表
         self.piece_length = metadata['info']['piece_length']
         self.file_name = metadata['info']['file_name']
@@ -139,17 +140,19 @@ class pieceManager():
         print('load the file completed!')
         print('The bitfield is ', self.bitfield)
     
-    def merge_full_data_to_file(self, save_file_name):
+    def merge_full_data_to_file(self, save_file_name=''):
         """ 如果拥有完整的数据块，尝试将数据块整合成一整个文件 """
+        if not save_file_name:
+            save_file_name = 'download_'+self.file_name
         if not self.is_completed():
             # TODO: 如果文件不完整，不能够运行这个函数，异常处理
             print('The data is not completed')
-            pass
-        else:
-            print('The data is completed')
-            with open(save_file_name, 'wb') as f:
-                for i in range(0, self.piece_num):
-                    f.write(self.pieces_data[i])
-        # TODO:加上与种子文件比对的功能？
+            return 0
+        print('The data is completed')
+        with open(save_file_name, 'wb') as f:
+            for i in range(0, self.piece_num):
+                f.write(self.pieces_data[i])
+        print('same ?:',torrent.same_as_torrent(self.torrent_file_name, save_file_name))
+        return 1
 
 

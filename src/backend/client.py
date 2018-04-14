@@ -254,6 +254,21 @@ class Client(threading.Thread):
         # 启动监听线程
         self.client_monitor.start()
 
+        # 开始调度线程
+        while True:
+            """
+            调度线程有两件事需要做：
+            1. 【TODO:暂时不实现，为了先测试】 建立连接，如果连接数少于MAX，就尝试获取更多的可用peer，从中找到自己没有连的peer，然后连接他 
+            2. 当文件传输完成，比对哈希值，并存好文件，输出相应信息，等待用户主动结束
+            """
+            if pieces_manager.is_completed():
+                pieces_manager.merge_full_data_to_file()
+                logging.info('the file has been downloaded fully and correctly!')
+            else:
+                logging.info('the download file is damaged!')
+
+
+
     def get_peers_list(self):
         """ 向tracker发起链接，请求peer list """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
