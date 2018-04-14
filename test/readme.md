@@ -1,10 +1,28 @@
 # 测试方法说明
 
-1. 在/src/backend/中打开server.py，运行tracker服务器
-1. 在/test/client1目录下运行test_client.py
-    1. 注意，客户端的逻辑为先在当前目录下寻找与种子元数据内文件名同名的文件，若找到则加载进来，当做已经下载完了，还会将bitfield更新为全是1
-1. 在/test/运行test_client2.py
-    1. 注意，这个客户端目录下因为没有测试文件，所以bitfield就为0
-1. 然后就可以看到效果了
+1. 为了方便测试，原有get_host_ip函数我改成了直接返回127.0.0.1
 
-如果要修改客户端的端口，请修改test_client.py 对应的json文件
+1. 以下指令，运行的python需要某相对地址处的文件，在运行前需要先cd到指定目录，不然找不到文件。
+
+## 做种，启动服务端
+```sh
+cd p2p-demo/test
+python3 test_main.py
+# 该文件的作用是更新种子文件，并启动客户端 
+```
+
+## 启动客户端
+
+### 启动做种客户端，含有完整数据
+```sh
+cd p2p-demo/seed
+python3 seed_client.py
+```
+
+### 启动其他客户端
+
+```sh
+cd p2p-demo/c2
+python3 test_client2.py
+```
+
