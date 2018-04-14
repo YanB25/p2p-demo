@@ -50,8 +50,8 @@ class pieceManager():
         self.pieces_data = [None]*self.piece_num # 给列表预初始化大小
         self.bitfield = bitarray.bitarray([0 for _ in range(1, self.piece_num+1)])
 
-        self.load_exist_full_file_data()
-        # self.load_previous_data()
+        # self.load_exist_full_file_data()
+        self.load_previous_all_pieces()
 
     def save_piece_data(self, piece_index, save_path=''):
         """ 将一个piece数据块存到文件夹save_path中，默认存到$(FILE_NAME)_data/$(piece_number)中，如test.txt的第0块存到test.txt_data/0中 """
