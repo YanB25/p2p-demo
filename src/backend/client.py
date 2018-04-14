@@ -1,6 +1,7 @@
 '''
 client side
 '''
+import os
 import threading
 import json
 import socket
@@ -275,9 +276,24 @@ class Client(threading.Thread):
             a = input('enter q to exit!')
             if a:
                 print(threading.enumerate())
+
+                self.disconnect_to_server()
+                ## use to exit the whole process
+                ## all other threads are killed 
+                os._exit(0)
+
                 return
 
-
+    def disconnect_to_server(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        logger.debug('DIS-connect to tracker : {}:{} '.format(self.metadata['announce'],str(self.metadata['port'])))
+        sock.connect((self.metadata['announce'], self.metadata['port']))
+        rdt_s = rdt_socket.rdt_socket(sock)
+        rdt_s.sendBytes(utilities.objEncode(self.make_resquest(COMPLETED_EVENT)))
+        data = rdt_s.recvBytes()
+        logger.debug(utilities.binary_to_beautiful_json(data))
+        sock.close()
+        logger.debug('wave hand finished. program return.')
 
     def get_peers_list(self):
         """ 向tracker发起链接，请求peer list """

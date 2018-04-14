@@ -32,6 +32,9 @@ server_socket.listen(MAX_TCP_LINK)
 
 #TODO: need validator for ip, port and id
 class Peer(object):
+    """
+    Peer Object storing ip, port and a unique id.
+    """
     def __init__(self, ip, port, id):
         self.ip = ip
         self.port = port
@@ -39,7 +42,7 @@ class Peer(object):
     def __str__(self):
         return "{}:{} id:{}".format(self.ip, self.id, self.id)
     def __eq__(self, rhs):
-        return self.id == rhs.ip and self.ip == rhs.ip and self.port == rhs.port
+        return self.id == rhs.id and self.ip == rhs.ip and self.port == rhs.port
         
 available_peers = []
 
@@ -76,12 +79,27 @@ while True:
             logger.debug('connected by %s', (ip, port, id))
             break
         elif event == 'completed':
-            available_peers.remove(Peer(ip, port, id))
+            logger.debug('get disconnect request')
+            logger.info('ip:%s, port:%d, id:%s', ip, port, id)
+            try:
+                available_peers.remove(Peer(ip, port, id))
+            except ValueError as e:
+                logger.exception(e, exc_info=True)
+                logger.critical('no this peer. ignore.')
+                rdt_s.sendBytes(utilities.objEncode{
+                    'error_code': 1,
+                    'message': 'NOT a peer for this server',
+                })
+            rdt_s.sendBytes(utilities.objEncode({
+                'error_code': 0,
+                'message': 'disconnect ACK'
+            }))
             client_socket.close()
-            logger.debug("{} disconnect %d", id)
+            logger.debug("disconnect finished, id:%s", id)
             logger.debug(available_peers)
+            break
         else:
-            logger.warning("warning, known event {}".format(event), json_data)
+            logger.critical("warning, known event {}".format(event), json_data)
             client_socket.send(utilities.objEncode({
                 'error_code': 1,
                 'message': 'no event in request. abort.'
