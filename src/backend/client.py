@@ -21,7 +21,7 @@ import logging
 logging.basicConfig(
     # filename='../../log/client.{}.log'.format(__name__),
     format='[%(asctime)s - %(name)s - %(levelname)s] : \n%(message)s\n',
-    datefmt='%M:%S',
+    # datefmt='%M:%S',
 )
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -130,24 +130,26 @@ class PeerConnection(threading.Thread):
                     if self.get_available_piece_request():
                         # 成功在队列中拿到一个可下载数据块，就发请求
                         self.send_message(Request(self.request_piece_index))
-                        continue
                     else:
                         # 如果拿不到呢，就修改状态
                         # 当做对方choke我，我也not interested对方
                         self.send_message(UnInterested())
-                        self.send_file_state.to_10() 
-                        continue
+                        self.recv_file_state.to_10() 
                 else :
                     # 说明刚刚那一块传输出现了差错，重发原来的请求
                     self.send_message(Request(self.request_piece_index))
-                    continue
 
             if type(recv_msg) == KeepAlive:
                 pass
 
-            if self.recv_file_state.is_01() and self.send_file_state.is_01():
+            logger.debug('(my choke, peer interested):{},(peer choke, my interested):{}'.format(self.send_file_state, self.recv_file_state))
+            if self.recv_file_state.is_10() and self.send_file_state.is_10():
                 # 检查连接是否应该断开
-                break
+                logger.info('This connection is disconnected!')
+                return
+            # TODO:随机延时
+            # time.sleep(random.random())
+            # logger.info('stop 0.5 second')
 
     def send_message(self, msg):
         """ 传入message对象，并转成二进制发送 """
