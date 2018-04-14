@@ -26,6 +26,7 @@ SERVER_IP = utilities.get_host_ip()
 SERVER_PORT = 6666
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((SERVER_IP, SERVER_PORT))
 server_socket.listen(MAX_TCP_LINK)
 
