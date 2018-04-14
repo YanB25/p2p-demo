@@ -13,13 +13,16 @@ python3 test_main.py
 
 ## 启动客户端
 
+注意！客户端一旦启动，会先在“文件名_data"下加载历史数据，数据块以索引号命名
+因此若想使用部分数据来调试，可以往里面放几个块
+
 ### 启动做种客户端，含有完整数据
 ```sh
 cd p2p-demo/test/seed
 python3 seed_client.py
 ```
 
-### 启动其他客户端
+### 启动其他客户端，不含有或只含有部分数据
 
 ```sh
 cd p2p-demo/test/c2
