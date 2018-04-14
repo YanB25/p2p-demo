@@ -265,6 +265,7 @@ class Client(threading.Thread):
             if pieces_manager.is_completed():
                 if pieces_manager.merge_full_data_to_file():
                     print('This file has been downloaded fully and correctly!')
+                    pieces_manager.save_current_all_pieces()
                     break
                 else:
                     print('This download file is damaged!')
