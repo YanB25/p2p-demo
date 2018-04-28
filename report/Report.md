@@ -4,6 +4,15 @@ typora-copy-images-to: ./img
 
 [TOC]
 
+# 计算机网络课程项目——C/S与P2P通信 
+
+| 组员一 | 王永峰 | 16337237 |      |
+| ------ | ------ | -------- | ---- |
+| 组员二 | 颜彬   | 16337269 |      |
+| 组员三 | 李新锐 | 15323032 |      |
+
+
+
 # 一.实验要求
 
 - C/S通信实现要求：
@@ -314,6 +323,161 @@ available_peers_list函数返回当前Peer列表。START_ACK/COMPLETE_ACK两个�
 注：图中**三个Peer Connection是并行执行的**。
 
 ![C3RequestC2C1](./img/C3RequestC2C1-4917656.svg)
+
+# 五、安装部署及实验结果
+
+该部分我们只作为了网页幻灯片，用于到时候的PPT展示。可见该网址http://wangyf.top/revealjs/p2p-demo/index.html。这里讲主要内容复制到报告中：
+
+### 1.1运行环境
+
+本项目在python3.5环境下开发并测试。
+
+服务器与客户端均运行在同一个内网中。
+
+### 1.2 获取源码
+
+运行下面这一条指令获得源码及demo
+
+```bash
+git clone https://github.com/YanB25/p2p-demo
+```
+
+### 2.1 TRACKER 服务器的部署
+
+需要做两件事情。
+
+1. 制作 Torrent 文件。
+2. 导入Server类，运行 Tracker 服务器
+
+源代码可见：
+
+```python
+import os
+import sys
+# 这里是源代码的路径，可自行修改为对应的相对路径或绝对路径。
+SRC_PATH = '../src/backend/'
+sys.path.insert(0, SRC_PATH)
+from torrent import *# 导入 种子文件 模块
+full_file = './seed/test.txt'
+# 制作种子文件，默认存到当前目录下
+make_torrent_file(full_file)
+# 运行server端
+os.system("python3 "+SRC_PATH+"server.py")
+```
+
+### 2.2 BITTORRENT 客户端的部署
+
+1. 从源代码中代入Client类
+2. 使用种子文件，客户端配置文件，初始化客户端，并运行之。
+
+```python
+import sys
+sys.path.insert(0, '../../src/backend/')
+from client import *
+from torrent import *
+
+file_name = '../test.txt'
+test_torrent_file = file_name+'.torrent' # 种子文件相对路径
+test_config_file = './client_config.json' # 客户端配置文件
+client = Client(test_torrent_file,test_config_file)
+client.start()
+```
+
+### 3. 使用篇
+
+这里以demo的使用为例。
+
+- 在demo中，其他客户端都想下载seed中的test.txt文件。
+- 先开启seed,然后开启其他客户端
+- 其他的客户端开启后会从tracker得到seed的在线信息，并向seed请求得到test.txt.
+
+首先进入到项目中的demo文件夹中。
+
+```bash
+cd p2p-demo/demo
+```
+
+### 3.1 启动TRACKER服务器
+
+在命令行下执行以下指令:
+
+```
+# 在demo文件夹下
+python3 make_torrent_and_start_tracker.py
+```
+
+- 使用本机IP地址更新种子文件
+- 启动tracker服务器
+- 默认监听6666端口（可在server.py中修改端口号）
+
+启动后的界面。
+
+![2018-04-28-20-41-49](img/2018-04-28-20-41-49.png)
+
+### 3.2 启动客户端
+
+在启动客户端前，确保种子文件已经更新。
+
+启动客户端的时候，客户端会做两件事情：
+
+1. 读取Torrent文件，并将数据初始化到客户端内部数据中。
+2. 获知文件名后，检查"文件名_data/"文件夹下是否有历史数据块，有则加载，无则不管
+
+**由此，区分出做种的Peer与请求文件下载的Peer**
+
+**同时，下载到一半的数据也可以被Peer加载做种**
+
+在命令行执行以下命令：(均在demo文件夹下)
+
+```
+cd seed
+python3 seed_client.py
+cd c2
+python3 test2_client.py
+```
+
+可启动多个客户端。
+
+启动截图
+
+![2018-04-28-20-43-41](img/2018-04-28-20-43-41.png)
+
+## 4 实验结果说明
+
+我们使用该Bittorrent客户端，完成了以下测试。
+
+- 一个有完整数据的 Peer 给**多个 Peer 发送文件**
+- 一个没有数据的 Peer 向**多个**有完整数据的 Peer 请求文件
+- 多个 Peer 相互请求文件
+  - 每一个 Peer 都有部分数据，保证全部 Peer 拥有的数据块完整
+  - 通过多线程技术，每一个 Peer 在请求数据块的时候发送已有数据块
+  - 每一个 Peer 都能够获得完整文件。
+
+### 4.1 测试一：发文件
+
+客户端已有文件`vid.mp4`.
+
+ ![2018-04-28-21-27-10](img/2018-04-28-21-27-10.png)
+
+启动做种Peer
+
+![2018-04-28-21-33-14](img/2018-04-28-21-33-14.png)
+
+![2018-04-28-23-00-31](img/2018-04-28-23-00-31.png)
+
+![2018-04-28-23-01-28](img/2018-04-28-23-01-28.png)
+
+约花费了245.59s
+
+### 4.2 测试二
+
+![2018-04-28-23-06-14](img/2018-04-28-23-06-14.png)
+
+- c2:有后50%数据
+- c3:有前50%数据 
+- c4:没有数据
+
+
 
 # 五、性能比较
 
