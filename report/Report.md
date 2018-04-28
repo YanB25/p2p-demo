@@ -35,7 +35,7 @@ typora-copy-images-to: ./img
 
 C/S通信中采用TCP作为传输层协议，可以保证传输的文件流是有序且无误的。然而TCP作为一种流传输协议，应用层是无法获知接收缓冲区中一个文件起始和结束的位置。因此我们采用了固定头部+可变数据长度的应用层通信协议，我们将之命名为rdt_socket。
 
-![image-20180428121650380](/Users/lixinrui/QtProject/p2p-demo/report/img/image-20180428121650380.png)
+<img src="/Users/lixinrui/QtProject/p2p-demo/report/img/image-20180428121650380.png" width="50%" height="100%" />
 
 ### (2). 服务端
 
@@ -54,6 +54,8 @@ server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server_socket.bind((SERVER_IP, SERVER_PORT))
 #设置最大连接数为MAX_TCP_LINK
 server_socket.listen(MAX_TCP_LINK)
+#阻塞等待客户端接入
+(client_socket, address) = server_socket.accept()
 ```
 
 然后将该server_socket传入rdt_socket类，获得rdt_socket对象，然后将要发送的二进制文件传入sendBytes方法，该方法将在在其头部加上8字节的文件长度信息
@@ -213,22 +215,24 @@ Peer—Peer之间的协议在PeerConnection类中实现，如上文所述，一�
   - 高位：peer_choke，表示对方是否停止向我发送文件
   - 低位：my_interested，表示我是否需要从对方获取文件
 
+每个PeerConnection在建立之时首先进行交换bitfield的操作。
+
 每个PeerConnection以消息循环地方式工作，收到消息时，依据消息类型，可能导致SendFile状态机或RecvFileMachine发生状态转移并执行相应动作，我们使用下图的状态机转移图进行描述。类似课本rdt协议状态机的格式，图中每条线状态转移线上有两行注释，上面一行表示收到的导致转移发生的消息，下面一行表示执行的动作和发出的消息。
 
 ![status](/Users/lixinrui/QtProject/p2p-demo/report/img/status-4900454.svg)
 
 Peer — Peer间的消息有以下几种：
 
-1. Choke
-2. UnChoke
-3. Interested
-4. UnInterested
-5. Have
-6. Bitfield
-7. Request
-8. Piece
-9. KeepAlive
-10. ServerClose
+1. Choke，发送该消息者拒绝向对方发送文件
+2. UnChoke，发送该消息者可以向对方发送文件
+3. Interested，发送该消息者需要从对方获取文件
+4. UnInterested，发送该消息者无需从对方获取文件
+5. Have，一方收到一个piece后，发送该消息通知对方已经完成接收该piece
+6. Bitfield，一方拥有的文件区块信息
+7. Request，一方向另一方请求piece，消息中包含piece编号
+8. Piece，一方收到request后回复的文件piece，包含文件内容
+9. KeepAlive，保持连接，接收者收到后忽略该消息
+10. ServerClose，一方通知另一方自己要关闭了，另一方收到该消息后也会关闭该peer Connection
 
 大多数消息均有以下三个字段：
 
@@ -301,11 +305,15 @@ available_peers_list函数返回当前Peer列表。START_ACK/COMPLETE_ACK两个�
 4. 之后，Client启动ClientMonitor，该类实现的是被动接收连接功能：它监听本地端口，阻塞循环接受来自其他线程的新连接。得到新的连接new_socket后，将new_socket传入并启动一个新的PeerConnection。
 5. Client类的工作基本结束，开始循环询问pieces_manager是否已经获取全部piece。在后台线程中运行的PeerConnections首先发送Bitfield，然后进行着协议中描述的消息循环：在一个While循环中，阻塞接收消息。然后简单地if语句进行判断。
 
+## （三）、时序图
 
+我们以实验要求中的使用场景为例，绘制了整个下载过程的时序图，让整个过程更加清晰易懂。
 
+>  假设peer3要下载文件 （视频），A与peer1，peer2都拥有A，请设计方案使peer3能够同时从peer1、peer2同时下载该文件，例如：从peer1下载A的前50%、同时从peer2下载后50%。
 
+注：图中**三个Peer Connection是并行执行的**。
 
-
+![C3RequestC2C1](/Users/lixinrui/QtProject/p2p-demo/report/img/C3RequestC2C1-4917656.svg)
 
 
 
