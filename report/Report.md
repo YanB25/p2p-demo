@@ -20,14 +20,14 @@ typora-copy-images-to: ./img
 3. 假设peer3要下载文件 （视频），A与peer1，peer2都拥有A，请设计方案使peer3能够同时从peer1、peer2同时下载该文件，例如：从peer1下载A的前50%、同时从peer2下载后50%。
 4. 比较与C/S通信方式的性能指标
 
-# 二. 设计摘要
+# 二. 简介
 
 - 本次实验我们使用Python3语言，在Linux操作系统上完成。
 
 
 - C/S通信部分，我们使用TCP作为传输层协议，使用固定头部+可变数据长度的应用层通信协议，能够解决TCP的分包、黏包问题。
-- P2P部分：我们研究并实现了简化版的有tracker服务器的Bittorrent协议。采用消息循环的设计方式，两台对等主机之间建立连接后各自开启一个线程，交换bitfield并初始化自身状态，进入消息循环，根据自身状态和收到的消息决定状态的转换和执行的操作。
-- 各台对等主机，以及对等主机和服务器之间的通信基于了C/S通信部分实现的可靠二进制文件传输模块。
+- P2P部分：我们研究并实现了简化版的有tracker服务器的Bittorrent协议。采用消息循环的设计方式，两台对等主机之间建立连接后各自开启一个线程，交换bitfield并初始化自身状态，进入消息循环，根据自身状态和收到的消息决定状态的转换和执行的操作。各台对等主机，以及对等主机和服务器之间的通信基于了C/S通信部分实现的可靠二进制文件传输模块。
+- 下面，我们将详细描述C/S通信、P2P通信的协议和实现。并给出运行结果。
 
 # 三. C/S通信
 
@@ -126,22 +126,6 @@ def recvBytes(self):
 1. Torrent文件格式
 2. Tracker — Peer协议
 3. Peer — Peer 协议
-
-协议中消息的传递是基于C/S通信中的二进制传输代码。
-
-Tracker — Peer协议的消息格式为Json，我们使用Json以下两端代码将Json转换和转换为二进制。
-
-```python
-def objEncode(obj):
-    """ obj，返回binary对象 """
-    return json.dumps(obj,indent=4, sort_keys=True,separators=(',',':')).encode('utf-8')
-
-def objDecode(binary):
-    """ binary 返回dict对象 """
-    return json.loads(binary.decode('utf-8'))
-```
-
-Peer — Peer 协议中协议的原始格式也为Json，但Piece中的原始文件数据在使用objEncode编码时会出错，因此使用Python的Struct类进行转换。
 
 ### (1). Torrent文件格式
 
@@ -262,6 +246,64 @@ Peer — Peer间的消息有以下几种：
 - Bitfield消息有一个Bitfield字段，包含了自己的bitfield
 - Request消息有一个piece_index字段，表示请求的piece的序号
 - Piece消息有一个piece_index字段，表示自身序号；有一个raw_data字段，用以传送文件数据。
+
+## （二）、实现
+
+### (1). 协议的消息传输
+
+协议中消息的传递是基于C/S通信中的二进制传输代码。
+
+Tracker — Peer协议的消息格式为Json，我们使用Json以下两端代码将Json转换和转换为二进制。
+
+```python
+def objEncode(obj):
+    """ obj，返回binary对象 """
+    return json.dumps(obj,indent=4, sort_keys=True,separators=(',',':')).encode('utf-8')
+
+def objDecode(binary):
+    """ binary 返回dict对象 """
+    return json.loads(binary.decode('utf-8'))
+```
+
+Peer — Peer 协议中协议的原始格式也为Json，但Piece中的原始文件数据在使用objEncode编码时会出错，因此使用Python的Struct类进行转换。
+
+### (2).Tracker的实现
+
+Tracker端的实现在src/backend/server.py中，与之相关的有两个类，ServerMonitor和Server，均继承于threading类，通过实现threading类的Run函数，将主逻辑运行在线程中。
+
+ServerMonitor类的run函数处理用户输入，在输入q时终止Tracker。
+
+Server类的run函数监听并Peer呼入的连接，根据消息做出回复。
+
+available_peers_list函数返回当前Peer列表。START_ACK/COMPLETE_ACK两个函数方便地返回了两种Response消息。
+
+
+
+![image-20180428164907016](/Users/lixinrui/QtProject/p2p-demo/report/img/image-20180428164907016.png)
+
+### (3).Peer的实现
+
+这部分是整个实现中的重点。
+
+实现在src/backend/client.py、src/backend/piecemanager.py、src/backend/state.py、src/backend/message.py几个文件中。
+
+由Client、PeerConnection、ClientMonitor、pieceManager这几个类实现，其中Client、PeerConnection、ClientMonitor三个类同样是继承与threading类，在run函数中，以多线程方式实现主逻辑。
+
+![image-20180428172307415](/Users/lixinrui/QtProject/p2p-demo/report/img/image-20180428172307415.png)
+
+![image-20180428172432279](/Users/lixinrui/QtProject/p2p-demo/report/img/image-20180428172618373.png)
+
+整个工作原理和流程如下：
+
+1. Client类主要完成整个初始化流程，它接收一个torrent文件和配置文件，在构造函数中读取这些文件进行初始化，并启动一个pieceManager。
+2. pieceManager类管理本地文件分块，根据本机拥有的piece设置初始bitfield。并在拥有完整的bitfield时进行文件合并。
+3. Client使用一个全局的线程安全队列left_pieces保存缺失的piece的编号。run函数运行时，根据pieceManager设置的初始bitfield初始化left_pieces。然后执行get_peers_list向tracker请求peer列表。收到后向这些peer中的指定个（目前为4个）peer主动发起连接。
+4. 之后，Client启动ClientMonitor，该类实现的是被动接收连接功能：它监听本地端口，阻塞循环接受来自其他线程的新连接。得到新的连接new_socket后，将new_socket传入并启动一个新的PeerConnection。
+5. Client类的工作基本结束，开始循环询问pieces_manager是否已经获取全部piece。在后台线程中运行的PeerConnections首先发送Bitfield，然后进行着协议中描述的消息循环：在一个While循环中，阻塞接收消息。然后简单地if语句进行判断。
+
+
+
+
 
 
 
