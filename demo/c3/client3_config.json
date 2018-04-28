@@ -1,5 +1,5 @@
 {
-    "client_port": 4445,
+    "client_port": 7773,
     "file_header_size": 8,
     "client_listen_max": 8
 }
