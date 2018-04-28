@@ -315,9 +315,11 @@ available_peers_list函数返回当前Peer列表。START_ACK/COMPLETE_ACK两个�
 
 ![C3RequestC2C1](/Users/lixinrui/QtProject/p2p-demo/report/img/C3RequestC2C1-4917656.svg)
 
+# 五、性能比较
+
+C/S模式中，我们使用7191359bytes(7.1Mb)的文件进行测试，三次测试结果分别是12.900446s、13.298574s、13.488140s。平均时间为13.2291s，平均信道容量为4.1474 mbps。
 
 
-## 五、设计心得
 
 
 
