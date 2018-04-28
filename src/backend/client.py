@@ -25,8 +25,8 @@ logging.basicConfig(
     # datefmt='%M:%S',
 )
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
-logger.disabled = True
+logger.setLevel(logging.DEBUG)
+
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
 FILE_HEADER_SIZE = 8
@@ -317,7 +317,7 @@ class Client(threading.Thread):
     def establish_link(self):
         """ 主动向peer建立链接 """
         for idx, peer_info in enumerate(self.peers_list_response['peers']):
-            if idx >= 4: return # TODO: add constant here
+            #if idx >= 4: return # TODO: add constant here
             peer_ip = peer_info['peer-ip']
             peer_port = peer_info['peer-port']
             logger.debug('trying to connect to peer {}:{}'.format(peer_ip, peer_port))

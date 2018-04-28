@@ -4,8 +4,8 @@ from client import *
 from torrent import *
 
 # make_torrent_file('vid.mp4')
-file_name = 'test.mov'
+file_name = 'vid.mp4'
 test_torrent_file = '../{}.torrent'.format(file_name)
-test_config_file = './client4_config.json'
+test_config_file = './client6_config.json'
 client = Client(test_torrent_file,test_config_file)
 client.start()
