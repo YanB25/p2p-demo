@@ -3,7 +3,6 @@ import rdt_socket
 import socket
 import utilities			#实用工具库，提供get_host_ip函数
 import server_config
-import datetime
 SERVER_IP = utilities.get_host_ip()	#获取本机ip
 SERVER_PORT = 6666			#服务器端口固定为6666
 #获取socket文件，采用tcp连接 
@@ -16,8 +15,5 @@ server_socket.bind((SERVER_IP, SERVER_PORT))
 server_socket.listen(1)
 (client_socket, address) = server_socket.accept()
 rdt_s = rdt_socket.rdt_socket(client_socket)
-begin = datetime.datetime.now()
 f =open('Untitled.mov', 'rb').read()
 rdt_s.sendBytes(f)
-end = datetime.datetime.now()
-print(end-begin)
