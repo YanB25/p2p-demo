@@ -1,47 +1,47 @@
 @startuml C3RequestC2C1
 == Peers HandShake ==
-Client1 -> Server: get_peers_list()
-Server --> Client1: available_peers_list()
-Client2 -> Server: get_peers_list()
-Server --> Client2: available_peers_list()
-Client2 -> Client1: establist_link()
-Client3 -> Server: get_peers_list()
-Server --> Client3: available_peers_list()
-Client3 -> Client1: establist_link()
-Client3 -> Client2: establist_link()
+Peer1 -> Server: get_peers_list()
+Server --> Peer1: available_peers_list()
+Peer2 -> Server: get_peers_list()
+Server --> Peer2: available_peers_list()
+Peer2 -> Peer1: establist_link()
+Peer3 -> Server: get_peers_list()
+Server --> Peer3: available_peers_list()
+Peer3 -> Peer1: establist_link()
+Peer3 -> Peer2: establist_link()
 == Exchange BitField == 
-Client2 -> Client1: Bitfield
-Client1 -> Client2: Bitfield
-Client3 -> Client1: Bitfield
-Client1 -> Client3: Bitfield
-Client3 -> Client2: Bitfield
-Client2 -> Client3: Bitfield
+Peer2 -> Peer1: Bitfield
+Peer1 -> Peer2: Bitfield
+Peer3 -> Peer1: Bitfield
+Peer1 -> Peer3: Bitfield
+Peer3 -> Peer2: Bitfield
+Peer2 -> Peer3: Bitfield
 == Peer Connections ==
-Client1 -> Client2: Uninterested
+Peer1 -> Peer2: Uninterested
 note left: Peer Connection 1
-Client2 -> Client1: Uninterested
-Client1 --> Client2: Choke
-Client2 --> Client1: Choke
+Peer2 -> Peer1: Uninterested
+Peer1 --> Peer2: Choke
+Peer2 --> Peer1: Choke
 == ... Concurrently ...==
-Client1 -> Client3: Uninterested
+Peer1 -> Peer3: Uninterested
 note left: Peer Connection 2
-Client3 -> Client1: Interested
-Client1 --> Client3: UnChoke
-Client1 -> Client1: Waiting Request
-Client3 -> Client1: Request Piece
-Client1 --> Client3: Send Piece
+Peer3 -> Peer1: Interested
+Peer1 --> Peer3: UnChoke
+Peer1 -> Peer1: Waiting Request
+Peer3 -> Peer1: Request Piece
+Peer1 --> Peer3: Send Piece
 ... Repeatly Request and Send ...
-Client3 -> Client1: UnInterested
-Client1 --> Client3: Choke
+Peer3 -> Peer1: UnInterested
+Peer1 --> Peer3: Choke
 == ... Concurrently ...==
-Client2 -> Client3: Uninterested
+Peer2 -> Peer3: Uninterested
 note left: Peer Connection 3
-Client3 -> Client2: Interested
-Client2 --> Client3: UnChoke
-Client2 -> Client2: Waiting Request
-Client3 -> Client2: Request Piece
-Client2 --> Client3: Send Piece
+Peer3 -> Peer2: Interested
+Peer2 --> Peer3: UnChoke
+Peer2 -> Peer2: Waiting Request
+Peer3 -> Peer2: Request Piece
+Peer2 --> Peer3: Send Piece
 ... Repeatly Request and Send ...
-Client3 -> Client2: UnInterested
-Client2 --> Client3: Choke
+Peer3 -> Peer2: UnInterested
+Peer2 --> Peer3: Choke
 @enduml
