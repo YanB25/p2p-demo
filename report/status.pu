@@ -2,21 +2,23 @@
 ' [*] --> SendFileMachine
 state SendFileMachine{
     [*] --> Waiting
+    Waiting -> Waiting
     Waiting: [1,0]
-    Waiting-> Sending: Recv Interested
+    Waiting-> Sending: Recv Interested\nSend UnChoke
     Sending: [0,1]
-    Sending-> Waiting: Recv UnInterested
+    Sending-> Waiting: Recv UnInterested\nΛ
+    Sending -> Sending: Recv Request\n Send Piece
 }
 state RecvFileMachine{
     [*] --> NoNeed
     NoNeed --> NoNeed
     NoNeed: [1,0]
-    NoNeed --> Chocked : Bitfield && have need
-    Chocked: [1,1]
-    Chocked --> Chocked
+    NoNeed --> Choked : Recv Bitfield && have need\nSend Bitfield
+    Choked: [1,1]
+    Choked --> Choked
     Recving: [0,1]
-    Chocked --> Recving : UnChocked
-    Recving --> Recving : Recv Piece && have need
+    Choked --> Recving : Recv UnChoked\nSend Request
+    Recving --> Recving : Recv Piece && Still have need \n Send Request
     Recving --> NoNeed : No more need
     
 }

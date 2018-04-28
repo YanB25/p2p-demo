@@ -29,9 +29,7 @@ typora-copy-images-to: ./img
 - P2P部分：我们研究并实现了简化版的有tracker服务器的Bittorrent协议。采用消息循环的设计方式，两台对等主机之间建立连接后各自开启一个线程，交换bitfield并初始化自身状态，进入消息循环，根据自身状态和收到的消息决定状态的转换和执行的操作。
 - 各台对等主机，以及对等主机和服务器之间的通信基于了C/S通信部分实现的可靠二进制文件传输模块。
 
-# 三. 具体实现
-
-## 1. C/S通信
+# 三. C/S通信
 
 ### (1).  应用层协议
 
@@ -119,13 +117,31 @@ def recvBytes(self):
                 return body
 ```
 
-## 2.P2P通信
+# 四.P2P通信
+
+## （一）、协议
 
 下面我们将从三个方面分别介绍我们设计的P2P通信协议
 
 1. Torrent文件格式
 2. Tracker — Peer协议
 3. Peer — Peer 协议
+
+协议中消息的传递是基于C/S通信中的二进制传输代码。
+
+Tracker — Peer协议的消息格式为Json，我们使用Json以下两端代码将Json转换和转换为二进制。
+
+```python
+def objEncode(obj):
+    """ obj，返回binary对象 """
+    return json.dumps(obj,indent=4, sort_keys=True,separators=(',',':')).encode('utf-8')
+
+def objDecode(binary):
+    """ binary 返回dict对象 """
+    return json.loads(binary.decode('utf-8'))
+```
+
+Peer — Peer 协议中协议的原始格式也为Json，但Piece中的原始文件数据在使用objEncode编码时会出错，因此使用Python的Struct类进行转换。
 
 ### (1). Torrent文件格式
 
@@ -202,14 +218,57 @@ Torrent文件的作用是：
 
 ### (3).Peer — Peer 协议
 
-如摘要部分提到的，每个Peer是以消息循环的方式进行工作。
+Peer—Peer之间的协议在PeerConnection类中实现，如上文所述，一个P2P连接的两台主机会对等地，分别建立一个PeerConnection。
+
+每个PeerConnection维护两组状态，这两组状态分别用两个二进制位表示：
+
+- send_file_state：
+  - 高位：my_choke，表示我是否停止向他人发送文件
+  - 低位：peer_interested，表示他人是否需要从我获取文件
+- recv_file_state
+  - 高位：peer_choke，表示对方是否停止向我发送文件
+  - 低位：my_interested，表示我是否需要从对方获取文件
+
+每个PeerConnection以消息循环地方式工作，收到消息时，依据消息类型，可能导致SendFile状态机或RecvFileMachine发生状态转移并执行相应动作，我们使用下图的状态机转移图进行描述。类似课本rdt协议状态机的格式，图中每条线状态转移线上有两行注释，上面一行表示收到的导致转移发生的消息，下面一行表示执行的动作和发出的消息。
+
+![status](/Users/lixinrui/QtProject/p2p-demo/report/img/status-4900454.svg)
+
+Peer — Peer间的消息有以下几种：
+
+1. Choke
+2. UnChoke
+3. Interested
+4. UnInterested
+5. Have
+6. Bitfield
+7. Request
+8. Piece
+9. KeepAlive
+10. ServerClose
+
+大多数消息均有以下三个字段：
+
+```json
+{
+    type: <str>
+    length: <int>
+    message_id: <int>
+}
+```
+
+特别地：
+
+- KeepAlive消息没有message_id字段，可以根据它的length为0的特点判断其类型。
+- Bitfield消息有一个Bitfield字段，包含了自己的bitfield
+- Request消息有一个piece_index字段，表示请求的piece的序号
+- Piece消息有一个piece_index字段，表示自身序号；有一个raw_data字段，用以传送文件数据。
+
+
 
 
 
 ## 五、设计心得
 
-过去三周，我从零开始，学习了Qt，QML，JavaScript，SQL，设计模式，成功写出了本Project，取得了较大收获。这段学习过程中遇到的困难，主要是面对一些全新的，又没有好的教程用来形成一个基础的知识体系，以及足够大的社区帮你在StackOverflow上问好各种问题，一个很简单的问题都会卡很久。例如学习QML时，官方的tutorial就是讲了一个简单的例子，并没有讲清每一句话的含义，大概是“你看，这里写个TextField{}，就会有个文本框”这种感觉。但，TextField及它里面的property、它的id作用域是什么呢，跨文件怎么办呢？（我大概有几天时间都在纠结各种"property xxx is not bound in this Context"）？
 
-直到一周后去图书馆找参考书，在广图没有找到，还好学校图书馆有一本，帮助我建立了知识体系，对我起了很大帮助。
 
  
