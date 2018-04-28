@@ -1,0 +1,47 @@
+@startuml C3RequestC2C1
+== Peers HandShake ==
+Client1 -> Server: get_peers_list()
+Server --> Client1: available_peers_list()
+Client2 -> Server: get_peers_list()
+Server --> Client2: available_peers_list()
+Client2 -> Client1: establist_link()
+Client3 -> Server: get_peers_list()
+Server --> Client3: available_peers_list()
+Client3 -> Client1: establist_link()
+Client3 -> Client2: establist_link()
+== Exchange BitField == 
+Client2 -> Client1: Bitfield
+Client1 -> Client2: Bitfield
+Client3 -> Client1: Bitfield
+Client1 -> Client3: Bitfield
+Client3 -> Client2: Bitfield
+Client2 -> Client3: Bitfield
+== Peer Connections ==
+Client1 -> Client2: Uninterested
+note left: Peer Connection 1
+Client2 -> Client1: Uninterested
+Client1 --> Client2: Chock
+Client2 --> Client1: Chock
+== ... Concurrently ...==
+Client1 -> Client3: Uninterested
+note left: Peer Connection 2
+Client3 -> Client1: Interested
+Client1 --> Client3: UnChock
+Client1 -> Client1: Waiting Request
+Client3 -> Client1: Request Piece
+Client1 --> Client3: Send Piece
+... Repeatly Request and Send ...
+Client3 -> Client1: UnInterested
+Client1 --> Client3: Chock
+== ... Concurrently ...==
+Client2 -> Client3: Uninterested
+note left: Peer Connection 3
+Client3 -> Client2: Interested
+Client2 --> Client3: UnChock
+Client2 -> Client2: Waiting Request
+Client3 -> Client2: Request Piece
+Client2 --> Client3: Send Piece
+... Repeatly Request and Send ...
+Client3 -> Client2: UnInterested
+Client2 --> Client3: Chock
+@enduml

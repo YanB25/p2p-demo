@@ -1,0 +1,23 @@
+@startuml status
+' [*] --> SendFileMachine
+state SendFileMachine{
+    [*] --> Waiting
+    Waiting: [1,0]
+    Waiting-> Sending: Recv Interested
+    Sending: [0,1]
+    Sending-> Waiting: Recv UnInterested
+}
+state RecvFileMachine{
+    [*] --> NoNeed
+    NoNeed --> NoNeed
+    NoNeed: [1,0]
+    NoNeed --> Chocked : Bitfield && have need
+    Chocked: [1,1]
+    Chocked --> Chocked
+    Recving: [0,1]
+    Chocked --> Recving : UnChocked
+    Recving --> Recving : Recv Piece && have need
+    Recving --> NoNeed : No more need
+    
+}
+@enduml
