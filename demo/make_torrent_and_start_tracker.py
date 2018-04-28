@@ -11,4 +11,4 @@ full_file = './seed/vid.mp4'
 # 制作种子文件，默认存到当前目录下
 make_torrent_file(full_file)
 # 运行server端
-os.system("python "+SRC_PATH+"server.py")
+os.system("python3 "+SRC_PATH+"server.py")
