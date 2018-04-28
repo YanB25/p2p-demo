@@ -7,7 +7,7 @@ SRC_PATH = '../src/backend/'
 sys.path.insert(0, SRC_PATH)
 from torrent import *
 
-full_file = './seed/test.mp4'
+full_file = './seed/test.mov'
 # 制作种子文件，默认存到当前目录下
 make_torrent_file(full_file)
 # 运行server端

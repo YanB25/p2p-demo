@@ -20,6 +20,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+logger.disabled = True
 
 # from client_config import *
 FILE_HEADER_SIZE = 8

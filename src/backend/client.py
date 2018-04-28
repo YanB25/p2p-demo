@@ -25,8 +25,8 @@ logging.basicConfig(
     # datefmt='%M:%S',
 )
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
+logger.setLevel(logging.ERROR)
+logger.disabled = True
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
 FILE_HEADER_SIZE = 8
@@ -216,6 +216,7 @@ class Client(threading.Thread):
         """ 对客户端对象，初始化客户端ip，端口，并读取种子文件，将种子元数据存到客户端中 """
         threading.Thread.__init__(self)
         # 初始化种子文件元数据
+        self.begin = time.clock()
         self.metadata = torrent.read_torrent_file(torrent_file_name)
         self.pieces_num = len(self.metadata['info']['piece_hash'])
         # TODO:bitfield需要思考如何处理，这个应该能够被各个连接访问
@@ -268,8 +269,10 @@ class Client(threading.Thread):
             # print(pieces_manager.is_completed())
             if pieces_manager.is_completed():
                 if pieces_manager.merge_full_data_to_file():
-                    print('This file has been downloaded fully and correctly!')
+                    self.end = time.clock()
+                    print("Download time is : ",str(self.end-self.begin))
                     pieces_manager.save_current_all_pieces()
+                    print('This file has been downloaded fully and correctly!')
                     break
                 else:
                     print('This download file is damaged!')
