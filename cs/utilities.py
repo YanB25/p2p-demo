@@ -31,4 +31,4 @@ def get_host_ip():
     # finally:
     #     s.close()
     # return ip
-    return '127.0.0.1'
+    return '0.0.0.0'
