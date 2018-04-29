@@ -4,12 +4,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-demo/seed/test.mov_data/*
-demo/c2/test.mov_data/*
-demo/c3/test.mov_data/*
-demo/c4/test.mov_data/*
-demo/c5/test.mov_data/*
-demo/c6/test.mov_data/*
+demo/seed/test.mp4_data/*
+demo/c2/test.mp4_data/*
+demo/c3/test.mp4_data/*
+demo/c4/test.mp4_data/*
+demo/c5/test.mp4_data/*
+demo/c6/test.mp4_data/*
+demo/c7/test.mp4_data/*
+demo/c8/test.mp4_data/*
+demo/c9/test.mp4_data/*
+demo/c10/test.mp4_data/*
 
 # C extensions
 *.so
