@@ -40,7 +40,7 @@ class ServerMonitor(threading.Thread):
     def run(self):
         logger.info('server monitor running')
         while True:
-            enter = input('(you can quit if enter q)...\n')
+            enter = input('(you can quit if enter q)...\n(or you can print the available peers list if enter p)...\n')
             if enter == 'q':
                 logger.warning('server quit. all tcp link WILL NOT SAVE')
                 # self.server.fouceQuit() 
@@ -48,6 +48,10 @@ class ServerMonitor(threading.Thread):
                 # unknown bug. maybe it is becaz not check msg type in all place in client.py
                 # talk with WYF
                 os._exit(0)
+            elif enter == 'p':
+                # 打印在线peer
+                logger.info('Pring the available peers list')
+                logger.info(available_peers)
 
 class Peer(object):
     """
@@ -58,7 +62,9 @@ class Peer(object):
         self.port = port
         self.id = id
     def __str__(self):
-        return "{}:{} id:{}".format(self.ip, self.id, self.id)
+        return "{}:{} id:{}\n".format(self.ip, self.id, self.id)
+    def __repr__(self):
+        return self.__str__()
     def __eq__(self, rhs):
         return self.id == rhs.id and self.ip == rhs.ip and self.port == rhs.port
         
