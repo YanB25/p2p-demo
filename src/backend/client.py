@@ -26,6 +26,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+logger.disabled = True
 
 CLIENT_PORT = 5555
 CLIENT_LISTEN_MAX = 8
@@ -130,6 +131,7 @@ class PeerConnection(threading.Thread):
                 # 在peer没有choke我并且我interested对方的时候，响应对方的piece
                 # 检查哈希并视情况更新piece_manager
                 if (check_piece_hash_and_update(recv_msg.piece_index, recv_msg.raw_data)):
+                    print('receive piece : ',str(recv_msg.piece_index))
                     # 成功接收一个块并更新
                     if self.get_available_piece_request():
                         # 成功在队列中拿到一个可下载数据块，就发请求
