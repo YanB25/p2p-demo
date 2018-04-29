@@ -133,7 +133,8 @@ class PeerConnection(threading.Thread):
                 # 在peer没有choke我并且我interested对方的时候，响应对方的piece
                 # 检查哈希并视情况更新piece_manager
                 if (check_piece_hash_and_update(recv_msg.piece_index, recv_msg.raw_data)):
-                    print('receive piece : ',str(recv_msg.piece_index))
+                    # TODO:可选最小输出
+                    # print('receive piece : ',str(recv_msg.piece_index))
                     # 成功接收一个块并更新
                     if self.get_available_piece_request():
                         # 成功在队列中拿到一个可下载数据块，就发请求
@@ -198,20 +199,22 @@ class PeerConnection(threading.Thread):
                 # 如果对面没有我需要的块，直接返回0
 
                 return 0
-            self.queue_lock.acquire()
+            # self.queue_lock.acquire()
             piece_index, piece_hash = left_pieces.get()
             if self.peer_bitfield[piece_index] == 1:
                 # 如果对面有这个数据块，就interest，否则就放回队列中
                 self.request_piece_index, self.request_piece_hash = piece_index, piece_hash
                 logger.debug("{}: this piece exists in peer:{}".format(piece_index,self.socket.s.getpeername()))
-                self.queue_lock.release()
+                # self.queue_lock.release()
+                # print(list(left_pieces.queue))
                 return 1
             else:
                 # 对面没有这个块，将这个块放回到队列中
                 left_pieces.put((piece_index, piece_hash))
-                self.queue_lock.release()
+                # self.queue_lock.release()
                 logger.debug("{}: this piece doesn't exist in peer:{}".format(piece_index,self.socket.s.getpeername()))
-                time.sleep(5)
+                time.sleep(random.random())
+                # print(list(left_pieces.queue))
                 continue
         
 
@@ -288,15 +291,16 @@ class Client(threading.Thread):
         # TODO:不会停止线程
         while True:
             a = input('enter q to exit!')
-            if a:
+            if a == 'q':
                 print(threading.enumerate())
 
                 self.disconnect_to_server()
                 ## use to exit the whole process
                 ## all other threads are killed 
                 os._exit(0)
-
                 return
+            elif a == 'l':
+                print(left_pieces)
 
     def disconnect_to_server(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
