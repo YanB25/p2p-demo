@@ -14,7 +14,7 @@ import os
 from  utilities import *
 # from collection import OrderedDict
 
-DEFAULT_PIECE_SIZE = 512
+DEFAULT_PIECE_SIZE = 3000
 DEFAULT_CLIENT_PORT = 6666
 
 
