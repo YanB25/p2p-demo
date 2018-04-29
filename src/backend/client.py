@@ -42,6 +42,7 @@ COMPLETED_EVENT = 'completed'
 
 # 全局变量
 left_pieces = queue.Queue(0)
+queue_lock = threading.Lock()
 pieces_manager = 0
 
 class PeerConnection(threading.Thread):
@@ -50,9 +51,10 @@ class PeerConnection(threading.Thread):
     client
     '''
     # TODO: pieces_num 似乎没有用到？因为pieces_manager这个全局变量已经有了
-    def __init__(self, sock):
+    def __init__(self, sock, lock):
         threading.Thread.__init__(self)
         self.socket = rdt_socket.rdt_socket(sock)
+        self.queue_lock = lock
         # self.peer_bitfield = 0
         
         self.request_piece_index = 0
@@ -194,16 +196,20 @@ class PeerConnection(threading.Thread):
                 # 过了5s后，我可能从其他客户端下载到了新块，对面可能不再有我需要的块，因此需要一直检查
                 logger.debug("I don't need this peer:{}".format(self.socket.s.getpeername()))
                 # 如果对面没有我需要的块，直接返回0
+
                 return 0
+            self.queue_lock.acquire()
             piece_index, piece_hash = left_pieces.get()
             if self.peer_bitfield[piece_index] == 1:
                 # 如果对面有这个数据块，就interest，否则就放回队列中
                 self.request_piece_index, self.request_piece_hash = piece_index, piece_hash
                 logger.debug("{}: this piece exists in peer:{}".format(piece_index,self.socket.s.getpeername()))
+                self.queue_lock.release()
                 return 1
             else:
                 # 对面没有这个块，将这个块放回到队列中
                 left_pieces.put((piece_index, piece_hash))
+                self.queue_lock.release()
                 logger.debug("{}: this piece doesn't exist in peer:{}".format(piece_index,self.socket.s.getpeername()))
                 time.sleep(5)
                 continue
@@ -326,7 +332,7 @@ class Client(threading.Thread):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((peer_ip, peer_port))
             # 拉起新的线程管理该tcp
-            peer_connection = PeerConnection(sock)
+            peer_connection = PeerConnection(sock,queue_lock)
             logger.debug('connect to {}:{} finish. tcp start'.format(peer_ip, peer_port))
             peer_connection.start()
     
@@ -372,7 +378,7 @@ class ClientMonitor(threading.Thread):
             (new_socket, addr) = listen_socket.accept()
             logger.debug('get new socket from listener port, addr is {}'.format(addr))
             # 开启新线程建立链接
-            peer_connection = PeerConnection(new_socket)
+            peer_connection = PeerConnection(new_socket,queue_lock)
             peer_connection.start()
 
 
