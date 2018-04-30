@@ -185,7 +185,7 @@ def bytes_to_message(binary):
             return Have(_piece_index[0])
         elif msg_id == 5:
             tuple_bitfield = struct.unpack_from('!'+str(msg_length-1)+'b', binary, 5)
-            print(tuple_bitfield)
+            # print(tuple_bitfield)
             list_bitfield = list(tuple_bitfield)
             return Bitfield(list_bitfield)
         elif msg_id == 6:

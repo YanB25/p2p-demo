@@ -140,8 +140,8 @@ class pieceManager():
             for i in range(0, self.piece_num):
                 self.pieces_data[i] = f.read(self.piece_length)
                 self.bitfield[i] = 1
-        print('load the file completed!')
-        print('The bitfield is ', self.bitfield)
+        # print('load the file completed!')
+        # print('The bitfield is ', self.bitfield)
     
     def merge_full_data_to_file(self, save_file_name=''):
         """ 如果拥有完整的数据块，尝试将数据块整合成一整个文件 """
