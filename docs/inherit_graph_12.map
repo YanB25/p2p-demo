@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classstate_1_1State.html" title="state.State" alt="" coords="5,31,92,57"/>
-<area shape="rect" id="node2" href="$classstate_1_1State01.html" title="state.State01" alt="" coords="140,31,240,57"/>
-<area shape="rect" id="node3" href="$classstate_1_1recvFileState.html" title="state.recvFileState" alt="" coords="289,5,421,32"/>
-<area shape="rect" id="node4" href="$classstate_1_1sendFileState.html" title="state.sendFileState" alt="" coords="288,56,423,83"/>
-</map>

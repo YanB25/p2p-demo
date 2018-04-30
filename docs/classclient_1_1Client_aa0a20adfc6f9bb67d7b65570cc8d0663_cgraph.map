@@ -1,7 +1,0 @@
-<map id="client.Client.get_peers_list" name="client.Client.get_peers_list">
-<area shape="rect" id="node2" href="$namespaceutilities.html#a34d5862eb592b742fc7ad9c31e25b45d" title="utilities.objEncode" alt="" coords="229,5,357,32"/>
-<area shape="rect" id="node3" href="$classclient_1_1Client.html#aa5c400f71381c9b8d6a054ea62269fe3" title="client.Client.make\l_resquest" alt="" coords="230,57,357,98"/>
-<area shape="rect" id="node5" href="$namespaceutilities.html#adb02b571b2d95ebe47646651e2140820" title="utilities.binary_to\l_beautiful_json" alt="" coords="233,122,353,163"/>
-<area shape="rect" id="node6" href="$namespaceutilities.html#ab075ea66f45f37708362613716c23ffb" title="utilities.objDecode" alt="" coords="406,159,535,185"/>
-<area shape="rect" id="node4" href="$classclient_1_1Client.html#a71f2c58079455aba829ca068aeae3859" title="client.Client.get_id" alt="" coords="405,64,536,91"/>
-</map>
