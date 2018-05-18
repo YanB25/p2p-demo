@@ -4,7 +4,7 @@ based on Python3
 
 项目主页：
 
-http://wangyf.top/revealjs/pre/p2p-demo
+http://wangyf.top/p/pre/p2p-demo
 
 ## 瓶颈
 QT运行时会阻塞进程。  
